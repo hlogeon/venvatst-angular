@@ -4,7 +4,7 @@ import gulp from 'gulp';
 import babel from 'gulp-babel';
 import sass from 'gulp-sass';
 import sourcemaps from 'gulp-sourcemaps';
-import rename from 'gulp-rename';
+// import rename from 'gulp-rename';
 import concat from 'gulp-concat';
 import uglify from 'gulp-uglify';
 import minifyCss from 'gulp-clean-css';
@@ -25,6 +25,7 @@ let dirs = {
 const JS_DEPENDENCIES = [
   'node_modules/angular/angular.js',
   'node_modules/angular-ui-router/release/angular-ui-router.js',
+  'node_modules/jquery/dist/jquery.js',
   'node_modules/bootstrap/dist/js/bootstrap.js'
 ];
 
@@ -44,7 +45,7 @@ gulp.task('sass', done => {
   return gulp.src(PATHS.sass)
     .pipe(sourcemaps.init())
     .pipe(sass())
-    .pipe(rename({ extname: '.min.css' }))
+    .pipe(concat('css/main.min.css'))
     .pipe(minifyCss())
     .pipe(sourcemaps.write(`../${dirs.dest}`))
     .pipe(gulp.dest(dirs.dest))
@@ -54,7 +55,7 @@ gulp.task('sass', done => {
         .src(CSS_DEPENDENCIES)
         .pipe(sourcemaps.init())
         .pipe(minifyCss())
-        .pipe(concat('styles.min.css'))
+        .pipe(concat('css/styles.min.css'))
         .pipe(sourcemaps.write(`../${dirs.dest}`))
         .pipe(gulp.dest(dirs.dest));
     });
@@ -80,7 +81,7 @@ gulp.task('js', done => {
   return gulp.src(PATHS.js)
     .pipe(sourcemaps.init())
     .pipe(babel())
-    .pipe(concat('app.js'))
+    .pipe(concat('js/app.js'))
   	// .pipe(ngAnnotate())
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(dirs.dest))
@@ -88,7 +89,7 @@ gulp.task('js', done => {
     .on('end', () => {
       gulp
         .src(JS_DEPENDENCIES)
-        .pipe(concat('libs.js'))
+        .pipe(concat('js/libs.js'))
         .pipe(gulp.dest(dirs.dest));
     });
 });
@@ -97,7 +98,7 @@ gulp.task('js', done => {
 gulp.task('minjs', done => {
   return gulp
     .src(PATHS.js)
-    .pipe(concat('app.js'))
+    .pipe(concat('js/app.js'))
     .pipe(babel())
     // .pipe(ngAnnotate())
     .pipe(uglify())
@@ -106,7 +107,8 @@ gulp.task('minjs', done => {
     .on('end', () => {
       gulp
         .src(JS_DEPENDENCIES)
-        .pipe(concat('libs.js'))
+        .pipe(concat('js/libs.js'))
+        .pipe(uglify())
         .pipe(gulp.dest(dirs.dest));
     });
 });
