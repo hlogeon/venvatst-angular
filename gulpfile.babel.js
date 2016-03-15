@@ -14,7 +14,7 @@ import rev from 'gulp-rev-append';
 import sequence from 'run-sequence';
 // import ngAnnotate from 'gulp-ng-annotate';
 
-const dirs = {
+let dirs = {
   src: 'app',
   dest: 'build'
   // dest: 'dist'
@@ -22,9 +22,15 @@ const dirs = {
 
 // add browserify to use import *.
 
-let JS_DEPENDENCIES = [
-  'node_modules/angular/angular.min.js',
-  'node_modules/angular-ui-router/release/angular-ui-router.min.js'
+const JS_DEPENDENCIES = [
+  'node_modules/angular/angular.js',
+  'node_modules/angular-ui-router/release/angular-ui-router.js',
+  'node_modules/bootstrap/dist/js/bootstrap.js'
+];
+
+const CSS_DEPENDENCIES = [
+  'node_modules/bootstrap/dist/css/bootstrap.css',
+  'node_modules/bootstrap/dist/css/bootstrap-theme.css'
 ];
 
 let PATHS = {
@@ -42,7 +48,16 @@ gulp.task('sass', done => {
     .pipe(minifyCss())
     .pipe(sourcemaps.write(`../${dirs.dest}`))
     .pipe(gulp.dest(dirs.dest))
-    .pipe(livereload());
+    .pipe(livereload())
+    .on('end', () => {
+      gulp
+        .src(CSS_DEPENDENCIES)
+        .pipe(sourcemaps.init())
+        .pipe(minifyCss())
+        .pipe(concat('styles.min.css'))
+        .pipe(sourcemaps.write(`../${dirs.dest}`))
+        .pipe(gulp.dest(dirs.dest));
+    });
 });
 
 // Handle html changes.

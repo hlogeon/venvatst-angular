@@ -10,8 +10,17 @@
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="main.min.css?rev=@@hash">
+  <link rel="stylesheet" href="styles.min.css?rev=@@hash">
   </head>
   <body class="page-create">
+    <ul class="menu">
+      <li><a href="#/view-one">viewOne</a></li>
+      <li><a href="#/view-two">viewTwo</a></li>
+    </ul>
+
+    <!--[if lt IE 7]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
 
     <div ui-view></div>
 
