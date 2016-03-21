@@ -68,6 +68,13 @@ gulp.task('html', done => {
     .pipe(livereload());
 });
 
+// Handle assets changes.
+gulp.task('assets', done => {
+  return gulp.src(`${dirs.src}/assets/*`)
+    .pipe(gulp.dest(`${dirs.dest}/assets`))
+    .pipe(livereload());
+});
+
 // gulp.task('annotate', () => {
 //   return gulp.src(PATHS.js)
 //     // jscs:disable
@@ -118,8 +125,8 @@ gulp.task('server', () => {
   gulp
     .src(dirs.dest)
     .pipe(webserver({
-      livereload: false,
-      host: null,
+      livereload: true,
+      // host: null,
       open: false,
       port: process.env.PORT || 8000,
     }));
@@ -128,7 +135,7 @@ gulp.task('server', () => {
 // Task for watching file changes and livereloading the development server.
 gulp.task('watch', cb => {
   // sequence(['sass', 'js', 'html'], 'revision', 'server', cb);
-  sequence(['sass', 'js', 'html'], 'revision', 'server', 'watching', cb);
+  sequence(['sass', 'js', 'html', 'assets'], 'revision', 'server', 'watching', cb);
   // livereload.listen();
   // gulp.watch(PATHS.js, { interval: 1000 }, ['js']);
   // gulp.watch(PATHS.sass, { interval: 1000 }, ['sass']);
@@ -153,4 +160,4 @@ gulp.task('revision', () => {
 });
 
 // Build command
-gulp.task('build', cb => sequence(['sass', 'minjs', 'html'], 'revision', cb));
+gulp.task('build', cb => sequence(['sass', 'minjs', 'html', 'assets'], 'revision', cb));

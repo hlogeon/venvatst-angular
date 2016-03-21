@@ -1,15 +1,18 @@
 (ng => {
   'use strict';
   class ViewTwoController {
-    constructor (EventStore) {
+    constructor (CountStore) {
+      this.CountStore = CountStore;
       this.init();
     }
 
     init () {
+      this.name = 'TWO';
+      this.CountStore.increment();
     }
   }
 
-  ViewTwoController.$inject = [];
+  ViewTwoController.$inject = ['CountStore'];
 
   ng
     .module('myApp.view-one')
