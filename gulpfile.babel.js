@@ -5,9 +5,7 @@ import sequence from 'run-sequence';
 import gulpLoadPlugins from 'gulp-load-plugins';
 import browserSync from 'browser-sync';
 
-let reload = browserSync.reload;
 let plugins = gulpLoadPlugins();
-// add browserify to use import *.
 
 const DIRS = {
   src: 'app',
@@ -36,7 +34,6 @@ const PATHS = {
 // Handle sass changes.
 gulp.task('sass', done => {
   return gulp.src(PATHS.sass)
-    // TODO fix sourcemaps
     .pipe(plugins.sourcemaps.init())
     .pipe(plugins.sass())
     .pipe(plugins.concat('css/main.min.css'))
@@ -120,7 +117,7 @@ gulp.task('watch', cb => {
 });
 
 gulp.task('watching', () => {
-  gulp.watch(PATHS.js, ['js', reload]);
+  gulp.watch(PATHS.js, ['js']);
   gulp.watch(PATHS.sass, ['sass']);
   gulp.watch(PATHS.html, ['html']);
 });
