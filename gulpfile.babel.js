@@ -84,7 +84,7 @@ gulp.task('js', done => {
 });
 
 // Minify js
-gulp.task('minjs', done => {
+gulp.task('minifyJS', done => {
   return gulp
     .src(PATHS.js)
     .pipe(plugins.concat(DIRS.js.app))
@@ -132,5 +132,11 @@ gulp.task('revision', () => {
     .pipe(gulp.dest(DIRS.dest));
 });
 
+gulp.task('minifyHTML', function() {
+  return gulp.src(PATHS.html)
+    .pipe(plugins.htmlmin({collapseWhitespace: true}))
+    .pipe(gulp.dest(`${DIRS.dest}/templates`))
+});
+
 // Build command
-gulp.task('build', cb => sequence(['sass', 'minjs', 'html', 'assets'], 'revision', cb));
+gulp.task('build', cb => sequence(['sass', 'minifyJS', 'minifyHTML', 'assets'], 'revision', cb));
