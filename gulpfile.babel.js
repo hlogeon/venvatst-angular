@@ -46,7 +46,7 @@ gulp.task('sass', done => {
         .src(CSS_DEPENDENCIES)
         .pipe(plugins.sourcemaps.init())
         .pipe(plugins.cleanCss())
-        .pipe(plugins.concat('css/styles.min.css'))
+        .pipe(plugins.concat('css/libs.min.css'))
         .pipe(plugins.sourcemaps.write(`../${DIRS.dest}`))
         .pipe(gulp.dest(DIRS.dest))
         .pipe(browserSync.stream({match: '**/*.css'}))
@@ -105,9 +105,9 @@ gulp.task('server', () => {
   browserSync({
     notify: false,
     server: DIRS.dest,
-    open: false,
+    // open: false,
     tunnel: false,
-    port: 3000
+    port: 8000
   });
 });
 
