@@ -1,7 +1,7 @@
 
 # angular-seed-es6
 
-[![Build Status](https://travis-ci.org/gusgard/angular-seed-es6.svg?branch=master)](https://travis-ci.org/gusgard/angular-seed-es6)
+[![Build Status](https://travis-ci.org/gusgard/angular-seed-es6.svg)](https://travis-ci.org/gusgard/angular-seed-es6)
 [![devDependency Status](https://david-dm.org/gusgard/angular-seed-es6.svg)](https://david-dm.org/gusgard/angular-seed-es6#info=devDependencies)
 
 This project is an application skeleton for a typical [AngularJS 1.x](http://angularjs.org/) web app using the [best practices](https://github.com/johnpapa/angular-styleguide/blob/master/a1/README.md) and with **ES6**.
