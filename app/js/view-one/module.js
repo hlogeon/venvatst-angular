@@ -1,6 +1,1 @@
-(ng => {
-  'use strict';
-
-  ng.module('myApp.view-one', []);
-
-})(angular);
+angular.module('myApp.view-one', []);

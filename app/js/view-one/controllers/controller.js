@@ -1,20 +1,17 @@
-(ng => {
-  'use strict';
-  class ViewOneController {
-    constructor (CountStore) {
-      this.CountStore = CountStore;
-      this.init();
-    }
-
-    init () {
-      this.name = 'ONE';
-      this.CountStore.increment();
-    }
+class ViewOneController {
+  constructor (CountStore) {
+    this.CountStore = CountStore;
+    this.init();
   }
 
-  ViewOneController.$inject = ['CountStore'];
+  init () {
+    this.name = 'ONE';
+    this.CountStore.increment();
+  }
+}
 
-  ng
-    .module('myApp.view-one')
-    .controller('ViewOneController', ViewOneController);
-})(angular);
+ViewOneController.$inject = ['CountStore'];
+
+angular
+  .module('myApp.view-one')
+  .controller('ViewOneController', ViewOneController);
