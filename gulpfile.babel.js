@@ -138,5 +138,17 @@ gulp.task('minifyHTML', function() {
     .pipe(gulp.dest(`${DIRS.dest}/templates`))
 });
 
+gulp.task('eslint', () => {
+  return gulp.src(PATHS.js)
+    .pipe(plugins.eslint())
+    .pipe(plugins.eslint.format())
+    .pipe(plugins.eslint.failAfterError());
+});
+
+gulp.task('test', () => {
+  console.log('TODO test');
+});
+
+
 // Build command
 gulp.task('build', cb => sequence(['sass', 'minifyJS', 'minifyHTML', 'assets'], 'revision', cb));
