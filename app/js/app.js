@@ -1,8 +1,13 @@
+import angular from 'angular';
+import 'angular-ui-router';
+import './view-one/module.js';
+import './view-two/module.js';
+
 // Declare app level module which depends on views, and components
 angular.module('myApp', [
   'ui.router',
   'myApp.view-one',
-  'myApp.view-two',
+  'myApp.view-two'
 ]).
 config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
   $stateProvider

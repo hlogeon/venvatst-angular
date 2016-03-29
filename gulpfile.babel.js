@@ -66,22 +66,23 @@ gulp.task('assets', done => {
     .pipe(gulp.dest(`${DIRS.dest}/assets`));
 });
 
+
 // Handle js changes.
-gulp.task('js', done => {
-  return gulp.src(PATHS.js)
-    .pipe(plugins.sourcemaps.init())
-    .pipe(plugins.babel())
-    .pipe(plugins.concat(DIRS.js.app))
-    .pipe(plugins.sourcemaps.write())
-    .pipe(gulp.dest(DIRS.dest))
-    .pipe(browserSync.stream({match: '**/*.js'}))
-    .on('end', () => {
-      gulp
-        .src(JS_DEPENDENCIES)
-        .pipe(plugins.concat(DIRS.js.libs))
-        .pipe(gulp.dest(DIRS.dest));
-    });
-});
+// gulp.task('js', done => {
+//   return gulp.src(PATHS.js)
+//     .pipe(plugins.sourcemaps.init())
+//     .pipe(plugins.babel())
+//     .pipe(plugins.concat(DIRS.js.app))
+//     .pipe(plugins.sourcemaps.write())
+//     .pipe(gulp.dest(DIRS.dest))
+//     .pipe(browserSync.stream({match: '**/*.js'}))
+//     .on('end', () => {
+//       gulp
+//         .src(JS_DEPENDENCIES)
+//         .pipe(plugins.concat(DIRS.js.libs))
+//         .pipe(gulp.dest(DIRS.dest));
+//     });
+// });
 
 // Minify js
 gulp.task('minifyJS', done => {
@@ -105,19 +106,19 @@ gulp.task('server', () => {
   browserSync({
     notify: false,
     server: DIRS.dest,
-    tunnel: "angularseedes6",
-    browser: "google chrome",
+    tunnel: 'angularseedes6',
+    browser: 'google chrome',
     port: 8000
   });
 });
 
 // Task for watching file changes and livereloading the development server.
 gulp.task('watch', cb => {
-  sequence(['sass', 'js', 'html', 'assets'], 'revision', ['server', 'watching'], cb);
+  sequence(['sass', 'browserify', 'html', 'assets'], 'revision', ['server', 'watching'], cb);
 });
 
 gulp.task('watching', () => {
-  gulp.watch(PATHS.js, ['js']);
+  // gulp.watch(PATHS.js, ['js']);
   gulp.watch(PATHS.sass, ['sass']);
   gulp.watch(PATHS.html, ['html']);
 });
@@ -152,3 +153,77 @@ gulp.task('test', () => {
 
 // Build command
 gulp.task('build', cb => sequence(['sass', 'minifyJS', 'minifyHTML', 'assets'], 'revision', cb));
+
+
+import gulpif       from 'gulp-if';
+import source       from 'vinyl-source-stream';
+import sourcemaps   from 'gulp-sourcemaps';
+import buffer       from 'vinyl-buffer';
+import streamify    from 'gulp-streamify';
+import watchify     from 'watchify';
+import browserify   from 'browserify';
+import babelify     from 'babelify';
+import debowerify   from 'debowerify';
+import ngAnnotate   from 'browserify-ngannotate';
+
+// Based on: http://blog.avisi.nl/2014/04/25/how-to-keep-a-fast-build-with-browserify-and-reactjs/
+
+function buildScript(file) {
+
+  const shouldCreateSourcemap = true;
+
+  let bundler = browserify({
+    entries: ['./app/js/' + file],
+    debug: shouldCreateSourcemap,
+    cache: {},
+    packageCache: {},
+    fullPaths: true
+  });
+
+  // if ( !global.isProd ) {
+    bundler = watchify(bundler);
+
+    bundler.on('update', rebundle);
+  // }
+
+  const transforms = [
+    { 'name': babelify, 'options': {}},
+    { 'name': debowerify, 'options': {}},
+    { 'name': ngAnnotate, 'options': {}},
+    { 'name':'brfs', 'options': {}},
+    { 'name':'bulkify', 'options': {}}
+  ];
+
+  transforms.forEach(function(transform) {
+    bundler.transform(transform.name, transform.options);
+  });
+
+  function rebundle() {
+    // bundleLogger.start();
+
+    const stream = bundler.bundle();
+    const sourceMapLocation = '';
+
+    return stream
+      // .on('error', handleErrors)
+      // .on('end', bundleLogger.end)
+      .pipe(source(file))
+      .pipe(gulpif(shouldCreateSourcemap, buffer()))
+      .pipe(gulpif(shouldCreateSourcemap, sourcemaps.init({ loadMaps: true })))
+      .pipe(gulpif(false, streamify(plugins.uglify({
+        compress: { drop_console: true } // eslint-disable-line camelcase
+      }))))
+      .pipe(gulpif(shouldCreateSourcemap, sourcemaps.write(sourceMapLocation)))
+      .pipe(gulp.dest(DIRS.dest))
+      .pipe(browserSync.stream());
+  }
+
+  return rebundle();
+
+}
+
+gulp.task('browserify', function() {
+
+  return buildScript('app.js');
+
+});

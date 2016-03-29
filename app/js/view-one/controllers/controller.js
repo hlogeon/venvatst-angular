@@ -12,6 +12,4 @@ class ViewOneController {
 
 ViewOneController.$inject = ['CountStore'];
 
-angular
-  .module('myApp.view-one')
-  .controller('ViewOneController', ViewOneController);
+export default ViewOneController;

@@ -13,5 +13,4 @@ class CountStore {
 }
 CountStore.$inject = [];
 
-angular.module('myApp.view-one')
-  .service('CountStore', CountStore);
+export default CountStore;
