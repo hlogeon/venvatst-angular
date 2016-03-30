@@ -1,4 +1,6 @@
 class ViewOneController {
+  // static $inject = ['CountStore'];
+
   constructor (CountStore) {
     this.CountStore = CountStore;
     this.init();
@@ -11,5 +13,4 @@ class ViewOneController {
 }
 
 ViewOneController.$inject = ['CountStore'];
-
 export default ViewOneController;

@@ -5,6 +5,8 @@ import sequence from 'run-sequence';
 import gulpLoadPlugins from 'gulp-load-plugins';
 import browserSync from 'browser-sync';
 
+global.isProd = false;
+
 let plugins = gulpLoadPlugins();
 
 const DIRS = {
@@ -150,9 +152,11 @@ gulp.task('test', () => {
   console.log('TODO test');
 });
 
-
 // Build command
-gulp.task('build', cb => sequence(['sass', 'minifyJS', 'minifyHTML', 'assets'], 'revision', cb));
+gulp.task('build', cb => {
+  global.isProd = true;
+  sequence(['sass', 'browserify', 'minifyHTML', 'assets'], 'revision', cb)
+});
 
 
 import gulpif       from 'gulp-if';
@@ -164,7 +168,7 @@ import watchify     from 'watchify';
 import browserify   from 'browserify';
 import babelify     from 'babelify';
 import debowerify   from 'debowerify';
-import ngAnnotate   from 'browserify-ngannotate';
+// import ngAnnotate   from 'browserify-ngannotate';
 
 // Based on: http://blog.avisi.nl/2014/04/25/how-to-keep-a-fast-build-with-browserify-and-reactjs/
 
@@ -180,16 +184,16 @@ function buildScript(file) {
     fullPaths: true
   });
 
-  // if ( !global.isProd ) {
+  if (!global.isProd) {
     bundler = watchify(bundler);
 
     bundler.on('update', rebundle);
-  // }
+  }
 
   const transforms = [
     { 'name': babelify, 'options': {}},
     { 'name': debowerify, 'options': {}},
-    { 'name': ngAnnotate, 'options': {}},
+    // { 'name': ngAnnotate, 'options': {}},
     { 'name':'brfs', 'options': {}},
     { 'name':'bulkify', 'options': {}}
   ];
@@ -210,7 +214,7 @@ function buildScript(file) {
       .pipe(source(file))
       .pipe(gulpif(shouldCreateSourcemap, buffer()))
       .pipe(gulpif(shouldCreateSourcemap, sourcemaps.init({ loadMaps: true })))
-      .pipe(gulpif(false, streamify(plugins.uglify({
+      .pipe(gulpif(global.isProd, streamify(plugins.uglify({
         compress: { drop_console: true } // eslint-disable-line camelcase
       }))))
       .pipe(gulpif(shouldCreateSourcemap, sourcemaps.write(sourceMapLocation)))

@@ -1,4 +1,4 @@
-function config ($stateProvider, $urlRouterProvider) {
+let configRouter = function ($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('view-one', {
       url: '/view-one',
@@ -13,6 +13,6 @@ function config ($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('view-one');
 };
 
-config.$inject = ['$stateProvider', '$urlRouterProvider'];
+configRouter.$inject = ['$stateProvider', '$urlRouterProvider'];
 
-export default config;
+export default configRouter;
