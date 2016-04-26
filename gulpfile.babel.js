@@ -139,6 +139,10 @@ gulp.task('eslint', () => {
     .pipe(plugins.eslint.failAfterError());
 });
 
+gulp.task('test', () => {
+  console.log('TODO test');
+});
+
 // Build command
 gulp.task('build', cb => {
   global.isProd = true;
