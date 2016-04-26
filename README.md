@@ -18,6 +18,7 @@ The seed app doesn't do much, just shows how to wire two controllers and views t
 Please see the [gulpfile](./gulpfile.babel.js) for up to date information on what it supports.
 
 * ES6 out of the box
+* Browserify
 * Built-in hot-reload preview server with BrowserSync
 * Compile Sass with [libsass](http://sass-lang.com/libsass)
 * Map compiled JS/CSS to source with source maps
@@ -45,6 +46,8 @@ app/                    --> all compiled files for the application
         controllers.js    --> controller logic
       services/
         count-store.js    --> service logic
+      directives/
+        title-example.js  --> directive logic
       modules.js          --> define the module dependencies
     view-two/
       controllers/
