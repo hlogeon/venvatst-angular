@@ -15,7 +15,7 @@ import babelify     from 'babelify';
 import debowerify   from 'debowerify';
 // import ngAnnotate   from 'browserify-ngannotate';
 
-global.isProd = false;
+let isProd = false;
 
 let plugins = gulpLoadPlugins();
 
@@ -28,13 +28,13 @@ const DIRS = {
 const JS_DEPENDENCIES = [
   'node_modules/angular/angular.js',
   'node_modules/angular-ui-router/release/angular-ui-router.js',
-  'node_modules/jquery/dist/jquery.js',
-  'node_modules/bootstrap/dist/js/bootstrap.js'
+  'node_modules/angular-animate/angular-animate.js',
+  'node_modules/angular-aria/angular-aria.js',
+  'node_modules/angular-material/angular-material.js'
 ];
 
 const CSS_DEPENDENCIES = [
-  'node_modules/bootstrap/dist/css/bootstrap.css',
-  'node_modules/bootstrap/dist/css/bootstrap-theme.css'
+  'node_modules/angular-material/angular-material.css'
 ];
 
 const PATHS = {
@@ -61,7 +61,7 @@ gulp.task('sass', () => {
         .pipe(plugins.concat('css/libs.min.css'))
         .pipe(plugins.sourcemaps.write(`../${DIRS.dest}`))
         .pipe(gulp.dest(DIRS.dest))
-        .pipe(browserSync.stream({match: '**/*.css'}))
+        .pipe(browserSync.stream({match: '**/*.css'}));
     });
 });
 
@@ -69,7 +69,7 @@ gulp.task('sass', () => {
 gulp.task('html', () => {
   return gulp.src(PATHS.html)
     .pipe(gulp.dest(`${DIRS.dest}/templates`))
-    .pipe(browserSync.stream({match: '**/*.html'}))
+    .pipe(browserSync.stream({match: '**/*.html'}));
 });
 
 // Handle assets changes.
@@ -129,7 +129,7 @@ gulp.task('revision', () => {
 gulp.task('minifyHTML', function() {
   return gulp.src(PATHS.html)
     .pipe(plugins.htmlmin({collapseWhitespace: true}))
-    .pipe(gulp.dest(`${DIRS.dest}/templates`))
+    .pipe(gulp.dest(`${DIRS.dest}/templates`));
 });
 
 gulp.task('eslint', () => {
@@ -145,8 +145,8 @@ gulp.task('test', () => {
 
 // Build command
 gulp.task('build', cb => {
-  global.isProd = true;
-  sequence(['sass', 'browserify', 'minifyHTML', 'assets'], 'revision', cb)
+  isProd = true;
+  sequence(['sass', 'browserify', 'minifyHTML', 'assets'], 'revision', cb);
 });
 
 // Based on: http://blog.avisi.nl/2014/04/25/how-to-keep-a-fast-build-with-browserify-and-reactjs/
@@ -161,18 +161,18 @@ function buildScript(file) {
     fullPaths: true
   });
 
-  if (!global.isProd) {
+  if (!isProd) {
     bundler = watchify(bundler);
 
     bundler.on('update', rebundle);
   }
 
   const transforms = [
-    { 'name': babelify, 'options': {}},
-    { 'name': debowerify, 'options': {}},
-    // { 'name': ngAnnotate, 'options': {}},
-    { 'name':'brfs', 'options': {}},
-    { 'name':'bulkify', 'options': {}}
+    { name: babelify, options: {}},
+    { name: debowerify, options: {}},
+    // { name: ngAnnotate, options: {}},
+    { name: 'brfs', options: {}},
+    { name: 'bulkify', options: {}}
   ];
 
   transforms.forEach(function(transform) {
@@ -189,7 +189,7 @@ function buildScript(file) {
       .pipe(source(file))
       .pipe(gulpif(shouldCreateSourcemap, buffer()))
       .pipe(gulpif(shouldCreateSourcemap, sourcemaps.init({ loadMaps: true })))
-      .pipe(gulpif(global.isProd, streamify(plugins.uglify({
+      .pipe(gulpif(isProd, streamify(plugins.uglify({
         compress: { drop_console: true } // eslint-disable-line camelcase
       }))))
       .pipe(gulpif(shouldCreateSourcemap, sourcemaps.write(sourceMapLocation)))
