@@ -78,6 +78,90 @@ class ListController {
     }
 
 
+	getUserMarker (position) {
+		return {
+			latLng: new google.maps.LatLng(position.lat, position.lng),
+			data: 'user',
+			options: {
+				icon: {
+					url: '//i.stack.imgur.com/orZ4x.png',
+					scaledSize: new google.maps.Size(16, 16),
+					origin: new google.maps.Point(0, 0),
+					anchor: new google.maps.Point(0, 0)
+				}
+			}
+		}
+	}
+
+
+	makeMarkerOverlay (markersArray) {
+		let markers = [];
+		let context = this;
+		$.each(markersArray, function(index, value) {
+			let content = '<div id="' + value.id + '" class="map-popup-content-wrapper"><div class="map-popup-content"><div class="listing-window-image-wrapper">' +
+				'<a href="'+ context.getObjectUrlByMarker(value) +'">' +
+				'<div class="listing-window-image" style="background-image: url(' + value.image + ');"></div>' +
+				'<div class="listing-window-content">' +
+				'<div class="info">' +
+				'<h2>' + value.title + '</h2>' +
+				'<h3>' + value.category + '</h3>' +
+				'</div>' +
+				'</div>' +
+				'</a>' +
+				'</div></div><i class="fa fa-close close"></i></div>';
+
+			markers.push({
+				latLng: new google.maps.LatLng(value.center[0], value.center[1]),
+				data: value.id,
+				options: {
+					content: content
+				}
+			});
+
+		});
+		return markers;
+	}
+
+
+	makeMarkerContent (markersArray) {
+		let markers = [];
+		$.each(markersArray, function(index, value) {
+			markers.push({
+				latLng: new google.maps.LatLng(value.center[0], value.center[1]),
+				options: {
+					content: {
+						id: value.id
+					},
+					icon: {
+						url: value.icon,
+						scaledSize: new google.maps.Size(32, 32),
+						origin: new google.maps.Point(0, 0),
+						anchor: new google.maps.Point(0, 0)
+					}
+				}
+			});
+
+		});
+		return markers;
+	}
+
+
+	markerClickHandler (marker, event, context) {
+		$('.map-popup-content-wrapper').css('display', 'none');
+		let elementID = marker.content.id;
+		let element = $('#' + elementID);
+		$('.close', '#'+elementID).click(function() {
+			element.css('display', 'none');
+		});
+
+		if (!element.is(':hidden')) {
+			element.css('display', 'none');
+		} else {
+			element.css('display', 'block');
+		}
+	}
+
+
 }
 
 export default ListController;

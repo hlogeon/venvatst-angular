@@ -47,7 +47,6 @@ class VenuesListController extends ListController {
         let context = this;
         this.loading = true;
         this.getQ().when(this.getService().gettingVenues()).then(function (venues) {
-            console.log("Requesting  venues: ", venues);
             context.loading = false;
             if(context.getService().getRequestService().hasNextPage() === false) {
                 context.hasMorePages = false;
@@ -114,70 +113,23 @@ class VenuesListController extends ListController {
             context.markers = markerItems;
             context.markersLoaded.notify({
                 items: markerItems,
+                overlay: context.makeMarkerOverlay(markers),
                 clickHandler: context.markerClickHandler
             });
         });
     }
 
 
-    makeMarkerContent (markersArray) {
-        let markers = [];
-        $.each(markersArray, function(index, value) {
-            let content = '<div id="' + value.id + '" class="map-popup-content-wrapper"><div class="map-popup-content"><div class="listing-window-image-wrapper">' +
-                '<a href="/#/venues/' + value.id + '">' +
-                '<div class="listing-window-image" style="background-image: url(' + value.image + ');"></div>' +
-                '<div class="listing-window-content">' +
-                '<div class="info">' +
-                '<h2>' + value.title + '</h2>' +
-                '<h3>' + value.category + '</h3>' +
-                '</div>' +
-                '</div>' +
-                '</a>' +
-                '</div></div><i class="fa fa-close close"></i></div>' +
-                "<div class='map-marker'><img src='" + value.icon + "' style='margin-left: -2px; margin-top: -3px;' width='32' height='32'></div>";
-
-            markers.push({
-                latLng: new google.maps.LatLng(value.center[0], value.center[1]),
-                data: value.id,
-                options: {
-                    content: content
-                }
-            });
-            
-        });
-        return markers;
+    getObjectUrlByMarker (marker) {
+        return '/#/venues/'+ marker.id;
     }
-
-
-    getUserMarker (position) {
-        let content = "<img src='//i.stack.imgur.com/orZ4x.png' style='margin-left: -2px; margin-top: -3px;' width='22' height='22'>";
-        return {
-            latLng: new google.maps.LatLng(position.lat, position.lng),
-            data: 'user',
-            options: {
-                content: content
-            }
-        }
-    }
-
-
-    markerClickHandler (marker, event, context) {
-        $('.map-popup-content-wrapper').css('display', 'none');
-
-        if ($(event[0].target).hasClass('close')) {
-            $('#' + context.data).css('display', 'none');
-        } else {
-            $('#' + context.data).css('display', 'block');
-        }
-    }
-    
     
     getMapOptions () {
         return {
             styles: [{"featureType":"water","elementType":"geometry","stylers":[{"color":"#e9e9e9"},{"lightness":17}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"color":"#f5f5f5"},{"lightness":20}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#ffffff"},{"lightness":17}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#ffffff"},{"lightness":29},{"weight":0.2}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#ffffff"},{"lightness":18}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#ffffff"},{"lightness":16}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#f5f5f5"},{"lightness":21}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"color":"#dedede"},{"lightness":21}]},{"elementType":"labels.text.stroke","stylers":[{"visibility":"on"},{"color":"#ffffff"},{"lightness":16}]},{"elementType":"labels.text.fill","stylers":[{"saturation":36},{"color":"#333333"},{"lightness":40}]},{"elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"color":"#f2f2f2"},{"lightness":19}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#fefefe"},{"lightness":20}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#fefefe"},{"lightness":17},{"weight":1.2}]}],
             center: new google.maps.LatLng(this.lat, this.lng),
             scrollwheel: false,
-            zoom: 16
+            zoom: 12
         }
     }
     

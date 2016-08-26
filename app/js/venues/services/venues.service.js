@@ -68,9 +68,6 @@ class VenuesService extends BaseApiService {
 		$.extend(params, context.getRequestService().getRequestData());
 		params.page = 0;
 		params.markers = true;
-		if(!params.category) {
-			params.radius = 1;
-		}
 		return http({
 			'method': 'GET',
 			'url': context.apiPath + context.apiEndPoint,

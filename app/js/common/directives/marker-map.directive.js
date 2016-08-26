@@ -28,6 +28,11 @@ class MarkerMap {
                                 content: "<div class='cluster cluster-1'>CLUSTER_COUNT</div>",
                                 width: 53,
                                 height: 52
+                            },
+                            events: {
+                                click: function(cluster, event, data){
+                                    console.log("Cluster clicked", cluster, event, data);
+                                }
                             }
                         },
                         events: {
