@@ -36,11 +36,8 @@
                 <div class="container-fluid">
                     <div class="nav-primary navbar-toggleable-md collapse">
                         <ul class="nav nav-pills">
-                            <li class="nav-item">
-                                <a ui-sref="venvast.events" class="nav-link active">Home</a>
-                            </li>
                             <li class="nav-item has-children">
-                                <a ui-sref="venvast.events" class="nav-link " ng-class="HeaderCtrl.getClass('events')">Events</a>
+                                <a ui-sref="venvast.events" class="nav-link " ng-class="{'active': HeaderCtrl.eventsState}">Events</a>
                                 <ul class="sub-menu">
                                     <li><a ui-sref="venvast.events">All</a></li>
                                     <li ng-if="$root.authenticated"><a ui-sref="venvast.events">Favorites</a></li>
@@ -49,7 +46,7 @@
                                 </ul>
                             </li>
                             <li class="nav-item has-children">
-                                <a ui-sref="venvast.venues" class="nav-link " ng-class="HeaderCtrl.getClass('venues')">Venues</a>
+                                <a ui-sref="venvast.venues" class="nav-link " ng-class="{'active': HeaderCtrl.venuesState}">Venues</a>
                                 <ul class="sub-menu">
                                     <li><a ui-sref="venvast.venues">All</a></li>
                                     <li ng-if="$root.authenticated"><a ui-sref="venvast.events">Favorites</a></li>
