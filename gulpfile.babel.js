@@ -176,7 +176,7 @@ gulp.task('test', () => {
 // Build command
 gulp.task('build', cb => {
   isProd = true;
-  sequence(['sass', 'browserify', 'minifyHTML', 'assets'], 'revision', cb);
+  sequence(['sass', 'browserify', 'html', 'assets'], 'revision', cb);
 });
 
 // Based on: http://blog.avisi.nl/2014/04/25/how-to-keep-a-fast-build-with-browserify-and-reactjs/
