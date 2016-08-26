@@ -13,12 +13,19 @@ class LoadingButton {
             icon: '@',
             value: '@',
             loading: '=',
-            styleDisabled: '=styleDisabled'
+            styleDisabled: '='
         };
     }
 
     link (scope, element) {
         let context = this;
+        scope.$watch('styleDisabled', function(newVal) {
+            if(newVal === true) {
+                $(element).hide();
+            } else {
+                $(element).show();
+            }
+        });
         $(document).ready(function() {
             context.setState(scope.loading, element);
         });
