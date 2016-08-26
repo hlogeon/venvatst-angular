@@ -224,9 +224,9 @@ function buildScript(file) {
       .pipe(source(file))
       .pipe(gulpif(shouldCreateSourcemap, buffer()))
       .pipe(gulpif(shouldCreateSourcemap, sourcemaps.init({ loadMaps: true })))
-      .pipe(gulpif(isProd, streamify(plugins.uglify({
-        compress: { drop_console: true } // eslint-disable-line camelcase
-      }))))
+      // .pipe(gulpif(isProd, streamify(plugins.uglify({
+      //   compress: { drop_console: true } // eslint-disable-line camelcase
+      // }))))
       .pipe(gulpif(shouldCreateSourcemap, sourcemaps.write(sourceMapLocation)))
       .pipe(gulp.dest(DIRS.dest))
       .pipe(browserSync.stream());
