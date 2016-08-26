@@ -4,6 +4,7 @@ import 'angular-material';
 import 'angular-local-storage';
 import 'angular-formly';
 import 'angular-formly-templates-bootstrap';
+import 'angular-jquery-timepicker';
 import 'moment';
 import ListController from './controllers/list.controller.js';
 import DetailsController from './controllers/details.controller.js';
