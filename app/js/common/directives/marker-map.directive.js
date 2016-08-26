@@ -20,11 +20,22 @@ class MarkerMap {
                     map: {
                         options: scope.mapOptions
                     },
-                    overlay: {
+                    marker: {
                         values: data.items,
+                        cluster: {
+                            radius: 50,
+                            0: {
+                                content: "<div class='cluster cluster-1'>CLUSTER_COUNT</div>",
+                                width: 53,
+                                height: 52
+                            }
+                        },
                         events: {
                             click: data.clickHandler
                         }
+                    },
+                    overlay: {
+                        values: data.overlay
                     }
                 });
             })

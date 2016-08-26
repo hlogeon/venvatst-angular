@@ -130,13 +130,14 @@ class EventsListController extends ListController {
             context.markers = markerItems;
             context.markersLoaded.notify({
                 items: markerItems,
+                overlay: context.makeMarkerOverlay(markers),
                 clickHandler: context.markerClickHandler
             });
         });
     }
 
 
-    makeMarkerContent (markersArray) {
+    makeMarkerOverlay (markersArray) {
         let markers = [];
         $.each(markersArray, function(index, value) {
             let content = '<div id="' + value.id + '" class="map-popup-content-wrapper"><div class="map-popup-content"><div class="listing-window-image-wrapper">' +
@@ -149,8 +150,7 @@ class EventsListController extends ListController {
                 '</div>' +
                 '</div>' +
                 '</a>' +
-                '</div></div><i class="fa fa-close close"></i></div>' +
-                "<div class='map-marker'><img src='" + value.icon + "' style='margin-left: -2px; margin-top: -3px;' width='32' height='32'></div>";
+                '</div></div><i class="fa fa-close close"></i></div>';
 
             markers.push({
                 latLng: new google.maps.LatLng(value.center[0], value.center[1]),
@@ -165,13 +165,40 @@ class EventsListController extends ListController {
     }
 
 
+    makeMarkerContent (markersArray) {
+        let markers = [];
+        $.each(markersArray, function(index, value) {
+            markers.push({
+                latLng: new google.maps.LatLng(value.center[0], value.center[1]),
+                options: {
+                    content: {
+                        id: value.id
+                    },
+                    icon: {
+                        url: value.icon,
+                        scaledSize: new google.maps.Size(32, 32),
+                        origin: new google.maps.Point(0, 0),
+                        anchor: new google.maps.Point(0, 0)
+                    }
+                }
+            });
+
+        });
+        return markers;
+    }
+
+
     getUserMarker (position) {
-        let content = "<img src='//i.stack.imgur.com/orZ4x.png' style='margin-left: -2px; margin-top: -3px;' width='22' height='22'>";
         return {
             latLng: new google.maps.LatLng(position.lat, position.lng),
             data: 'user',
             options: {
-                content: content
+                icon: {
+                    url: '//i.stack.imgur.com/orZ4x.png',
+                    scaledSize: new google.maps.Size(16, 16),
+                    origin: new google.maps.Point(0, 0),
+                    anchor: new google.maps.Point(0, 0)
+                }
             }
         }
     }
@@ -179,11 +206,16 @@ class EventsListController extends ListController {
 
     markerClickHandler (marker, event, context) {
         $('.map-popup-content-wrapper').css('display', 'none');
+        let elementID = marker.content.id;
+        let element = $('#' + elementID);
+        $('.close', '#'+elementID).click(function() {
+            element.css('display', 'none');
+        });
 
-        if ($(event[0].target).hasClass('close')) {
-            $('#' + context.data).css('display', 'none');
+        if (!element.is(':hidden')) {
+            element.css('display', 'none');
         } else {
-            $('#' + context.data).css('display', 'block');
+            element.css('display', 'block');
         }
     }
     

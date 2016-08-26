@@ -20,6 +20,7 @@ class LoadingButton {
     link (scope, element) {
         let context = this;
         scope.$watch('styleDisabled', function(newVal) {
+            console.log("Style disabled is now ", newVal);
             if(newVal === true) {
                 $(element).hide();
             } else {
