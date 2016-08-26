@@ -1,17 +1,19 @@
 import angular from 'angular';
-import 'angular-ui-router';
-import 'angular-material';
 import configRouter from './config.js';
-import './view-one/module.js';
-import './view-two/module.js';
+import formsConfig from './forms-config.js';
+import './common/module.js';
+import './user/module.js';
+import './events/module.js';
+import './venues/module.js';
 
 let dependencies = [
-  'ui.router',
-  'ngMaterial',
-  'myApp.view-one',
-  'myApp.view-two'
+  'venvast.common',
+  'venvast.user',
+  'venvast.events',
+  'venvast.venues'
 ];
 
 angular
-  .module('myApp', dependencies)
-  .config(configRouter);
+  .module('venvast', dependencies)
+  .config(configRouter)
+  .config(formsConfig);

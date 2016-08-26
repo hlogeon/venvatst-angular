@@ -1,0 +1,49 @@
+<div class="header-sticky">
+    <div class="header-sticky-inner">
+        <div class="header-logo">
+            <a href="#">
+                <span class="eve-logo">
+                	<object type="image/svg+xml" data="assets/img/logo.svg">
+  						VenVast
+					</object>
+                </span>
+            </a>
+        </div><!-- /.header-logo -->
+
+        <div class="nav-primary navbar-toggleable-md collapse">
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a ui-sref="venvast.events" class="nav-link active">Home</a>
+                </li>
+                <li class="nav-item has-children">
+                    <a href="#" class="nav-link ">Events</a>
+                    <ul class="sub-menu">
+                        <li><a ui-sref="venvast.events">All</a></li>
+                        <li ng-if="StickyHeaderCtrl.authorized"><a ui-sref="venvast.events">Favorites</a></li>
+                        <li ng-if="StickyHeaderCtrl.authorized"><a ui-sref="venvast.events">Events I attend</a></li>
+                        <li ng-if="StickyHeaderCtrl.authorized"><a ui-sref="venvast.events">Organize</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item has-children">
+                    <a href="#" class="nav-link ">Venues</a>
+                    <ul class="sub-menu">
+                        <li><a ui-sref="venvast.venues">All</a></li>
+                        <li ng-if="StickyHeaderCtrl.authorized"><a ui-sref="venvast.events">Favorites</a></li>
+                        <li ng-if="StickyHeaderCtrl.authorized"><a ui-sref="venvast.events">Organize</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item" ng-if="StickyHeaderCtrl.authorized">
+                    <a ui-sref="venvast.organize" class="nav-link ">Profile</a>
+                </li>
+                    <formly-form model="StickyHeaderCtrl.form.formData" fields="StickyHeaderCtrl.form.formFields">
+                    </formly-form>
+            </ul>
+        </div><!-- /.nav-primary -->
+
+        <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target=".header .nav-primary">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div><!-- /.header-sticky-inner -->
+</div>

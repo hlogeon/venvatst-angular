@@ -1,0 +1,136 @@
+.footer {
+	background-color: $color-black;
+	color: rgba(#fff, .75);
+	font-size: 13px;
+	padding: 30px 0;
+}
+
+.footer-inner {
+	@include clearfix();  
+
+	.nav-social {
+		margin: 0;
+
+		.nav-item {
+			&:first-child {
+				margin-left: 0 !important;
+			}
+		}
+
+		.nav-link {
+			background-color: lighten($color-black, 5%);			
+			transition: background-color .4s ease;
+			&:hover {
+				background-color: lighten($color-black, 10%);							
+			}
+		}
+	}
+
+	.nav-pills {
+		display: inline-block;
+		margin: 10px 0 0 0;
+		text-align: center;
+		width: 100%;
+
+		@include media-breakpoint-down(md) {
+			display: block;
+		}
+
+		.nav-link {
+			border-left: 1px solid rgba(#fff, .12);
+			color: rgba(#fff, .9);			
+			margin: 0 0 0 20px;
+			padding: 0 0 0 20px;
+
+			&:hover {
+				color: #fff;
+			}
+
+			@include media-breakpoint-down(md) {
+				border: 0;
+				margin: 0;
+				padding: 8px 0;
+			}
+		}
+
+		.nav-item {
+			display: inline-block;
+			float: none;
+			margin: 0;
+
+			@include media-breakpoint-down(md) {
+				display: block;
+				float: none;
+			}
+
+			&:first-child {
+				.nav-link {
+					border-left: 0;
+				}
+			}
+		}
+	} 
+
+	p {
+		line-height: 30px;
+		margin: 0;
+
+		a {
+			border-bottom: 1px solid rgba(#fff, .5);
+			color: #fff;
+			display: inline-block;
+			line-height: 26px;
+			text-decoration: none;
+		}		
+	}
+}
+
+.footer-left, .footer-right {
+	max-width: 48%;
+}
+
+.footer-left {
+	float: left;
+
+	@include media-breakpoint-down(md) {
+		float: none;
+		max-width: 100%;
+	}
+}
+
+.footer-right {
+	float: right;
+	text-align: right;
+ 
+	@include media-breakpoint-down(md) {
+		border-top: 1px solid rgba(#fff, .06);
+		float: none;		
+		margin-top: 25px;
+		max-width: 100%;
+		padding-top: 25px;
+		text-align: left;
+	}
+}
+
+.footer-top {
+	@include clearfix();
+}
+
+.footer-bottom {
+	@include clearfix();
+	border-top: 1px solid rgba(#fff, .04);
+	clear: both;
+	margin: 30px 0 0 0;
+	padding: 30px 0 0 0;
+	text-align: center;
+	width: 100%;
+}
+
+.footer-title {
+	color: #fff;
+	font-family: 'Montserrat', 'Arial', sans-serif;
+	font-size: 11px;
+	font-weight: 700;
+	line-height: 24px;
+	text-transform: uppercase;
+}

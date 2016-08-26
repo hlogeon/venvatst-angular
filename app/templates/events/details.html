@@ -1,0 +1,81 @@
+<div class="content">
+    <div class="event-gallery owl-carousel">
+        <img ng-src="{{object.picture}}">
+    </div><!-- /.event-gallery -->
+
+    <div class="page-header">
+        <div class="page-header-inner">
+            <div class="container-fluid">
+                <div class="page-header-category">
+                    <img ng-src="{{object.icon}}" width="32" height="32">
+                </div><!-- /.page-header-category -->
+
+                <div class="page-header-content">
+                    <h1>{{ object.title }}</h1>
+                    <p>{{ object.getStartsForHumans() }}</p>
+                    <address>{{ object.venue_relation.address + ', ' +  object.venue_relation.city + ', ' + object.venue_relation.country}}</address>
+                </div><!-- /.page-header-content -->
+
+                <div class="page-header-actions">
+                    <div class="social">
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-google"></i></a>
+                    </div>
+                </div><!-- /.page-header-actions -->
+            </div><!-- /.container-fluid -->
+        </div><!-- /.page-header-inner -->
+    </div><!-- /.page-header -->
+
+    <div class="container-fluid">
+        <ol class="breadcrumb">
+            <li><a ui-sref="venvast.events">VenVast</a></li>
+            <li><a ui-sref="venvast.events">Events</a></li>
+            <li class="active">{{ object.title }}</li>
+        </ol>
+    </div><!-- /.container-fluid -->
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-9">
+                <div class="information">
+                    <p>
+                        {{ object.details }}
+                    </p>
+                    <!--<div class="information-comments">-->
+                        <!--<strong>200</strong> attendees potentially going to this event.-->
+                    <!--</div>&lt;!&ndash; /.information-comments &ndash;&gt;-->
+
+                    <div class="information-actions">
+                        <a href="#"><i class="entypo-save"></i> <span>Save</span></a>
+                        <a href="#"><i class="entypo-heart"></i> <span>Like</span></a>
+                    </div><!-- /.information-actions -->
+                </div><!-- /.information -->
+
+                <div class="page-navigation">
+                    <a href="#" class="prev"><i class="fa fa-chevron-left"></i> Carnaval Festival 2016: Sunday </a>
+                    <a href="#" class="next">Lower Polk / TL Art Walk <i class="fa fa-chevron-right"></i></a>
+                </div><!-- /.page-navigation -->
+            </div><!-- /.col-* -->
+
+            <div class="col-sm-3">
+
+                <div class="widget map" style="margin-top: 0px">
+                    <div class="map-inner">
+                        <div id="event-map"></div>
+                        <div class="map-address">
+                            {{ object.venue_relation.address + ', ' +  object.venue_relation.city + ', ' + object.venue_relation.country}}
+                        </div><!-- /.map-address -->
+                    </div><!-- /.map-inner -->
+                </div><!-- /.map -->
+
+                <!--<div class="widget category">-->
+                    <!--<ul>-->
+                        <!--<li><i class="fa fa-cutlery"></i> Restaurant</li>-->
+                        <!--<li><i class="fa fa-wifi"></i> Wireless</li>-->
+                        <!--<li><i class="fa fa-coffee"></i> Coffee Shop</li>-->
+                    <!--</ul>-->
+                <!--</div>&lt;!&ndash; /.widget&ndash;&gt;-->
+            </div><!-- /.col-* -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>

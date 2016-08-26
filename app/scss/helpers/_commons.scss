@@ -1,0 +1,420 @@
+.aligncenter { 
+	display: block !important;
+	margin: auto; 
+	margin-bottom: 22px; 	
+	text-align: center; 
+}
+
+.alignleft { 
+	float: left; 
+	margin: 0 30px 22px 0;  
+}
+
+.alignright { 
+	float: right; 
+	margin: 0 0 22px 30px; 
+}
+
+.center {
+	text-align: center;
+}
+
+.required {
+	color: red;
+}
+
+.push-top {
+	margin-top: 80px;
+}
+
+.push-bottom {
+	margin-bottom: 80px;
+}
+
+.push-top-small {
+	margin-top: 40px;
+}
+
+.pull-bottom {
+	margin-bottom: -80px;
+}
+
+.pull-top {
+	margin-top: -80px !important;
+}
+
+.col-5 {
+	@include media-breakpoint-up(xl) {		
+		float: left;
+		position: relative;
+		width: 20%;
+	}
+}
+
+.no-margin {
+	margin: 0;
+}
+
+.white {
+	color: #fff;
+}
+
+.container-fluid {
+	padding-left: 50px;
+	padding-right: 50px;
+
+	@include media-breakpoint-down(xs) {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+
+	&.no-padding {
+		padding: 0;
+	}
+}
+
+.eve-logo {
+	display: inline-block;
+	height: 52px;
+	vertical-align: middle;
+	position: relative;
+	z-index: 10;
+
+	.fa {
+		font-size: 17px;
+		left: 50%;
+		line-height: 1;
+		margin: -1px 0 0 0;
+		position: absolute;
+		transform: translateX(-50%) translateY(-50%);
+		top: 50%;
+	}
+}
+
+.page-title {
+	border-bottom: 1px solid rgba(#000, .05);
+	margin: 0 0 50px 0;
+	padding: 80px 0 40px 0;
+
+	&.page-title-no-padding-top {
+		padding-top: 0;
+	}
+	
+	h2 {
+		font-family: 'Montserrat', 'Arial', sans-serif;
+		font-size: 26px;
+		margin: 0 0 30px 0;
+
+		@include media-breakpoint-down(sm) {
+			font-size: 18px;
+		}		
+	}
+
+	p {
+		color: rgba($color-black, .8);
+		font-size: 18px;
+		font-weight: 300;
+		line-height: 30px;		
+		max-width: 60%;
+
+		@include media-breakpoint-down(sm) {
+			font-size: 14px;
+			max-width: 100%;
+		}
+	}
+}
+
+.page-title-fullwidth-description {
+	p {
+		max-width: 100%;
+	}
+}
+
+.page-message {	
+	background-color: $color-black-medium;		
+	color: #fff;
+	font-size: 13px;	
+	padding: 25px 0;
+	text-align: center;
+
+	.btn {
+		display: inline-block;
+		margin: 0 20px;
+		vertical-align: middle;
+	}
+
+	p {
+		color: rgba(#fff, .75);
+		display: inline-block;
+		margin: 0;
+		vertical-align: middle;
+	}
+}
+
+.nav-social {
+	margin: 9px 0 0 20px;
+
+	.nav-item {
+		float: left;
+		margin: 0 0 0 15px !important;
+	}
+
+	.nav-link {
+		background-color: darken($color-primary, 3%);
+		border-radius: 50%;
+		color: #fff;
+		display: block;
+		font-size: 12px;
+		height: 30px;			
+		line-height: 30px;
+		text-align: center;
+		width: 30px;
+
+		&:hover { 
+			background-color: darken($color-primary, 10%);
+		}			
+	}
+}
+
+.page-header {
+	background-color: #fff;
+	box-shadow: 0 1px 7px rgba($color-black, .12);
+	margin: 0 0 80px 0;	
+	position: relative;
+
+	h1 {
+		font-size: 26px;
+		font-family: 'Montserrat', 'Arial', san-serif;
+		margin: 0;
+
+		@include media-breakpoint-down(sm) {
+			font-size: 18px;
+		}
+	}
+
+	p {
+		color: rgba($color-black, .75);		
+		font-size: 16px;
+		font-style: italic;
+		font-weight: 300;
+		margin: 5px 0 0 0;
+	}
+
+	address {
+		border-bottom: 1px dashed rgba($color-black, .1);
+		display: inline-block;
+		font-size: 12px;
+		margin: 10px 0 0 0;
+		padding: 0 0 3px 0;
+	}	
+
+	.page-header-inner {
+		padding: 35px 0;
+	}
+
+	&.background-image {
+		background-image: url('../img/tmp/header-1.jpg');
+		background-size: cover; 
+		background-position: center bottom;
+		background-repeat: no-repeat;				
+
+		h1 {
+			color: #fff;
+			font-size: 30px;
+		}
+
+		.page-header-inner {
+			background-image: linear-gradient(to top, rgba($color-black, .75), transparent 170px);
+			padding-top: 220px;
+		}
+	}	
+}
+
+.page-header-simple {
+	background-color: transparent;
+	box-shadow: none;
+	margin: 0 0 40px 0;
+	padding: 30px 0 0 0;
+
+	h1 {
+		font-size: 36px;
+		font-weight: 700;
+	}
+}
+
+.page-header-category {
+	background-color: rgba($color-black, .06);
+	border-radius: 8px;
+	float: left;
+	height: 88px;
+	line-height: 98px;
+	margin: 0 30px 0 0;	
+	text-align: center;
+	width: 88px;
+
+	i {
+		color: rgba($color-black, .4);
+		font-size: 34px;
+	}
+
+	@include media-breakpoint-down(sm) {
+		float: none;
+		margin: 0 0 30px 0;
+	}
+}
+
+.page-header-content {
+	display: table-cell;
+}
+
+.page-header-actions {
+	bottom: 34px;
+	position: absolute;
+	right: 50px;	
+	transform: translateY(-50%);
+
+	@include media-breakpoint-down(sm) {
+		bottom: auto;
+		margin: 40px 0 0 0;
+		position: relative;
+		right: auto;
+		transform: none;
+	}
+
+	.social {
+		position: relative;
+		top: -12px;
+
+		a {
+			border-radius: 50%;
+			background-color: rgba($color-black, .08);
+			color: rgba($color-black, .6);
+			display: inline-block; 
+			height: 38px;
+			line-height: 38px;
+			margin: 0 0 0 15px;
+			text-align: center;
+			transition: all .4s ease;
+			width: 38px;
+
+			&:hover {
+				background-color: rgba($color-black, .12);
+			}
+		}
+
+		i {		
+			font-size: 16px;
+		}
+	}
+
+	.background-image & {
+		bottom: 0;
+	}
+}
+
+.return-back {
+	color: rgba(#fff, .7);
+	font-size: 13px;
+	left: 20px;
+	position: absolute;	
+	top: 20px;
+
+	i {
+		margin: 0 10px 0 0;
+	}
+
+	&:hover {
+		color: #fff;
+		text-decoration: none;
+	}
+}
+
+.user-avatars {
+	&:hover {
+		.user-avatar {
+			opacity: .6;			
+		}
+	}
+}
+
+.user-avatar {
+	background-size: cover;
+	border: 2px solid #fff;
+	border-radius: 50%;
+	display: inline-block;
+	height: 40px;
+	margin: 0 0 0 10px !important;
+	padding: 0;		
+	transition: all .4s ease;
+	transform: translate3d(0, 0, 1px);
+	width: 40px;
+	z-index: 2;
+
+	&:hover {
+		opacity: 1 !important; 
+		transform: scale(1.4);
+		z-index: 999;
+	}
+}
+
+.promote {
+	background-color: rgba($color-black, .04);
+	clear: both;
+	height: 90px;
+	margin: 0 auto 30px auto;
+	width: 728px; 
+
+	@include media-breakpoint-down(sm) {
+		display: none;  
+	}
+}
+
+.page-navigation {
+	@include clearfix();
+
+	.prev, .next {
+		background-color: rgba($color-black, .04);
+		border-radius: 21px;
+		color: $color-black;
+		font-size: 13px;
+		line-height: 42px;
+		padding: 0 25px;
+		transition: all .4s ease;
+
+		.fa {
+			font-size: 8px;
+			vertical-align: 2px;
+		}
+
+		&:hover {
+			background-color: rgba($color-black, .06);
+			text-decoration: none;
+		}
+
+		@include media-breakpoint-down(sm) {
+			display: block;
+			float: none;
+			margin: 0 0 20px 0;	
+			width: 100%;
+		}
+	}
+
+	.prev {
+		float: left;
+		text-align: left;
+
+		.fa {
+			margin: 0 10px 0 0;
+		}
+	}
+
+	.next {
+		float: right;
+		text-align: right;
+
+		.fa {
+			margin: 0 0 0 10px;
+		}		
+
+	}
+}

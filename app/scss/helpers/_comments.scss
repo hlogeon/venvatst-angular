@@ -1,0 +1,139 @@
+.comment-form {
+	@include clearfix();
+	background-color: #fff;
+	box-shadow: 0 1px 2px rgba($color-black, .12);
+	border-radius: 2px;
+	margin: 30px 0;
+	padding: 25px;
+
+	.form-control {
+		background-color: rgba($color-black, .05);
+		transition: all .4s ease;
+		
+		&:focus {
+			background-color: rgba($color-black, .07);			
+		}
+	}
+
+	textarea {
+		height: 228px;
+		resize: none;
+	}
+}
+
+.comments {
+	background-color: #fff;
+	border-radius: 2px;
+	box-shadow: 0 1px 2px rgba($color-black, .12);
+	margin: 30px 0;
+	padding: 25px;
+}
+
+.comment-form-title, .comments-title {
+	h3 {
+		border-bottom: 1px solid rgba($color-black, .06);
+		font-family: 'Montserrat', 'Arial', sans-serif;
+		font-size: 18px;
+		margin: 0 -25px 25px -25px;
+		padding: 0 25px 25px 25px;
+	}
+}
+
+.comment {
+	border-bottom: 1px solid rgba($color-black, .04);
+	margin: 0 0 25px 0;
+	padding: 0 0 25px 0;
+
+	&:last-child {
+		border-bottom: 0;
+		margin-bottom: 0;
+		padding-bottom: 0;
+	}
+}
+
+.comment-image {
+	border-radius: 2px;	
+	float: left;
+	margin: 0 25px 0 0;
+	overflow: hidden;	
+	position: relative;
+	
+
+	a {
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-size: cover;
+		border-radius: 50%;
+		box-shadow: 0 1px 2px rgba($color-black, .12);
+		display: block;
+		height: 48px;
+		width: 48px;
+	}
+}
+
+.comment-content {
+	display: table-cell;
+}
+
+.comment-body {
+	margin-top: -4px;
+
+	p {
+		color: rgba($color-black-medium, .8);
+		font-size: 13px;
+		line-height: 24px;
+		margin: 0;		
+	}
+}
+
+.comment-meta {
+	font-size: 12px;
+	margin: 20px 0;
+
+	a {
+		color: rgba($color-black, .5);
+		display: inline-block;
+		text-decoration: none;
+
+		&:hover {
+			color: $color-secondary;
+		}
+
+		&:after {
+			background-color: rgba($color-black, .5);
+			border-radius: 50%;
+			content: '';
+			display: inline-block;
+			height: 3px;
+			margin: 0 15px;
+			vertical-align: middle;
+			width: 3px;
+		}
+
+		&:last-child {
+			&:after {
+				display: none;
+			}
+		}
+	}
+}
+
+.comment-actions {
+	font-size: 13px;
+
+	a {
+		color: rgba($color-black, .5);
+		display: inline-block;
+		margin: 0 15px 0 0;
+		text-decoration: none;
+
+		&:hover {
+			color: $color-secondary;
+		}		
+	}
+
+	i {
+		margin: 0 6px 0 0;
+		vertical-align: -1px;
+	}
+}

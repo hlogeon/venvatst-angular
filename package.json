@@ -21,11 +21,15 @@
     "test": "gulp test"
   },
   "dependencies": {
-    "angular": "^1.5.2",
+    "angular": "^1.5.8",
     "angular-animate": "^1.5.7",
     "angular-aria": "^1.5.7",
+    "angular-formly": "^8.3.0",
+    "angular-formly-templates-bootstrap": "^6.4.0",
     "angular-material": "^1.1.0-rc.5",
-    "angular-ui-router": "^0.3.1"
+    "angular-ui-router": "^0.3.1",
+    "api-check": "^7.5.5",
+    "jquery": "^3.1.0"
   },
   "devDependencies": {
     "babel-core": "^6.7.2",
@@ -35,7 +39,9 @@
     "brfs": "^1.4.3",
     "browser-sync": "^2.11.1",
     "browserify": "^13.0.0",
+    "browserify-css": "^0.9.1",
     "browserify-ngannotate": "^2.0.0",
+    "browserify-shim": "^3.8.12",
     "bulkify": "^1.2.0",
     "debowerify": "^1.4.1",
     "eslint": "^3.0.0",
@@ -60,5 +66,14 @@
   },
   "bugs": {
     "url": "https://github.com/gusgard/angular-seed-es6/issues"
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
+  "browser": {
+  },
+  "browserify-shim": {
   }
 }

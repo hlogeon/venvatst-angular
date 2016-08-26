@@ -1,0 +1,29 @@
+<div venvast-card image="{{ event.getImageUrl() }}">
+    <div class="event-category-wrap">
+        <img width="32" height="32" ng-src="{{ event.getIcon() }}" class="img-responsive" alt="Course" data-pin-nopin="true">
+        <h5>{{ event.getCategoryName() }}</h5>
+    </div>
+    <h4>
+        <a ui-sref="venvast.events.details({id: event._id})">{{ event.title.slice(0, 50) }}</a>
+        <br/>
+        <span class="event-starts-in">{{ event.getStartsForHumans() }}</span>
+    </h4>
+    <div class="row">
+        <div class="card-date">
+            <strong>{{ event.getStartAt().format('Do') }}</strong>
+            <span>{{ event.getStartAt().format('MMM') }}</span>
+        </div>
+        <div class="card-time">
+            <strong>{{ event.getStartAt().format('h:mm') }}</strong>
+            <span>{{ event.getStartAt().format('a').toUpperCase() }}</span>
+            <br/>
+            <span><i class="fa fa-map-marker"></i> <a ui-sref="venvast.venues.details({id: event.venue_relation._id})">{{ event.venue_relation.name.slice(0,40) }}</a></span>
+        </div>
+    </div>
+    <!--<ul class="event-info">-->
+        <!--<li class="event-info-item event-info-away"><i class="fa fa-globe"></i> 0.1 km away from you</li>-->
+    <!--</ul>-->
+    <p>{{ event.details.slice(0, 130) }} ...</p>
+    <a href="event-single-left.html" class="btn btn-secondary">I'm Going</a>
+    <a ui-sref="venvast.events.details({id: event._id})" class="btn btn-primary btn-details">Details</a>
+</div>

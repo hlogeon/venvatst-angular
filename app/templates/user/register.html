@@ -1,0 +1,25 @@
+<a class="return-back" ng-click="RegisterCtrl.goBack()">
+    <i class="fa fa-long-arrow-left"></i> Return Back
+</a>
+
+<div class="content-center">
+    <form method="post" action="/login/" class="login-form">
+        <h1>Create Account</h1>
+
+        <div class="form-group">
+            <label for="login-form-email" class="label">E-mail</label>
+            <input id="login-form-email" type="email" name="email" class="form-control" required="required">
+        </div><!-- /.form-group -->
+
+        <div class="form-group">
+            <label for="login-form-password" class="label">Password</label>
+            <input id="login-form-password" type="password" name="password" class="form-control" required="required">
+        </div><!-- /.form-group -->
+
+        <ul class="nav nav-social" style="margin-left: -12px;">
+            <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-facebook"></i></a></li>
+            <!--<li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-google"></i></a></li>-->
+        </ul>
+        <button type="submit" name="login_form" class="btn btn-secondary pull-right">Submit</button>
+    </form>
+</div>

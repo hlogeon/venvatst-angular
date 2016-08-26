@@ -1,0 +1,36 @@
+.pagination {
+	margin: 70px 0 30px 0;
+}
+
+.page-link {
+	background-color: transparent;
+	border: 0;
+	border-radius: 50% !important;
+	color: rgba($color-black, .75); 
+	font-size: 14px;
+	font-weight: 700;
+	height: 40px;
+	line-height: 24px;
+	margin: 0 5px;
+	text-decoration: none;
+	transform: translate3d(0, 0, 1px);
+	transition: all .4s ease;
+	width: 40px;
+
+	.fa {
+		color: $color-black;
+		display: block;
+		font-size: 8px;
+		margin-top: 8px;
+	}
+
+	&:hover {
+		color: $color-secondary;
+		text-decoration: none;
+	}
+
+	.page-item.active & {
+		background-color: $color-secondary;
+		background-image: linear-gradient(to bottom, $color-secondary, darken($color-secondary, 3%)); 		
+	}
+}

@@ -1,0 +1,26 @@
+[
+	{
+		"id": 1,
+		"name": "Crossfit workout",
+		"category": "Sport",
+		"image": "assets/img/tmp/search-1.jpg"
+	},
+	{
+		"id": 2,
+		"name": "Advanced city run",
+		"category": "Sport",
+		"image": "assets/img/tmp/search-2.jpg"
+	},	
+	{
+		"id": 3,
+		"name": "Local bedminton cup",
+		"category": "Sport",
+		"image": "assets/img/tmp/search-3.jpg"
+	},		
+	{
+		"id": 2,
+		"name": "Grill, beer and chill",
+		"category": "Relax",
+		"image": "assets/img/tmp/search-4.jpg"
+	}	
+]

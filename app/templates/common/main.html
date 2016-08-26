@@ -1,0 +1,27 @@
+<div ui-view="sticky-header"></div>
+
+<div class="page-wrapper">
+    <div ui-view="header"></div>
+    <div class="main-wrapper">
+        <div class="main">
+            <div class="main-inner">
+                <div ui-view="content"></div>
+            </div><!-- /.main-inner -->
+        </div><!-- /.main -->
+    </div><!-- /.main-wrapper -->
+
+    <div ui-view="footer"></div>
+
+    <div class="page-message-wrapper">
+        <div class="page-message">
+            <div class="container-fluid">
+                <a href="#" class="btn btn-secondary btn-xs">Subscribe Now</a>
+
+                <p>Subscribe to get most recent news about event in your city</p>
+            </div><!-- /.container-fluid -->
+        </div><!-- /.page-message -->
+    </div><!-- /.page-message-wrapper -->
+
+
+    <div class="page-wrapper-overlay"></div><!-- /.page-wrapper-overlay -->
+</div><!-- /.page-wrapper -->

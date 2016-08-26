@@ -1,0 +1,75 @@
+<div class="header-sticky">
+    <div class="header-sticky-inner">
+        <div class="header-logo">
+            <a href="#">
+                <span class="eve-logo">
+                	<object type="image/svg+xml" data="assets/img/logo.svg">
+  						VenVast
+					</object>
+                </span>
+            </a>
+        </div><!-- /.header-logo -->
+
+        <div class="nav-primary navbar-toggleable-md collapse">
+            <ul class="nav nav-pills">
+                <li class="nav-item has-children">
+                    <a href="#" class="nav-link active">Home</a>
+
+                    <ul class="sub-menu">
+                        <li><a href="index-map.html">Google Map Hero</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="events.html" class="nav-link ">Events</a></li>
+                <li class="nav-item"><a href="events-top.html" class="nav-link ">Venues</a></li>
+                <li class="nav-item"><a href="blog.html" class="nav-link ">Blog</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link ">About us</a></li>
+                <li style="float: left">
+                    <div class="header-search" style="margin-right: 15px;">
+                        <form>
+                            <div class="input-group">
+                                <input type="text" class="form-control"
+                                       autocomplete="off"
+                                       data-provide="typeahead"
+                                       placeholder="Bangkok">
+
+                                <div class="input-group-addon">
+                                    <i class="fa fa-globe"></i>
+                                </div><!-- /.input-group-addon -->
+                            </div><!-- /.input-group -->
+                        </form>
+                    </div>
+                </li>
+                <li style="float: left">
+                    <div class="header-search" style="margin-right: 15px;">
+                        <form>
+                            <div class="input-group">
+                                <input type="text" class="form-control"
+                                       autocomplete="off"
+                                       data-provide="typeahead"
+                                       placeholder="Search for {% events %}">
+
+                                <div class="input-group-addon">
+                                    <i class="fa fa-search"></i>
+                                </div><!-- /.input-group-addon -->
+                            </div><!-- /.input-group -->
+                        </form>
+                    </div>
+                </li>
+                <li>
+                    <div class="input-group header-search" style="float: left; width: 13%; min-width: 135px; margin-right: 15px;">
+                        <form-date-start></form-date-start>
+                    </div>
+                    <div class="input-group header-search" style="float: left; width: 13%; min-width: 135px;">
+                        <form-date-end></form-date-end>
+                    </div>
+                </li>
+            </ul>
+        </div><!-- /.nav-primary -->
+
+        <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target=".header .nav-primary">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div><!-- /.header-sticky-inner -->
+</div>

@@ -1,0 +1,335 @@
+@import 'helpers/variables';
+@import 'helpers/bootstrap';
+@import "components/sticky-header";
+@import 'components/header-filters';
+@import 'components/header';
+
+.date_timepicker_start {
+	height: 38px;
+}
+
+.date_timepicker_end {
+	height: 38px;
+}
+
+.event-wrap {
+	margin-top: 10px;
+}
+
+.load-more {
+	margin-top: 50px;
+}
+
+.header-filter {
+	float: left;
+	width: 13%;
+	min-width: 135px;
+	margin-right: 15px;
+}
+
+@media only screen and (max-width: 1024px) and (min-width: 767px) {
+
+
+	/* Evenet Hero */
+	.hero-scene-event h2{
+		margin-top: 30px;
+	}
+
+}
+
+
+@media only screen and (max-width: 991px) and (min-width: 767px) {
+	.event-details h4 {
+		font-size: 28px;
+	}
+}
+
+
+@media (max-width:991px) {
+	/* Event Hero */
+	.hero-scene-event .sub-title{
+		max-width: auto;
+	}
+	.hero-scene-event .countdown-section{
+		display: inline-block;
+		background: transparent;
+		width: 100px;
+		height: 100px;
+		margin: 30px 10px 0;
+	}
+	.hero-scene-event .countdown-section .countdown-amount{
+		font-size: 20px;
+		margin: 0;
+	}
+
+	/* Event */
+	.event-sm-col .event-wrap{
+		margin-bottom: 30px;
+	}
+	.event-sm-col .event-wrap:hover .event-details{
+		margin: 0;
+	}
+	/* Event Single */
+	.event-single-details{
+		padding-top: 30px;
+	}
+}
+
+
+@media (max-width:767px) {
+
+	/* Events */
+	.event-wrap {
+		margin: 0 auto 30px;
+		width: 70%;
+	}
+	.event-wrap:hover .event-details{
+		margin: 0;
+	}
+	.event-list-wrap .event-details{
+		padding-top: 20px;
+	}
+
+}
+
+
+@media (max-width: 640px) {
+
+	.event-wrap {
+			width: 100%;
+	}
+
+	.header-toggle {
+		display: none;
+	}
+
+
+	.mobile-clearfix {
+		clear: both;
+	}
+
+}
+
+@media (max-width: 479px) {
+	.event-details h4{
+		font-size: 22px;
+	}
+
+
+}
+
+/*====================
+	Event
+====================== */
+/* Events Grid */
+.event-details {
+    background-color: #fff;
+    padding: 16px 24px 30px;
+    position: relative;
+    z-index: 1;
+}
+
+.event-wrap {
+	h4 {
+		margin-top: -7px;
+    	font-size: 16px;
+    	width: 95%;
+		height: 25px;
+		cursor: pointer;
+
+	    .event-starts-in{
+	    	font-size: 10px;
+    		color: #b6b6b6;
+	    }
+	}
+
+	.btn-details {
+		float: right;
+	}
+
+
+	&:hover {
+		.event-details {
+			margin-top: -50px;
+			margin-bottom: 50px;
+		}
+		.card-image {
+			> a {
+				transform: scale(1.1);
+
+				.fa {
+					opacity: 1;
+				}
+			}
+
+			span {
+				opacity: 1;
+			}
+		}
+	}
+}
+
+.events-meta li{
+	margin: 10px 0;
+}
+.events-meta li i{
+	margin-right: 10px;
+}
+.event-details p{
+	margin: 15px 0 0;
+	height: 110px;
+}
+.event-details .btn{
+	margin-top: 15px;
+}
+/* Events List */
+.event-list-wrap .event-details {
+    background: transparent;
+	box-shadow: none; -webkit-box-shadow: none; -ms-box-shadow: none; -o-box-shadow: none;
+	padding: 0;
+}
+/* Event Single */
+.event-single-details .count-container{
+	margin-top: 30px;
+}
+.event-single-wrap .countdown-section{
+	background: transparent;
+}
+.event-single-wrap .countdown-section, .event-single-wrap .countdown-section:hover{
+	box-shadow: none; -webkit-box-shadow: none; -moz-box-shadow: none; -ms-box-shadow: none; -o-box-shadow: none;
+	background: #fff;
+}
+.event-single-wrap .daycounter .countdown-row{
+	float: left;
+	width: 100%;
+}
+
+
+.event-img-wrap {
+	width: 100%;
+}
+
+.event-category-wrap {
+	margin-bottom: 10px;
+    text-align: right;
+    margin-top: -27px;
+}
+
+.event-category-wrap img {
+	border-width: 2px;
+	height: 32px;
+	left: 0;
+	width: 32px;
+	border-radius: 50%;
+}
+
+.event-category-wrap h5{
+	font-size: 12px;
+	width: 85%;
+    margin-top: -17px;
+    color: $color-secondary;
+}
+
+.event-info {
+	list-style: none;
+	margin-left: -9px;
+	.event-info-item {
+		padding-left: 0px;
+	}
+
+	.event-info-away {
+		color: #b6b6b6;
+    	font-weight: 600;
+    	font-style: italic;
+	}
+}
+
+/* Animation */
+
+.animated {
+	visibility:hidden;
+}
+.visible {
+	visibility:visible;
+}
+
+/* Shadow */
+.shadow,.count-block,
+.member-wrap,.student-img-wrap img,
+.course-wrapper,
+.universh-timeline-content,
+.event-details, .countdown-section,
+.event-single-wrap .daycounter .countdown-row,
+.blog-wrap, ul.comments .comment-block,
+.panel-group .panel,
+.progress,
+.pricing-wrap, .pricing-icon img,
+.quote-wrap > blockquote,
+.related-wrap,.related-content a,
+.widget,
+.accordion.gallery-accordion .panel-title a.collapsed,
+.isotope-filters .nav-pills li a,
+.template-box,
+.project-authors ul li img,
+.contact-info,
+.shop-wrap{
+	-webkit-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+	   -moz-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+	    -ms-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+		 -o-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+			box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+	-webkit-transition:all 250ms ease-in-out 0s;
+	   -moz-transition:all 250ms ease-in-out 0s;
+	    -ms-transition:all 250ms ease-in-out 0s;
+	     -o-transition:all 250ms ease-in-out 0s;
+		    transition:all 250ms ease-in-out 0s;
+}
+.shadow.active, .shadow:hover,.count-block:hover,.member-wrap:hover,
+.student-wrap:hover .student-img-wrap img,
+.course-wrapper:hover,
+.universh-timeline-content:hover,
+.event-details:hover, .countdown-section:hover,
+.blog-wrap:hover, ul.comments .comment-block:hover,
+.panel-group .panel:hover,
+.owl-carousel .owl-controls .owl-nav div:hover,
+.pricing-wrap:hover,
+.quote-wrap:hover > blockquote,
+.related-wrap:hover,.related-content a:hover,
+.contact-info:hover,
+.shop-wrap:hover{
+	-webkit-box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+	   -moz-box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+	    -ms-box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+		 -o-box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+			box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+	-webkit-transition:all 250ms ease-in-out 0s;
+	   -moz-transition:all 250ms ease-in-out 0s;
+	    -ms-transition:all 250ms ease-in-out 0s;
+	     -o-transition:all 250ms ease-in-out 0s;
+		    transition:all 250ms ease-in-out 0s;
+
+}
+/* Shadow Small Elements */
+.shadow-dark,
+.owl-theme .owl-dots .owl-dot span,
+.owl-carousel .owl-controls .owl-nav div,
+.tparrows,
+.related-content a,
+.product-label, .product-details .option-btn,
+.shop-meta li a,
+.liked-members a{
+	-webkit-box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.15);
+	   -moz-box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.15);
+		-ms-box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.15);
+		 -o-box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.15);
+			box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.15);
+}
+/* Shadow none */
+.shadow-none{
+	-webkit-box-shadow: none !important;
+	   -moz-box-shadow: none !important;
+	    -ms-box-shadow: none !important;
+		 -o-box-shadow: none !important;
+			box-shadow: none !important;
+
+}

@@ -1,0 +1,64 @@
+.btn {
+	border: 0;
+	border-radius: 19px;
+	color: #fff;
+	font-size: 13px;
+	font-weight: 700;
+	height: 38px;
+	line-height: 38px;
+	padding: 0 30px;
+	transition: background-color .4s ease;
+	text-shadow: 0 1px 1px rgba($color-black, .2);
+
+	&:active, &:focus, &:hover, &:active:focus {
+		color: #fff !important;
+	}
+}
+
+.btn-black {
+	background-color: $color-black;
+
+	&:active, &:focus, &:hover, &:active:focus {
+		background-color: lighten($color-black, 5%);
+	}
+}
+
+.btn-primary {
+	background-color: $color-primary;
+
+	&:active, &:focus, &:hover, &:active:focus {
+		background-color: $color-primary;
+	}
+}
+
+.btn-secondary {
+	background-color: $color-secondary;
+	background-image: linear-gradient(to bottom, $color-secondary, darken($color-secondary, 3%));
+
+	&:active, &:focus, &:hover, &:active:focus {
+		background-color: $color-secondary;
+		background-image: linear-gradient(to top, $color-secondary, darken($color-secondary, 3%));		
+	}
+}
+
+.btn-xs {
+	height: 26px;
+	line-height: 26px;
+	font-size: 12px;
+	padding: 0 18px;
+}
+
+.btn-lg {
+	border-radius: 27px;	
+	font-size: 18px;
+	font-weight: 600;
+	height: 54px;
+	line-height: 54px;
+	padding-left: 46px;
+	padding-right: 46px;
+
+	i {
+		margin: 0 -15px 0 10px;
+		vertical-align: -2px;
+	}
+}

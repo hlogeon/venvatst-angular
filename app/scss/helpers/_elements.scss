@@ -1,0 +1,112 @@
+html {
+	height: 100%;
+}
+
+body {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	background-color: #FAFAFA; 
+	color: $color-black;
+	font-family: 'Open Sans', 'Arial', sans-serif;	
+	font-size: 14px;
+	height: 100%;
+	overflow-x: hidden;
+	width: 100%;
+
+	&.empty-layout {
+		background-color: $color-black-medium;  
+	}
+}
+
+a {
+	color: $color-secondary;
+	text-decoration: none;
+	transition: color .2s ease;
+
+	&:hover {
+		color: $color-secondary;
+	} 
+}
+
+p {
+	color: rgba($color-black, .75);
+	line-height: 26px;
+	margin: 0 0 30px 0;
+
+	&.large {		
+		font-size: 16px;
+		font-weight: 300;
+		line-height: 28px;
+		margin: 0 0 30px 0;
+	}
+}
+
+small {
+	color: rgba($color-black, .7); 
+	font-size: 12px;
+}
+
+h1 {
+	font-size: 42px;
+	font-weight: 300;
+	line-height: 1.5;
+	margin: 0 0 30px 0;
+}
+
+h2 {
+	font-size: 36px;
+	font-weight: 300;
+	line-height: 1.5;
+	margin: 0 0 30px 0;
+}
+
+h3 {
+	font-size: 30px;
+	font-weight: 300;
+	line-height: 1.5;
+	margin: 0 0 30px 0;
+}
+
+h4 {
+	color: $color-black-medium;
+	font-family: 'Montserrat', 'Arial', sans-serif;
+	font-size: 15px;
+	font-weight: 400;
+	margin: 0 0 30px 0;
+	text-transform: uppercase;	
+}
+
+h5 {
+	color: rgba($color-black-medium, .75);
+	font-family: 'Montserrat', 'Arial', sans-serif;
+	font-size: 13px;
+	font-weight: 400;
+	margin: 0 0 12px 0;
+	text-transform: uppercase;	
+}
+
+blockquote {
+	background-color: rgba($color-secondary, .05);
+	border-left: 3px solid $color-secondary;
+	clear: both;
+	display: inline-block;	
+	font-size: 20px;
+	font-family: 'Montserrat', 'Arial', sans-serif;
+	padding: 25px 30px 5px 30px;
+
+	p {		
+		clear: both;
+		color: $color-black;
+		margin: 0 0 20px 0;
+	}
+
+	cite {
+		clear: both;
+		display: block;
+		font-family: 'Open Sans', 'Arial', sans-serif;
+		font-size: 14px;
+		font-style: italic;
+		font-weight: 400;
+		margin: 15px 0 0 0;
+	}
+}

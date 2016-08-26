@@ -1,0 +1,28 @@
+.side-navigation {
+	background-color: $color-black-medium;
+	bottom: 0;
+	overflow: auto;
+	padding: 0 25px;
+	position: fixed;
+	right: 0;
+	top: 0;
+	transform: translateX(100%);
+	transition: all .4s ease;
+	width: 270px;
+
+	.widgettitle {
+		background-color: rgba(#000, .15);
+		color: #fff;
+		font-family: 'Montserrat', 'Arial', sans-serif;
+		font-size: 13px;
+		font-weight: 700;
+		height: 65px;
+		line-height: 65px;
+		margin: 0 -25px;
+		padding: 0 25px;
+	}
+
+	.sidenav-open & {
+		transform: translateX(0);
+	}
+}

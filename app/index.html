@@ -1,32 +1,33 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<!--[if lt IE 7]>      <html lang="en" ng-app="venvast" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="venvast" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="venvast" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="venvast" class="no-js"> <!--<![endif]-->
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>My AngularJS 1.x App with ES6</title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon" />
-  <link rel="stylesheet" href="css/main.min.css?rev=@@hash">
-  <link rel="stylesheet" href="css/libs.min.css?rev=@@hash">
-  </head>
-  <body>
-    <md-content class="md-padding">
-      <md-nav-bar nav-bar-aria-label="navigation links">
-        <md-nav-item md-nav-href="#view-one" name="viewOne">View one</md-nav-item>
-        <md-nav-item md-nav-href="#view-two" name="viewTwo">View two</md-nav-item>
-      </md-nav-bar>
-    </md-content>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 
-    <!--[if lt IE 7]>
-        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" type="text/css">
+	<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+	<link rel="stylesheet" href="css/libs.min.css?rev=@@hash">
+	<link rel="stylesheet" href="css/main.min.css?rev=@@hash">
+    <title>Venvast - Discover events, venues, deals around</title>
+</head>
 
-    <div ui-view></div>
+<body>
 
-    <script src="app.js?rev=@@hash"></script>
-  </body>
+<div ui-view></div>
+
+
+<script src="//maps.googleapis.com/maps/api/js?libraries=places,geometry&key=AIzaSyBfnCaACfxQD5YOCC7w1O2ItMIonYxLkXE" type="text/javascript"></script>
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/build/jquery.datetimepicker.full.js"></script>
+<script type="text/javascript" src="/assets/js/bootstrap3-typeahead.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery.gmap3.js"></script>
+<script type="text/javascript" src="/assets/libraries/owl-carousel/owl.carousel.min.js"></script>
+<script src="app.js?rev=@@hash"></script>
+</body>
 </html>

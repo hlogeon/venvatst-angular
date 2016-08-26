@@ -1,0 +1,113 @@
+.event-rows {
+	background-color: #fff;
+	border-radius: 2px;
+	box-shadow: 0 1px 2px rgba($color-black, .12);
+	padding: 25px;
+}
+
+.event-row {
+	@include clearfix();
+
+	border-bottom: 1px solid rgba($color-black, .04);
+	margin: 0 0 25px 0;
+	padding: 0 0 25px 0;
+
+	p {
+		margin: 0;
+	}
+
+	&:last-child {
+		border-bottom: 0;
+		margin-bottom: 0;
+		padding-bottom: 0;
+	}
+}
+
+.event-row-index {
+	span {
+		color: rgba($color-black, .6);
+		display: block;
+		float: left;
+		font-family: 'Montserrat', 'Arial', sans-serif;
+		font-size: 24px;
+		line-height: 46px;
+		text-align: center;
+		width: 70px;
+	}
+
+	@include media-breakpoint-down(sm) {
+		display: none;
+	}
+}
+
+.event-row-image {
+	border-left: 1px solid rgba($color-black, .04);
+	float: left;	
+	padding: 0 0 0 30px;
+
+	@include media-breakpoint-down(sm) {
+		border-left: 0;
+		float: none;
+		margin: 0 0 30px 0;
+		padding: 0;
+	}
+
+	a {
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-size: cover;
+		border-radius: 2px;
+		display: block;
+		height: 50px;
+		position: relative;
+		width: 72px;
+
+		@include media-breakpoint-down(sm) {
+			height: 180px;			
+			width: 100%;
+		}
+	}
+}
+.event-row-title {	
+	display: table-cell;
+	float: left;	
+	margin: 0 0 0 30px;	
+
+	@include media-breakpoint-down(sm) {
+		margin: 0;
+	}
+
+	h2 {
+		font-family: 'Montserrat', 'Arial', sans-serif;
+		font-size: 16px;
+		margin: 0;
+		max-width: 270px;
+		padding: 0;
+		overflow: hidden; 
+		text-overflow: ellipsis;
+		white-space: nowrap;
+
+		a {
+			color: $color-black;
+		}
+	}
+
+	p {
+		font-size: 13px;
+	}
+}
+
+.event-row-action {
+	float: right;
+	margin: 8px 0 0 0;
+
+	@include media-breakpoint-down(xs) {		
+		clear: both;
+		float: none;
+		padding: 30px 0 0 0;
+
+		.btn {
+			width: 100%;
+		}
+	}
+}

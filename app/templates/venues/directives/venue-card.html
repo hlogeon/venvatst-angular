@@ -1,0 +1,17 @@
+<div venvast-card image="{{ venue.getImageUrl() }}">
+    <div class="event-category-wrap">
+        <img width="32" height="32" ng-src="{{ venue.getIcon() }}" class="img-responsive" alt="Course" data-pin-nopin="true">
+        <h5>{{ venue.getCategoryName() }}</h5>
+    </div>
+    <h4>
+        <a ui-sref="venvast.venues.details({id: venue._id})">{{ venue.name.slice(0, 50) }}</a>
+        <br/>
+        <small>{{ venue.address.slice(0, 80) }}</small>
+    </h4>
+    <div class="row"></div>
+    <div class="card-location">
+        <span><i class="fa fa-map-marker"></i> {{ venue.d }} KM away from you</span>
+    </div>
+        <p>{{ venue.description.slice(0, 130) }} ...</p>
+    <a ui-sref="venvast.venues.details({id: venue._id})" class="btn btn-secondary">Details</a>
+</div>

@@ -1,0 +1,202 @@
+label {
+	color: $color-black;
+	cursor: pointer;
+	font-size: 11px;
+	font-weight: 600;
+	margin: 0 0 15px 0;
+	text-transform: uppercase;
+
+	.empty-layout & {
+		color: rgba(#fff, .7);
+	}
+}
+
+fieldset {
+	background-color: transparent;
+	border-radius: 2px;
+	box-shadow: 0 1px 2px rgba($color-black, .08);  
+	margin: 0 0 25px 0;
+	padding: 25px;
+}
+
+select {
+	background-position: right 1rem top 50%;  
+    background-repeat: no-repeat;
+	background-image: url('../img/caret.svg') !important; 
+
+	cursor: pointer;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+
+textarea.form-control {
+	border-radius: 7px;
+	min-height: 200px;
+	padding: 10px 15px;
+}
+
+.checkbox-list {
+	@include clearfix();
+
+	.checkbox {
+		float: left;
+		margin-bottom: 15px !important; 
+		margin-top: 0;
+		width: 33.3333%;
+
+		&:first-child {
+			margin-bottom: 0;
+		}
+	}
+}
+
+.radio, .checkbox {
+	margin-left: -17px;
+	
+	label {
+		font-size: 13px;
+		text-transform: inherit;
+
+		input {
+			margin: 0 7px 0 0;
+			vertical-align: 0px;
+		}
+	}
+}
+
+.form-control {
+	background-color: #fff;
+	border: 0;
+	border-radius: 19px;
+	font-size: 14px;
+	height: 42px;
+	padding: 0 22px;
+
+	&.bordered {
+		box-shadow: 0 0 0px 1px #DEDEDE;
+	}
+}
+
+.form-group-btn {
+	margin-top: 25px;
+}
+
+.input-group-addon {
+	background-color: #fff;
+	border: 0;
+	border-radius: 19px;
+
+	.fa {
+		color: $color-gray;
+		font-size: 15px;
+		padding: 0 6px 0 0;
+	}
+}
+
+.dropdown-menu {
+	box-shadow: 0 0 12px rgba($color-black, .2);
+	border: 0;
+	border-radius: 2px;
+	left: 15px !important;
+	padding: 0;
+	right: 15px !important;
+	top: 44px !important;
+
+	.dropdown-item {
+		height: 40px;
+		padding-bottom: 0;
+		padding-top: 0;
+
+		img {
+			border-radius: 2px;
+			float: left;
+			margin: 10px 15px 0 0;
+			vertical-align: middle;
+			width: 32px;
+		}
+
+		strong {
+			float: left;
+			font-family: 'Montserrat', 'Arial', sans-serif;			
+			font-size: 12px;
+			font-weight: 700;
+			line-height: 40px;
+			vertical-align: middle;
+		}
+
+		span {
+			color: rgba($color-black, .5);
+			float: right;
+			font-size: 12px;		
+			line-height: 40px;
+		}			
+	}
+
+	.active {
+		a {
+			background-color: $color-secondary !important !important;
+			background-image: linear-gradient(to bottom, $color-secondary, darken($color-secondary, 3%)) !important;
+
+			strong {
+				color: #fff;
+			}
+
+			span {
+				color: rgba(#fff, .8);
+			}
+		}
+	}
+
+	.divider {
+		background-color: rgba(#000, .04);
+		height: 1px;
+		margin: 12px 0 0 0;
+	}
+
+	.dropdown-header {
+		color: rgba($color-black, .5);
+		font-size: 11px;
+		font-weight: 700;
+		padding-bottom: 10px;
+		padding-top: 10px;
+		text-transform: uppercase;
+	
+	}
+}
+
+/**
+ * ezMark
+ */
+.ez-hide {
+	opacity: 0;
+}
+
+.ez-checkbox {
+	background-image: url('../img/checkbox.png');
+	background-size: 17px 17px;
+	cursor: pointer;
+	display: inline-block;
+	height: 17px;
+	margin: 0px 8px 0px 0px;
+	vertical-align: -1px;
+	width: 17px;
+}
+
+.ez-checked {
+	background-image: url('../img/checkbox-open.png');
+}
+
+.ez-radio {
+	background-image: url('../img/radio.png');
+	background-size: 17px 17px;
+	cursor: pointer;
+	display: inline-block;
+	height: 17px;
+	margin: 0px 8px 0px 0px;
+	vertical-align: -px;
+	width: 17px;
+}
+
+.ez-selected {
+	background-image: url('../img/radio-open.png');
+}

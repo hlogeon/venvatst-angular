@@ -11,9 +11,11 @@ import buffer       from 'vinyl-buffer';
 import streamify    from 'gulp-streamify';
 import watchify     from 'watchify';
 import browserify   from 'browserify';
+import browserifyCss from 'browserify-css';
 import babelify     from 'babelify';
 import debowerify   from 'debowerify';
-// import ngAnnotate   from 'browserify-ngannotate';
+import ngAnnotate   from 'browserify-ngannotate';
+
 
 let isProd = false;
 
@@ -30,15 +32,37 @@ const JS_DEPENDENCIES = [
   'node_modules/angular-ui-router/release/angular-ui-router.js',
   'node_modules/angular-animate/angular-animate.js',
   'node_modules/angular-aria/angular-aria.js',
-  'node_modules/angular-material/angular-material.js'
+  'node_modules/angular-material/angular-material.js',
+  'node_modules/angular-local-storage/index.js',
+  'node_modules/angular-formly/dist/formly.js',
+  'node_modules/angular-formly-templates-bootstrap/dist/angular-formly-templates-bootstrap.js',
+  'node_modules/modernizr/lib/build.js',
+  'node_modules/moment/moment.js',
+  'node_modules/angular-moment/angular-moment.js',
+  'node_modules/tether/dist/js/tether.js',
+  'node_modules/bootstrap/dist/js/bootstrap.js',
+  'node_modules/angular-ui-bootstrap/index.js',
+  'node_modules/jquery/dist/jquery.js',
+  'node_modules/geocomplete/jquery.geocomplete.js',
+  'node_modules/gmap3/dist/gmap3.js',
+  'node_modules/owlcarousel/owl-carousel/owl.carousel.js',
+  'node_modules/jstz/index.js',
+  'node_modules/api-check/dist/api-check.js',
+  'node_modules/jquery-datetimepicker/jquery.datetimepicker.js'
+  // 'node_modules/php-date-formatter/js/php-date-formatter.js'
 ];
 
 const CSS_DEPENDENCIES = [
-  'node_modules/angular-material/angular-material.css'
+  'node_modules/jquery-datetimepicker/jquery.datetimepicker.css',
+  'app/assets/libraries/font-awesome/css/font-awesome.css',
+  'app/assets/libraries/entypo/style.css',
+  'app/assets/css/animate.min.css',
+  'app/assets/libraries/owl-carousel/owl.carousel.min.css',
+  'app/assets/libraries/owl-carousel/owl.carousel.default.css'
 ];
 
 const PATHS = {
-  sass: [`${DIRS.src}/scss/*.scss`, `${DIRS.src}/scss/**/*.scss`],
+  sass: [`${DIRS.src}/scss/eve.scss`,],
   js: [`${DIRS.src}/js/*.js`, `${DIRS.src}/js/**/*.js`],
   html: [`${DIRS.src}/templates/*.html`, `${DIRS.src}/templates/**/*.html`]
 };
@@ -62,6 +86,9 @@ gulp.task('sass', () => {
         .pipe(plugins.sourcemaps.write(`../${DIRS.dest}`))
         .pipe(gulp.dest(DIRS.dest))
         .pipe(browserSync.stream({match: '**/*.css'}));
+    })
+    .on('error', (error) => {
+      console.log(error);
     });
 });
 
@@ -74,7 +101,7 @@ gulp.task('html', () => {
 
 // Handle assets changes.
 gulp.task('assets', () => {
-  return gulp.src(`${DIRS.src}/assets/*`)
+  return gulp.src(`${DIRS.src}/assets/**`)
     .pipe(gulp.dest(`${DIRS.dest}/assets`));
 });
 
@@ -91,7 +118,12 @@ gulp.task('minifyJS', () => {
         .src(JS_DEPENDENCIES)
         .pipe(plugins.concat(DIRS.js.libs))
         .pipe(plugins.uglify())
-        .pipe(gulp.dest(DIRS.dest));
+        .pipe(gulp.dest(DIRS.dest))
+        .on('error', (error) => {
+          console.log(error);
+        });
+    }).on('error', (error) => {
+      console.log(error);
     });
 });
 
@@ -101,7 +133,7 @@ gulp.task('server', () => {
     notify: false,
     server: DIRS.dest,
     tunnel: 'angularseedes6',
-    browser: 'google chrome',
+    browser: 'google-chrome',
     port: 8000
   });
 });
@@ -168,6 +200,7 @@ function buildScript(file) {
   }
 
   const transforms = [
+    {name: 'browserify-css', options: {}},
     { name: babelify, options: {}},
     { name: debowerify, options: {}},
     // { name: ngAnnotate, options: {}},
@@ -183,9 +216,13 @@ function buildScript(file) {
     const stream = bundler.bundle();
     const sourceMapLocation = '';
 
+    function handleErrors(error) {
+    	console.log("Error", error);
+    }
+
     return stream
-      // .on('error', handleErrors)
-      // .on('end', bundleLogger.end)
+      .on('error', handleErrors)
+      // .on('end', handleEnd)
       .pipe(source(file))
       .pipe(gulpif(shouldCreateSourcemap, buffer()))
       .pipe(gulpif(shouldCreateSourcemap, sourcemaps.init({ loadMaps: true })))
@@ -196,6 +233,7 @@ function buildScript(file) {
       .pipe(gulp.dest(DIRS.dest))
       .pipe(browserSync.stream());
   }
+
   return rebundle();
 }
 
