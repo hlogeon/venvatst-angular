@@ -118,23 +118,6 @@ class EventsListController extends ListController {
             context.categories = categories;
         });
     }
-
-
-    loadMarkers () {
-        let context = this;
-        this.getService().gettingMarkers().then(function (markers) {
-            let markerItems = context.makeMarkerContent(markers);
-            if(context.user.lat && context.user.lng) {
-                markerItems.push(context.getUserMarker({lat: context.user.lat, lng: context.user.lng}));
-            }
-            context.markers = markerItems;
-            context.markersLoaded.notify({
-                items: markerItems,
-                overlay: context.makeMarkerOverlay(markers),
-                clickHandler: context.markerClickHandler
-            });
-        });
-    }
     
     getObjectUrlByMarker (marker) {
         return '/#/events/'+ marker.id;

@@ -78,17 +78,33 @@ class ListController {
     }
 
 
+
+	loadMarkers () {
+		let context = this;
+		this.getService().gettingMarkers().then(function (markers) {
+			let markerItems = context.makeMarkerContent(markers);
+			let overlay = context.makeMarkerOverlay(markers);
+			if(context.user.lat && context.user.lng) {
+				overlay.push(context.getUserMarker({lat: context.user.lat, lng: context.user.lng}));
+			}
+			context.markers = markerItems;
+			context.markersLoaded.notify({
+				items: markerItems,
+				overlay: overlay,
+				clickHandler: context.markerClickHandler
+			});
+		});
+	}
+
+
+
 	getUserMarker (position) {
+		let content = "<img src='//i.stack.imgur.com/orZ4x.png' style='margin-left: -2px; margin-top: -3px;' width='22' height='22'>";
 		return {
 			latLng: new google.maps.LatLng(position.lat, position.lng),
 			data: 'user',
 			options: {
-				icon: {
-					url: '//i.stack.imgur.com/orZ4x.png',
-					scaledSize: new google.maps.Size(16, 16),
-					origin: new google.maps.Point(0, 0),
-					anchor: new google.maps.Point(0, 0)
-				}
+				content: content
 			}
 		}
 	}
