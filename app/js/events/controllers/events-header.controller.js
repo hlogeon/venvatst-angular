@@ -16,6 +16,7 @@ class EventsHeaderController extends BaseHeaderController {
         this.dateFromChanged = DateFromChangedEvent;
         this.dateToChanged = DateToChangedEvent;
         this.cityChanged = PlaceFilterChangedEvent;
+        this.eventsState = true;
         this.initFilters();
     }
 

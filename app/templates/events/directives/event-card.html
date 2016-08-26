@@ -1,4 +1,4 @@
-<div venvast-card image="{{ event.getImageUrl() }}">
+<div venvast-card image="{{ event.getImageUrl() }}" link="{{ '/#/events/' + event._id }}">
     <div class="event-category-wrap">
         <img width="32" height="32" ng-src="{{ event.getIcon() }}" class="img-responsive" alt="Course" data-pin-nopin="true">
         <h5>{{ event.getCategoryName() }}</h5>

@@ -8,7 +8,8 @@ class VenvastCard {
         this.transclude = true;
         this.templateUrl = 'templates/common/directives/venvast-card.html';
         this.scope = {
-            image: '@'
+            image: '@',
+            link: '@'
         };
     }
 

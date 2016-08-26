@@ -10,6 +10,7 @@ class EventsHeaderController extends BaseHeaderController {
      */
     constructor (VenueRequestService, VenuesService, PlaceFilterChangedEvent) {
         super();
+        this.venuesState = true;
         this.service = VenueRequestService;
         this.modelService = VenuesService;
         this.cityChanged = PlaceFilterChangedEvent;
