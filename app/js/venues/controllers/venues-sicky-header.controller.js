@@ -16,6 +16,7 @@ class VenuesStickyHeaderController extends StickyHeaderController {
         this.modelService = EventsService;
         this.cityChanged = PlaceFilterChangedEvent;
         this.initFilters();
+        this.venuesState = true;
     }
 
 

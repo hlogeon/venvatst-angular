@@ -18,6 +18,7 @@ class EventsStickyHeaderController extends StickyHeaderController {
         this.dateFromChanged = DateFromChangedEvent;
         this.dateToChanged = DateToChangedEvent;
         this.cityChanged = PlaceFilterChangedEvent;
+        this.eventsState = true;
         this.initFilters();
     }
 

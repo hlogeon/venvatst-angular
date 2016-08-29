@@ -114,12 +114,13 @@ class ListController {
 		let markers = [];
 		let context = this;
 		$.each(markersArray, function(index, value) {
+			let title = value.title ? value.title : value.name;
 			let content = '<div id="' + value.id + '" class="map-popup-content-wrapper"><div class="map-popup-content"><div class="listing-window-image-wrapper">' +
 				'<a href="'+ context.getObjectUrlByMarker(value) +'">' +
 				'<div class="listing-window-image" style="background-image: url(' + value.image + ');"></div>' +
 				'<div class="listing-window-content">' +
 				'<div class="info">' +
-				'<h2>' + value.title + '</h2>' +
+				'<h2>' + title + '</h2>' +
 				'<h3>' + value.category + '</h3>' +
 				'</div>' +
 				'</div>' +
@@ -142,11 +143,17 @@ class ListController {
 	makeMarkerContent (markersArray) {
 		let markers = [];
 		$.each(markersArray, function(index, value) {
+			let href =  value.title ? '/#/events/' + value.id : '/#/venus/' + value.id;
+			let title = value.title ? value.title : value.name;
 			markers.push({
 				latLng: new google.maps.LatLng(value.center[0], value.center[1]),
 				options: {
 					content: {
-						id: value.id
+						id: value.id,
+						category: value.category,
+						itemLink: '<a href="'+ href +'">'+
+						title + '<img src="' + value.icon + '" width="16px" height="16px" style="float: right;margin-left: 25px;">' +
+						'</a>'
 					},
 					icon: {
 						url: value.icon,

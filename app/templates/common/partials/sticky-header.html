@@ -12,28 +12,22 @@
 
         <div class="nav-primary navbar-toggleable-md collapse">
             <ul class="nav nav-pills">
-                <li class="nav-item">
-                    <a ui-sref="venvast.events" class="nav-link active">Home</a>
-                </li>
                 <li class="nav-item has-children">
-                    <a href="#" class="nav-link ">Events</a>
+                    <a ui-sref="venvast.events" class="nav-link " ng-class="{'active': StickyHeaderCtrl.eventsState}">Events</a>
                     <ul class="sub-menu">
                         <li><a ui-sref="venvast.events">All</a></li>
-                        <li ng-if="StickyHeaderCtrl.authorized"><a ui-sref="venvast.events">Favorites</a></li>
-                        <li ng-if="StickyHeaderCtrl.authorized"><a ui-sref="venvast.events">Events I attend</a></li>
-                        <li ng-if="StickyHeaderCtrl.authorized"><a ui-sref="venvast.events">Organize</a></li>
+                        <li ng-if="$root.authenticated"><a ui-sref="venvast.events">Favorites</a></li>
+                        <li ng-if="$root.authenticated"><a ui-sref="venvast.events">Events I attend</a></li>
+                        <li ng-if="$root.authenticated"><a ui-sref="venvast.events">Organize</a></li>
                     </ul>
                 </li>
                 <li class="nav-item has-children">
-                    <a href="#" class="nav-link ">Venues</a>
+                    <a ui-sref="venvast.venues" class="nav-link " ng-class="{'active': StickyHeaderCtrl.venuesState}">Venues</a>
                     <ul class="sub-menu">
                         <li><a ui-sref="venvast.venues">All</a></li>
-                        <li ng-if="StickyHeaderCtrl.authorized"><a ui-sref="venvast.events">Favorites</a></li>
-                        <li ng-if="StickyHeaderCtrl.authorized"><a ui-sref="venvast.events">Organize</a></li>
+                        <li ng-if="$root.authenticated"><a ui-sref="venvast.events">Favorites</a></li>
+                        <li ng-if="$root.authenticated"><a ui-sref="venvast.events">Organize</a></li>
                     </ul>
-                </li>
-                <li class="nav-item" ng-if="StickyHeaderCtrl.authorized">
-                    <a ui-sref="venvast.organize" class="nav-link ">Profile</a>
                 </li>
                     <formly-form model="StickyHeaderCtrl.form.formData" fields="StickyHeaderCtrl.form.formFields">
                     </formly-form>

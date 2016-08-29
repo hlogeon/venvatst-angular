@@ -69,10 +69,6 @@ class BaseHeaderController {
     toggleMobileNav () {
         $('.header .nav-primary').toggleClass('in');
     }
-    
-    getClass (item) {
-        console.log("Got item: ", window.location.href);
-    }
 }
 
 export default BaseHeaderController;

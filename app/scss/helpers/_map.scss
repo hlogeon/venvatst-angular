@@ -78,13 +78,14 @@
 
 .cluster-1 {
 	background-image: url(/assets/img/cluster.png);
-	width: 52px;
-	height: 52px;
-	background-size: cover;
-	padding-left: 23px;
-	padding-top: 20px;
+	width: 32px;
+	height: 32px;
+	padding-top: 0;
+	font-weight: 900;
+	font-size: 22px;
 	color: white;
-	font-weight: 800;
+	text-align: center;
+	background-size: cover;
 }
 
 

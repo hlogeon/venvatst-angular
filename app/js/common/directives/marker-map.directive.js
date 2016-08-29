@@ -25,13 +25,33 @@ class MarkerMap {
                         cluster: {
                             radius: 50,
                             0: {
-                                content: "<div class='cluster cluster-1'>CLUSTER_COUNT</div>",
-                                width: 53,
-                                height: 52
+                                content: "<div class='cluster cluster-1'>" +
+                                '<div class="map-popup-content-wrapper"><div class="map-popup-content"><div class="listing-window-image-wrapper">' +
+                                '<a href="#">' +
+                                '<div class="listing-window-image">Some cool content here</div>' +
+                                '<div class="listing-window-content">' +
+                                '<div class="info">' +
+                                '</div>' +
+                                '</div>' +
+                                '</a>' +
+                                '</div></div><i class="fa fa-close close"></i></div>' +
+                                "CLUSTER_COUNT" +
+                                "</div>",
+                                width: 32,
+                                height: 32
                             },
                             events: {
-                                click: function(cluster, event, data){
-                                    console.log("Cluster clicked", cluster, event, data);
+                                click: function (overlay, event, context){
+                                    $(this).gmap3({
+                                        infowindow:{
+                                            latLng: context.data.latLng,
+                                            options:{
+                                                content: '<ul>' + $.map(context.data.markers, function (marker) {
+                                                    return "<li>" + marker.options.content.itemLink + '<br/><small> ' + marker.options.content.category +'</small>' + '</li>';
+                                                }).join('') + '</ul>'
+                                            }
+                                        }
+                                    });
                                 }
                             }
                         },
