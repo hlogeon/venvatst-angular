@@ -3,17 +3,21 @@
 </a>
 
 <div class="content-center">
-    <form method="post" action="/login/" class="login-form">
+    <form method="post" ng-submit="RegisterCtrl.submit()" class="login-form">
         <h1>Create Account</h1>
-
+        <div class="form-errors" ng-if="RegisterCtrl.errors.length > 0">
+            <ul>
+                <li ng-repeat="error in RegisterCtrl.errors">{{ error }}</li>
+            </ul>
+        </div>
         <div class="form-group">
             <label for="login-form-email" class="label">E-mail</label>
-            <input id="login-form-email" type="email" name="email" class="form-control" required="required">
+            <input id="login-form-email" type="email" ng-model="RegisterCtrl.model.email" name="email" class="form-control" required="required">
         </div><!-- /.form-group -->
 
         <div class="form-group">
             <label for="login-form-password" class="label">Password</label>
-            <input id="login-form-password" type="password" name="password" class="form-control" required="required">
+            <input id="login-form-password" type="password" ng-model="RegisterCtrl.model.password" name="password" class="form-control" required="required">
         </div><!-- /.form-group -->
 
         <ul class="nav nav-social" style="margin-left: -12px;">

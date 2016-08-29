@@ -69,6 +69,11 @@ class UserService extends BaseApiService {
             'params': data
         }).then((successResponse) => {
             let response = successResponse.data;
+            if(response.error) {
+                return {
+                    errors: [response.error],
+                }
+            }
             context.setLocalToken(response.token);
             if(context.localTokenIsSet()) {
                 return context.requestHome();
@@ -82,6 +87,21 @@ class UserService extends BaseApiService {
             return {
                 errors: context.errors
             };
+        });
+    }
+
+
+    register (data) {
+        let http = this.getHttpObject();
+        let context = this;
+        return http({
+            'method': 'POST',
+            'url': context.apiPath + 'user/register',
+            'params': data
+        }).then((successResponse) => {
+            return successResponse.data;
+        }, (errorResponse) => {
+            console.log("Error: ", errorResponse);
         });
     }
 

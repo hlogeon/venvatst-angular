@@ -5,15 +5,19 @@ class LoginController {
     constructor ($scope, $q, $window, service) {
         this.service = service;
         this.window = $window;
-        this.model = {
-            email: '',
-            password: ''
-        };
         Q.set(this, $q);
         $('body').css({'background-color': '#323232'});
         if(this.service.user !== null && this.service.authenticated === true) {
             this.goBack();
         }
+        this.initModel();
+    }
+    
+    initModel () {
+        this.model = {
+            email: '',
+            password: ''
+        };
     }
     
     
@@ -23,9 +27,9 @@ class LoginController {
 
     submit () {
         let context = this;
-        // console.log("Request data: ", this.model);
+        context.errors = [];
+        $('.form-group', '.login-form').removeClass('has-error');
         Q.get(this).when(this.service.login(this.model)).then(function (response) {
-            console.log("Got response: ", response);
             if(typeof response.errors !== "undefined") {
                 context.errors = response.errors;
                 $('.form-group', '.login-form').addClass('has-error');

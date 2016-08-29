@@ -50,10 +50,7 @@ class EventsListController extends ListController {
         this.loading = true;
         this.getQ().when(this.getService().gettingEvents()).then(function (events) {
             context.loading = false;
-            console.log("Has more pages?", context.getService().getRequestService().hasNextPage());
-            if(context.getService().getRequestService().hasNextPage() === false) {
-                context.hasMorePages = false;
-            }
+            context.hasMorePages = context.getService().getRequestService().hasNextPage();
             if(pushNew || context.events.length === 0) {
                 events.forEach((event) => {context.events.push(event)});
             } else {
