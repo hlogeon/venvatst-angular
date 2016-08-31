@@ -34,7 +34,8 @@ class RegisterController {
                 }
                 $('.form-group', '.login-form').addClass('has-error');
             } else {
-                context.goBack();
+                context.initModel();
+                context.errors.push('Successful registration!');
             }
         });
     }
