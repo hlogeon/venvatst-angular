@@ -59,10 +59,10 @@ class Event {
      * @returns {*}
      */
     getImageUrl () {
-        if(!this.picture) {
+        if(!this.picture || typeof this.picture.startsWith !== 'function') {
             return 'https://placeholdit.imgix.net/~text?txtsize=33&txt=' + this.title + '&w=350&h=150';
         }
-        if(this.picture && this.picture.startsWith('http')) {
+        if(this.picture && typeof this.picture.startsWith === 'function' && this.picture.startsWith('http')) {
             return this.picture;
         } else {
             return '/img/cache/original/events/' + this.picture;
