@@ -22,6 +22,10 @@ import PlaceFilterChangedEvent from './events/place-filter-changed.event.js';
 import CategoryChangedEvent from './events/category-changed.event.js';
 import MarkersLoadedEvent from './events/markers-loaded.event.js';
 
+String.prototype.startsWith = function (prefix) {
+    return this.indexOf(prefix) === 0;
+};
+
 BaseApiService.factory.$inject = ['$http', 'localStorageService'];
 BaseEvent.factory.$inject = ['$rootScope'];
 PlaceFilterChangedEvent.factory.$inject = ['$rootScope'];
