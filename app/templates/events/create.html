@@ -3,34 +3,52 @@
         <form method="post" action="?">
             <fieldset>
                 <legend>Basic Information</legend>
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label>Title</label>
-                        <input type="text" class="form-control bordered">
-                    </div><!-- /.form-group -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group" uib-tooltip="Minimum 3, maximum 140 characters" tooltip-placement="top">
+                            <label >Title</label>
+                            <input type="text"
+                                   ng-model="CreateCtrl.model.title"
+                                   class="form-control bordered"
+                                   required minlength="3" maxlength="140"
+                            >
+                        </div><!-- /.form-group -->
+                    </div>
                 </div>
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label>Category</label>
-                        <input type="text" class="form-control bordered">
-                    </div><!-- /.form-group -->
-                </div>
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label>Starts at</label>
-                        <input type="text" class="form-control date_timepicker_start bordered">
-                    </div><!-- /.form-group -->
-                </div>
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label>Ends at</label>
-                        <input type="text" class="form-control date_timepicker_end bordered">
-                    </div><!-- /.form-group -->
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Category</label>
+                            <input type="text" ng-model="CreateCtrl.model.category" class="form-control bordered" required>
+                        </div><!-- /.form-group -->
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Starts at</label>
+                            <div class="input-group">
+                                <input type="text" ng-model="CreateCtrl.model.starts_at" class="form-control date_timepicker_start bordered">
+                                <div class="input-group-addon" style="padding: 12px;">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                            </div>
+                        </div><!-- /.form-group -->
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Ends at</label>
+                            <div class="input-group">
+                                <input type="text" ng-model="CreateCtrl.model.ends_at" class="form-control date_timepicker_end bordered">
+                                <div class="input-group-addon" style="padding: 12px;">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                            </div>
+                        </div><!-- /.form-group -->
+                    </div>
                 </div>
                 <div class="col-sm-12">
                     <div class="form-group">
                         <label>Description</label>
-                        <textarea class="form-control bordered" rows="6"></textarea>
+                        <textarea class="form-control bordered" ng-model="CreateCtrl.model.description" rows="6"></textarea>
                     </div><!-- /.form-group -->
                 </div>
             </fieldset>

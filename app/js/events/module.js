@@ -14,6 +14,7 @@ import EventsListController from './controllers/events-list.controller.js';
 import EventsStickyHeaderController from './controllers/events-sicky-header.controller.js';
 import EventsHeaderController from './controllers/events-header.controller.js';
 import EventsDetailsController from './controllers/events-details.controller.js';
+import EventsCreateController from './controllers/events-create.controller.js';
 
 import DateFromChangedEvent from './events/date-from-changed.event.js';
 import DateToChangedEvent from './events/date-to-changed.event.js';
@@ -55,7 +56,8 @@ angular
   .controller('EventsListController', EventsListController)
   .controller('EventsDetailsController', EventsDetailsController)
   .controller('EventsStickyHeaderController', EventsStickyHeaderController)
-  .controller('EventsHeaderController', EventsHeaderController);
+  .controller('EventsHeaderController', EventsHeaderController)
+  .controller('EventsCreateController', EventsCreateController);
 
 /**
  * Choose the right instance if decorator were applied based on the module name

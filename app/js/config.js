@@ -50,7 +50,7 @@ let configRouter = function ($stateProvider, $urlRouterProvider, localStorageSer
             views: {
                 'content@venvast': {
                     templateUrl: 'templates/events/create.html',
-                    controller: 'EventsListController as ListCtrl'
+                    controller: 'EventsCreateController as CreateCtrl'
                 }
             }
         })

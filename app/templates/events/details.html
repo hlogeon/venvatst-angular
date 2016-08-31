@@ -12,6 +12,7 @@
 
                 <div class="page-header-content">
                     <h1>{{ object.title }}</h1>
+                    <h5><a ui-sref="venvast.venues.details({id: object.venue_relation._id})">{{ object.venue_relation.name }}</a></h5>
                     <p>{{ object.getStartsForHumans() }}</p>
                     <address>{{ object.venue_relation.address + ', ' +  object.venue_relation.city + ', ' + object.venue_relation.country}}</address>
                 </div><!-- /.page-header-content -->
