@@ -8,9 +8,12 @@ import EventRequestService from './services/event-request.service.js';
 import Event from './models/event.js';
 
 import EventCard from './directives/event-card.js';
+import EventOrganizerCard from './directives/organizer-card.directive.js';
 import CategoriesList from './directives/categoties-list.directive.js';
+import EventForm from './directives/form.directive.js';
 
 import EventsListController from './controllers/events-list.controller.js';
+import OrganizerListController from './controllers/organizer-list.controller.js';
 import EventsStickyHeaderController from './controllers/events-sicky-header.controller.js';
 import EventsHeaderController from './controllers/events-header.controller.js';
 import EventsDetailsController from './controllers/events-details.controller.js';
@@ -21,7 +24,7 @@ import DateToChangedEvent from './events/date-to-changed.event.js';
 import PlaceFilterChangedEvent from '../common/events/place-filter-changed.event.js';
 
 let controllerDependencies = [
-    '$scope', '$q', 'EventsService', 
+    '$scope', '$state', '$stateParams', '$q', '$timeout', 'EventsService', 
     'CategoriesService', 'DateFromChangedEvent', 
     'DateToChangedEvent', 'PlaceFilterChangedEvent', 
     'CategoryChangedEvent', 'MarkersLoadedEvent',
@@ -29,6 +32,7 @@ let controllerDependencies = [
 ];
 
 EventsListController.$inject = controllerDependencies;
+OrganizerListController.$inject = controllerDependencies;
 
 EventsDetailsController.$inject = ['$stateParams', '$scope', '$q', 'EventsService'];
 
@@ -37,6 +41,8 @@ DateToChangedEvent.factory.$inject = ['$rootScope'];
 EventsStickyHeaderController.$inject = ['EventRequestService', 'EventsService', 'DateFromChangedEvent', 'DateToChangedEvent', 'PlaceFilterChangedEvent'];
 EventsHeaderController.$inject = ['EventRequestService', 'EventsService', 'DateFromChangedEvent', 'DateToChangedEvent', 'PlaceFilterChangedEvent'];
 Event.$inject = ['moment'];
+
+EventsService.factory.$inject = ['$http', '$rootScope', 'localStorageService', 'EventRequestService', 'LoginEvent', 'RegisterEvent', 'Notification']
 
 let dependencies = [
     'venvast.common',
@@ -52,8 +58,11 @@ angular
   .factory('DateToChangedEvent', DateToChangedEvent.factory)
   .service('Event', Event)
   .directive('eventCard', EventCard.directiveFactory)
+  .directive('eventOrganizerCard', EventOrganizerCard.directiveFactory)
   .directive('categoriesList', CategoriesList.directiveFactory)
+  .directive('eventForm', EventForm.directiveFactory)
   .controller('EventsListController', EventsListController)
+  .controller('OrganizerListController', OrganizerListController)
   .controller('EventsDetailsController', EventsDetailsController)
   .controller('EventsStickyHeaderController', EventsStickyHeaderController)
   .controller('EventsHeaderController', EventsHeaderController)

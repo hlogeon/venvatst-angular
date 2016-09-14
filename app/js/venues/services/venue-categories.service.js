@@ -19,12 +19,9 @@ class VenueCategoriesService extends BaseApiService {
         let http = this.getHttpObject();
         return http({
             'method': 'GET',
-            'url': context.apiPath + context.apiEndPoint,
-            'params': {
-                type: 'venues'
-            }
+            'url': context.apiPath + context.apiEndPoint + '/venues'
         }).then(function(categories) {
-            categories = categories.data;
+            categories = categories.data.categories;
             context.getLocalStorage().set('venueCategories', categories);
             return categories;
         });

@@ -1,0 +1,224 @@
+<div class="container">
+        <form method="post" ng-submit="submit">
+            <fieldset>
+            <div class="alert alert-error" ng-repeat="(field, errors) in errors">
+                <li ng-repeat="error in errors">{{field}}: {{error}}</li>
+            </div>
+                <legend>Basic Information
+                    <div class="form-inline form-group">
+                        <label>Language</label>
+                        <select class="form-control bordered"  disabled="disabled" ng-select="model.locale">
+                            <option value="en">English</option>
+                            <option value="th">Thai</option>
+                        </select>
+                    </div>
+                </legend>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group required" uib-tooltip="Minimum 3, maximum 65 characters" tooltip-placement="top">
+                            <label class="control-label">Title</label>
+                            <input type="text"
+                                   ng-model="model.name"
+                                   class="form-control bordered"
+                                   required minlength="3" maxlength="140"
+                            >
+                        </div><!-- /.form-group -->
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group required">
+                            <label class="control-label">Category</label>
+                            <select name="categories[0]" class="form-control bordered" ng-model="model.categories[0]" required="true">
+                            <option ng-repeat="category in categories" value="{{ category.id }}">{{ category.name }}</option>
+                        </select>
+                        </div><!-- /.form-group -->
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group required">
+                            <label class="control-label">Starts at</label>
+                            <div class="input-group">
+                                <input type="text" required="true" ng-model="model.starts_at" class="form-control date_timepicker_start bordered" id="date_start">
+                                <div class="input-group-addon" style="padding: 12px;">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                            </div>
+                        </div><!-- /.form-group -->
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group required">
+                            <label class="control-label">Ends at</label>
+                            <div class="input-group">
+                                <input type="text" required="true" ng-model="model.ends_at" class="form-control date_timepicker_end bordered" id="date_end">
+                                <div class="input-group-addon" style="padding: 12px;">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                            </div>
+                        </div><!-- /.form-group -->
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="form-group required">
+                        <label class="control-label">Description</label>
+                        <textarea class="form-control bordered" ng-model="model.description" rows="6" required="true" minlength="140" maxlength="1800"></textarea>
+                    </div><!-- /.form-group -->
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Contact Information</legend>
+
+                <div class="col-sm-12 col-lg-4">
+                    <div class="form-group required">
+                        <label class="control-label">Phone</label>
+                        <input type="tel" class="form-control bordered" ng-model="model.phone" required="true">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-lg-4">
+                    <div class="form-group required">
+                        <label class="control-label">E-mail</label>
+                        <input type="required" ng-model="model.email" class="form-control bordered" required="true">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-lg-4">
+                    <div class="form-group">
+                        <label>Website</label>
+                        <input type="url" class="form-control bordered">
+                    </div>
+                </div>
+
+                    <div class="row">
+                        <div class="col-sm-12 col-lg-4" ng-if="!createVenue">
+                            <div class="form-group">
+                                <label>Find existing venue</label>
+                                  <input type="text" class="form-control bordered"
+                                       autocomplete="off"
+                                       data-provide="typeahead"
+                                       placeholder="Sart typing venue name" id="venue-search">
+                            </div><!-- /.form-group -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Or create new venue 
+                                    <input type="checkbox" id="new-venue" ng-model="createVenue">
+                                </label>
+                            </div><!-- /.form-group -->
+                        </div>
+                    </div>
+                    <venue-form ng-if="createVenue" model="model.venue"></venue-form>
+            </fieldset>
+
+            <fieldset>
+                <legend>Entry</legend>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="checkbox">
+                            <label><input type="checkbox" ng-model="model.free_entry"> Free entry allowed</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" ng-click="addEntryOption()">
+                    <span><a class="btn btn-success btn-small"><i class="fa fa-plus"></i> ENTRY OPTION</a></span>
+                </div>
+                <div class="row" style="border: 1px dashed rgba(0,0,0,0.2); margin-top: 15px;" ng-repeat="entry in model.entry_options">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input ng-model="entry.title" type="text" class="form-control bordered" placeholder="Standard ticket">
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label>Fee</label>
+                            <input type="number" ng-model="entry.fee" class="form-control bordered" placeholder="400" min="0">
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label>Currency</label>
+                            <select class="form-control bordered" disabled="disabled">
+                                <option selected="selected" value="THB">THB</option>
+                                <!-- <option>USD</option> -->
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-2" style="margin-top: 35px;">
+                        <a class="btn btn-danger" ng-click="addEntryDesc($index)"><i class="fa fa-plus"></i> DESCRIPTION</a>
+                    </div>
+                    <div class="col-sm-12" ng-if="entry.description !== false">
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea class="form-control bordered" ng-model="entry.description">
+                            </textarea>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+
+
+            <fieldset uib-tooltip="Upload up to 3 images. Preferred resolution ratio is 3:1. Minimal width 900px" tooltip-placement="top">
+                <legend>Images</legend>
+                <div id="images-preview-wrapper" ng-repeat="src in existingImages">
+                    <div class="row">
+                        <div class="col-xs-12 col-xs-offset-1">
+                            <div class="delete-btn" ng-click="deleteExistingImage(image)" style="margin-left: -10px;margin-bottom: 7px;">Delete</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <center>
+                            <div class="image-preview">
+                                <img ng-src="{{ src }}" width="900" height="300">
+                            </div>
+                        </center>
+                    </div>
+                </div>
+                <hr ng-if="existingImages.length > 0" />
+                <div id="image-cropper-container">
+                    <div id="{{ image.id }}" class="col-xs-12" ng-repeat="(num, image) in model.images">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="select-image-btn" ng-click="selectImage(image)">Select image</div>
+                            <div class="delete-btn" ng-click="deleteImage(image)">Delete</div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <center>
+                            <div class="cropit-preview"></div>
+                        </center>
+                    </div>
+                    <div class="row">
+                        <div class="controls-wrapper">
+                            <div class="slider-wrapper col-xs-12">
+                                <center>
+                                    <span class="fa fa-image small-image"></span>
+                                    <input type="range" class="cropit-image-zoom-input custom" min="0" max="1" step="0.01">
+                                    <span class="fa fa-image large-image"></span>
+                                </center>
+                            </div>
+                        </div>  
+                    </div>
+                    <!-- The actual file input will be hidden -->
+                    <input type="file" class="cropit-image-input" accept="image/*" />
+                </div>
+                </div>
+                <div class="col-xs-12">
+                    <a class="add-more-images" ng-if="model.images.length < 3" ng-click="addImage(model)"><i class="fa fa-plus"> Add more images</i></a>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Conditions</legend>
+                <div class="checkbox">
+                    <label><input type="checkbox" ng-model="model.agree_conditions"> I agree with terms &amp; conditions</label>
+                </div>
+            </fieldset>
+
+            <div class="center">
+                <button ng-disabled="!model.agree_conditions" ng-click="submit(model)" class="btn btn-primary btn-large" type="submit">Submit Event</button>
+                <a uib-tooltip="If you cannot provide all the valid information you can save draft and continue editing later" tooltip-placement="top`" class="btn btn-warning btn-large" ng-click="submit(true)">Save draft</a>
+            </div><!-- /.center -->
+        </form>
+    </div><!-- /.container-fluid -->

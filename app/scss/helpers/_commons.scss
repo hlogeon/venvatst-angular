@@ -243,14 +243,20 @@
 }
 
 .page-header-category {
-	background-color: rgba($color-black, .06);
-	border-radius: 8px;
-	float: left;
-	height: 88px;
-	line-height: 98px;
-	margin: 0 30px 0 0;	
-	text-align: center;
-	width: 88px;
+	border-radius: 50%;
+    float: left;
+    height: 32px;
+    line-height: 98px;
+    margin: 0 30px 0 0;
+    width: 32px;
+
+    img {
+	    border-width: 2px;
+	    height: 32px;
+	    left: 0;
+	    width: 32px;
+	    border-radius: 50%;
+    }
 
 	i {
 		color: rgba($color-black, .4);
@@ -265,6 +271,25 @@
 
 .page-header-content {
 	display: table-cell;
+}
+
+.page-header-contact-info {
+    margin-left: 51px;
+    margin-top: 5px;
+
+    .contact-email {
+		margin-left: 5px;
+    }
+
+    .contact-phone {
+		margin-left: 5px;
+    }
+
+    i {
+    	color: rgba($color-black, .4);
+    	margin-left: 10px;
+    }
+	
 }
 
 .page-header-actions {
@@ -296,6 +321,7 @@
 			text-align: center;
 			transition: all .4s ease;
 			width: 38px;
+			padding-top: 8px;
 
 			&:hover {
 				background-color: rgba($color-black, .12);

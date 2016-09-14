@@ -6,6 +6,10 @@ import 'angular-local-storage';
 import 'angular-formly';
 import 'angular-formly-templates-bootstrap';
 import 'angular-jquery-timepicker';
+import 'angular-file-upload';
+import 'angular-ui-notification';
+import 'ui-select';
+import 'meanie-angular-duplicate-requests-filter';
 import 'moment';
 import ListController from './controllers/list.controller.js';
 import DetailsController from './controllers/details.controller.js';
@@ -34,10 +38,13 @@ MarkersLoadedEvent.factory.$inject = ['$rootScope'];
 let dependencies = [
     'ui.router',
     'ui.bootstrap',
+    'ui.select',
     'ngMaterial',
     'LocalStorageModule',
     'formly',
-    'formlyBootstrap'
+    'formlyBootstrap',
+    'ui-notification',
+    'DuplicateRequestsFilter.Decorator'
 ];
 
 angular

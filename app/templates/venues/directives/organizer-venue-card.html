@@ -1,0 +1,29 @@
+<div class="event-wrap">
+    <div class="event-img-wrap">
+        <div class="card-image no-margin">
+            <a ui-sref="venvast.venues.details({slug: venue.slug})" style="background-image: url('{{ venue.getImageUrl() }}');">
+                <span><i class="fa fa-search"></i></span>
+            </a>
+            <div class="card-actions">
+                <!-- <a href="#"><i class="entypo-save"></i> <span>Save</span></a> -->
+                <a ng-click="delete(venue)"><i class="fa fa-trash"></i> <span>Like</span></a>
+            </div><!-- /.card-actions -->
+        </div>
+    </div>
+    <!-- Event Detail Wrapper -->
+    <div class="event-details">
+        <div class="event-category-wrap">
+
+    </div>
+    <h5>{{ venue.getCategoryName() }}</h5>
+    <h4>
+        <a ui-sref="venvast.venues.details({slug: venue.slug})">{{ venue.name }}</a>
+    </h4>
+    <div class="card-location">
+    </div>
+    <p>{{ venue.description.slice(0, 130) }}...</p>
+    <h4 style="margin: 0;"><i class="fa fa-map-marker"></i><small style="color: rgba(35,35,35,0.4);font-size: 10px; margin-left: 20px;">{{ venue.fullAddress }}</small></h4>
+    <a ui-sref="venvast.venues.details({slug: venue.slug})" class="btn btn-primary">Preview</a>
+    <a ui-sref="venvast.venues.edit({slug: venue.slug})" style="float: right;" class="btn btn-secondary">Edit</a>
+    </div>
+</div>

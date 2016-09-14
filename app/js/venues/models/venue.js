@@ -32,8 +32,8 @@ class Venue {
             return null;
         }
         return {
-            longitude: this.location.coordinates[0],
-            latitude: this.location.coordinates[1]
+            longitude: this.location.lng,
+            latitude: this.location.lat
         }
     }
 
@@ -46,12 +46,15 @@ class Venue {
         return [latLng.latitude, latLng.longitude];
     }
 
+    /**
+     * Get full icon url 
+     * @return {[type]} [description]
+     */
     getIcon () {
-        if(!this.categories || !this.categories[0]) {
+        if(this.icon === null) {
             return '/assets/img/question.png';
-        } else {
-            return 'http://venvast.com/img/cache/original/categories/' + this.categories[0].image;
         }
+        return this.icon;
     }
 
     /**
@@ -61,21 +64,14 @@ class Venue {
      * @returns {*}
      */
     getImageUrl () {
-        if(!this.cover_image) {
+        if(!this.images || this.images.length === 0) {
             return 'https://placeholdit.imgix.net/~text?txtsize=33&txt=' + this.name + '&w=350&h=150';
         }
-        if(this.cover_image && this.cover_image.startsWith('http')) {
-            return this.cover_image;
-        } else {
-            return '//venvast.com/img/cache/original/venues/' + this.cover_image;
-        }
+        return this.images;
     }
 
     getCategoryName () {
-        if(!this.categories || !this.categories[0]) {
-            return 'Undefined';
-        }
-        return this.categories[0].name;
+        return this.category.name;
     }
 
     getDirection () {

@@ -200,3 +200,137 @@ textarea.form-control {
 .ez-selected {
 	background-image: url('../img/radio-open.png');
 }
+
+.form-group.required .control-label:after { 
+   content:" *";
+   color:red;
+}
+
+
+ .cropit-preview {
+    background-color: #f8f8f8;
+    background-size: cover;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-top: 7px;
+}
+
+@media (max-width:767px) {
+	.cropit-preview {
+	    width: 264px;
+	    height: 88px;
+	}
+}
+
+@media (max-width:1024px) and (min-width: 767px) {
+	.cropit-preview {
+	    width: 600px;
+	    height: 200px;
+	}
+}
+
+@media (min-width:1024px) {
+	.cropit-preview {
+	    width: 900px;
+	    height: 300px;
+	}
+}
+
+.cropit-image-input {
+	display: none;
+}	
+
+.select-image-btn {
+	background: #52a0c7;
+    color: #fff;
+    padding: 5px 10px;
+    text-align: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    -webkit-box-shadow: 0 2px $color-secondary;
+    box-shadow: 0 2px $color-secondary;
+    margin-left: 70px;
+}
+
+.delete-btn {
+	background: $color-customizer-red;
+    color: #fff;
+    padding: 5px 10px;
+    text-align: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    -webkit-box-shadow: 0 2px #3784aa;
+    box-shadow: 0 2px #3784aa;
+}
+
+.large-image {
+	font-size: 24px;
+}
+
+.slider-wrapper {
+	-webkit-transition: opacity 0.25s;
+    -moz-transition: opacity 0.25s;
+    -o-transition: opacity 0.25s;
+    -ms-transition: opacity 0.25s;
+    transition: opacity 0.25s;
+    display: inline-block;
+
+    .cropit-image-zoom-input {
+    	-webkit-appearance: none;
+	    -moz-appearance: none;
+	    appearance: none;
+	    height: 5px;
+	    background: #eee;
+	    -webkit-border-radius: 5px;
+	    border-radius: 5px;
+	    outline: none;
+        width: 78%;
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+	  -webkit-appearance: none;
+	  height: 16px;
+	  width: 16px;
+	  border-radius: 50%;
+	  background: #ffffff;
+	  cursor: pointer;
+	  margin-top: -14px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+	  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d; /* Add cool effects to your sliders! */
+	}
+
+	/* All the same stuff for Firefox */
+	input[type=range]::-moz-range-thumb {
+	  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+	  height: 16px;
+	  width: 16px;
+	  border-radius: 50%;
+	  background: #ffffff;
+	  cursor: pointer;
+	}
+
+	/* All the same stuff for IE */
+	input[type=range]::-ms-thumb {
+	  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+	  height: 16px;
+	  width: 16px;
+	  border-radius: 50%;
+	  background: #ffffff;
+	  cursor: pointer;
+	}
+}
+
+.add-more-images {
+    font-size: 16px;
+    border-bottom: dashed 1px #33BFCB;
+    cursor: pointer;
+}

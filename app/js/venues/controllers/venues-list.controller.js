@@ -11,8 +11,15 @@ import VenuesService from '../services/venues.service.js';
 class VenuesListController extends ListController {
 
     
-    constructor ($scope, $q, service, VenuesCategoriesService, PlaceFilterChangedEvent, CategoryChangedEvent, MarkersLoadedEvent, UserService, GotLocationEvent) {
+    constructor ($stateParams, $state, $timeout, $scope, $q, service, VenuesCategoriesService, PlaceFilterChangedEvent, CategoryChangedEvent, MarkersLoadedEvent, UserService, GotLocationEvent) {
         super($scope, $q, service);
+        this.stateParams = $stateParams;
+        if($state.current.data && $state.current.data.favorites === true) {
+            this.showDistance = false;
+        }
+        this.timeoutService = $timeout;
+        this.loadingTimeout = null;
+        this.state = $state;
         UserService.gettingLocation();
         this.categoriesService = VenuesCategoriesService;
         this.categoryChanged = CategoryChangedEvent;
@@ -22,8 +29,8 @@ class VenuesListController extends ListController {
         this.listenCity(PlaceFilterChangedEvent);
         this.listenLocation(GotLocationEvent);
         this.listenCategories(CategoryChangedEvent);
-        this.loadMarkers();
         this.mapOptions = this.getMapOptions();
+        this.init();
     }
 
     
@@ -34,10 +41,8 @@ class VenuesListController extends ListController {
         this.hasMorePages = true;
         this.pages = 0;
         this.user = {};
-        this.user.lat = 13.7395009;
-        this.user.lng = 100.5755878;
-        this.lat = 13.7395009;
-        this.lng = 100.5755878;
+        this.user.lat = null;
+        this.user.lng = null;
     }
 
     /**
@@ -46,7 +51,17 @@ class VenuesListController extends ListController {
     loadObjects (pushNew = true) {
         let context = this;
         this.loading = true;
-        this.getQ().when(this.getService().gettingVenues()).then(function (venues) {
+        if(this.state.params.slug) {
+            this.getService().getRequestService().setCategory(this.state.params.slug);
+        } else {
+            this.getService().getRequestService().setCategory(null);
+        }
+        let mode = false;
+        
+        if (this.state.current.data && this.state.current.data.favorites === true) {
+            mode = 'favorites';
+        }
+        this.getQ().when(this.getService().gettingVenues(mode)).then(function (venues) {
             context.loading = false;
             if(context.getService().getRequestService().hasNextPage() === false) {
                 context.hasMorePages = false;
@@ -56,6 +71,27 @@ class VenuesListController extends ListController {
             } else {
                 context.venues = venues;
             }
+        });
+    }
+
+    loadMarkers () {
+        let context = this;
+        let mode = false;
+        if (this.state.current.data && this.state.current.data.favorites === true) {
+            mode = 'favorites';
+        }
+        this.getService().gettingMarkers(mode).then(function (markers) {
+            let markerItems = context.makeMarkerContent(markers);
+            let overlay = context.makeMarkerOverlay(markers);
+            if(context.user.lat && context.user.lng) {
+                overlay.push(context.getUserMarker({lat: context.user.lat, lng: context.user.lng}));
+            }
+            context.markers = markerItems;
+            context.markersLoaded.notify({
+                items: markerItems,
+                overlay: overlay,
+                clickHandler: context.markerClickHandler
+            });
         });
     }
 
@@ -72,14 +108,20 @@ class VenuesListController extends ListController {
     }
     
     listenCategories (categoriesEvent) {
+        let context = this;
         categoriesEvent.subscribe(this.scope, (evt, params) => {
             this.getService().getRequestService().setPage(0);
-            this.getService().getRequestService().setCategory(params);
-            this.loadObjects(false);
-            if(typeof this.getService().getRequestService().params.category !== 'undefined') {
-                this.mapOptions.zoom = 12;
+            if (!params) {
+                this.state.params.slug = null;
+                this.loadObjects(false);
+                this.loadMarkers();
+                context.state.transitionTo('venvast.venues');
+            } else {
+                this.state.params.slug = params.slug;
+                this.loadObjects(false);
+                this.loadMarkers();
+                context.state.transitionTo('venvast.venues.category', {slug: params.slug});
             }
-            this.loadMarkers();
         });
     }
 
@@ -91,7 +133,14 @@ class VenuesListController extends ListController {
             this.lng = params.lng;
             this.mapOptions = this.getMapOptions();
             this.service.getRequestService().setLocation(this.lat, this.lng);
-            this.loadMarkers();
+            if(this.loadingTimeout) {
+                this.timeoutService.cancel(this.loadingTimeout);
+                this.loadingTimeout = null;
+            }
+            this.loadingTimeout = this.timeoutService(() => {
+                this.loadMarkers();
+                this.loadObjects();
+            }, 1500);
         });
     }
 
@@ -103,7 +152,7 @@ class VenuesListController extends ListController {
     }
 
     getObjectUrlByMarker (marker) {
-        return '/#/venues/'+ marker.id;
+        return '/venues/view/'+ marker.slug;
     }
     
     getMapOptions () {

@@ -1,4 +1,7 @@
-let configRouter = function ($stateProvider, $urlRouterProvider, localStorageServiceProvider) {
+let configRouter = function ($stateProvider, $locationProvider, $urlRouterProvider, localStorageServiceProvider) {
+    // $locationProvider.html5Mode(true).hashPrefix('!');
+
+
     $stateProvider
         .state('venvast', {
             url: '/',
@@ -43,6 +46,67 @@ let configRouter = function ($stateProvider, $urlRouterProvider, localStorageSer
                 }
             }
         })
+        .state('venvast.events.category', {
+            url: '/category/{slug}',
+            parent: 'venvast.events',
+            abstract: false
+        })
+        .state('venvast.events.favorites', {
+            url: '/favorites',
+            parent: 'venvast.events',
+            abstract: false,
+            views: {
+                'content@venvast': {
+                    templateUrl: 'templates/events/list.html',
+                    controller: 'EventsListController as ListCtrl'
+                }
+            },
+            data: {
+                mode: 'favorites'
+            }
+        })
+        .state('venvast.events.attend', {
+            url: '/attend',
+            parent: 'venvast.events',
+            abstract: false,
+            views: {
+                'content@venvast': {
+                    templateUrl: 'templates/events/list.html',
+                    controller: 'EventsListController as ListCtrl'
+                }
+            },
+            data: {
+                mode: 'going'
+            }
+        })
+        .state('venvast.events.drafts', {
+            url: '/organize/drafts',
+            parent: 'venvast.events',
+            abstract: false,
+            views: {
+                'content@venvast': {
+                    templateUrl: 'templates/events/organize/list.html',
+                    controller: 'OrganizerListController as ListCtrl'
+                }
+            },
+            data: {
+                drafts: true
+            }
+        })
+        .state('venvast.events.organize', {
+            url: '/organize',
+            parent: 'venvast.events',
+            abstract: false,
+            views: {
+                'content@venvast': {
+                    templateUrl: 'templates/events/organize/list.html',
+                    controller: 'OrganizerListController as ListCtrl'
+                }
+            },
+            data: {
+                drafts: false
+            }
+        })
         .state('venvast.events.create', {
             url: '/create',
             parent: 'venvast.events',
@@ -54,8 +118,19 @@ let configRouter = function ($stateProvider, $urlRouterProvider, localStorageSer
                 }
             }
         })
+        .state('venvast.events.edit', {
+            url: '/edit/{slug}',
+            parent: 'venvast.events',
+            abstract: false,
+            views: {
+                'content@venvast': {
+                    templateUrl: 'templates/events/create.html',
+                    controller: 'EventsCreateController as CreateCtrl'
+                }
+            }
+        })
         .state('venvast.events.details', {
-            url: '/:id',
+            url: '/view/:slug',
             parent: 'venvast.events',
             abstract: false,
             views: {
@@ -87,8 +162,75 @@ let configRouter = function ($stateProvider, $urlRouterProvider, localStorageSer
                 }
             }
         })
+        .state('venvast.venues.drafts', {
+            url: '/organize/drafts',
+            parent: 'venvast.venues',
+            views: {
+                'content@venvast': {
+                    templateUrl: 'templates/venues/organize/drafts.html',
+                    controller: 'DraftsListController as ListCtrl'
+                }
+            },
+            data: {
+                drafts: true
+            }
+        })
+        .state('venvast.venues.organize', {
+            url: '/organize',
+            parent: 'venvast.venues',
+            views: {
+                'content@venvast': {
+                    templateUrl: 'templates/venues/organize/drafts.html',
+                    controller: 'DraftsListController as ListCtrl'
+                }
+            },
+            data: {
+                drafts: false
+            }
+        })
+        .state('venvast.venues.favorites', {
+            url: '/favorites',
+            parent: 'venvast.venues',
+            abstract: false,
+            views: {
+                'content@venvast': {
+                    templateUrl: 'templates/venues/list.html',
+                    controller: 'VenuesListController as ListCtrl'
+                }
+            },
+            data: {
+                favorites: true
+            }
+        })
+        .state('venvast.venues.create', {
+            url: '/create',
+            parent: 'venvast.venues',
+            abstract: false,
+            views: {
+                'content@venvast': {
+                    templateUrl: 'templates/venues/create.html',
+                    controller: 'VenuesCreateController as CreateCtrl'
+                }
+            }
+        })
+        .state('venvast.venues.edit', {
+            url: '/edit/{slug}',
+            parent: 'venvast.venues',
+            abstract: false,
+            views: {
+                'content@venvast': {
+                    templateUrl: 'templates/venues/create.html',
+                    controller: 'VenuesCreateController as CreateCtrl'
+                }
+            }
+        })
+        .state('venvast.venues.category', {
+            url: '/category/{slug}',
+            parent: 'venvast.venues',
+            abstract: false
+        })
         .state('venvast.venues.details', {
-            url: '/:id',
+            url: '/view/:slug',
             parent: 'venvast.venues',
             abstract: false,
             views: {
@@ -107,6 +249,9 @@ let configRouter = function ($stateProvider, $urlRouterProvider, localStorageSer
                     controller: 'LoginController',
                     controllerAs: 'LoginCtrl'
                 }
+            },
+            data: {
+                bodyClass: 'black'
             }
         })
         .state('logout', {
@@ -121,6 +266,9 @@ let configRouter = function ($stateProvider, $urlRouterProvider, localStorageSer
                     controller: 'RegisterController',
                     controllerAs: 'RegisterCtrl'
                 }
+            },
+            data: {
+                bodyClass: 'black'
             }
         });
     $urlRouterProvider.otherwise('/events');
@@ -128,6 +276,6 @@ let configRouter = function ($stateProvider, $urlRouterProvider, localStorageSer
 
 };
 
-configRouter.$inject = ['$stateProvider', '$urlRouterProvider', 'localStorageServiceProvider'];
+configRouter.$inject = ['$stateProvider', '$locationProvider', '$urlRouterProvider', 'localStorageServiceProvider'];
 
 export default configRouter;

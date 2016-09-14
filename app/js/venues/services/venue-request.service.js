@@ -18,7 +18,6 @@ class VenueRequestService extends BaseRequest {
     constructor (params) {
         super();
         this.setDefaultRadius();
-        this.setLocation(13.7395009, 100.5755878); //TODO: implement real location
     }
 
     setCategoryId (categoryId) {
@@ -29,7 +28,7 @@ class VenueRequestService extends BaseRequest {
         if(!category) {
             delete this.params.category;
         } else {
-            this.params.category = category._id;
+            this.params.category = category.slug ? category.slug : category;
         }
     }
 
@@ -114,7 +113,7 @@ class VenueRequestService extends BaseRequest {
      * @returns {number}
      */
     getExpectedResultsCount() {
-        return 60;
+        return 20;
     }
 
     static factory() {

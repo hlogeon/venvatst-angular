@@ -5,6 +5,7 @@
 <div class="content-center">
     <form method="post" ng-submit="LoginCtrl.submit()" class="login-form">
         <h1>Log In Into Account</h1>
+        <small><a ui-sref="register" style="color: white;">Don't have an account?</a></small>
         <div class="form-errors" ng-if="LoginCtrl.errors.length > 0">
             <ul>
                 <li ng-repeat="error in LoginCtrl.errors">{{ error }}</li>
@@ -21,7 +22,7 @@
         </div><!-- /.form-group -->
 
         <ul class="nav nav-social" style="margin-left: -12px;">
-            <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-facebook"></i></a></li>
+            <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-facebook" style="margin-top: 8px"></i></a></li>
             <!--<li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-google"></i></a></li>-->
         </ul>
 

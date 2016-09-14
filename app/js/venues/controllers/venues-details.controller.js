@@ -4,6 +4,14 @@ const Q = new WeakMap();
 
 
 class VenuesDetailsController extends DetailsController {
+
+	favor(venue) {
+		this.service.favor(venue.slug);
+	}
+
+	postInit () {
+		this.dayIndex = new Date().getDay();
+	}
     
 }
 

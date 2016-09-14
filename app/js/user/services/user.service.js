@@ -1,23 +1,27 @@
 import BaseApiService from '../../common/services/base-api.service.js';
 
 class UserService extends BaseApiService {
-
     /**
      * Class constructor.
      * Set the http service and api end point
      * @param {Object} $http
      **/
-    constructor ($http, $rootScope, localStorageService, GotLocationEvent) {
+    constructor ($http, $state, $rootScope, localStorageService, GotLocationEvent) {
         super($http, localStorageService);
+        this.gotLocationEvent = GotLocationEvent;
+        this.state = $state;
         this.apiEndPoint = 'user';
         this.rootScope = $rootScope;
-        this.gotLocationEvent = GotLocationEvent;
         this.initRequestParams();
         this.gettingLocation();
         this.authenticated = false;
         this.errors = [];
         this.user = null;
         this.init();
+    }
+
+    goLogin() {
+        this.state.go('login', {}, {reload: true});
     }
 
 
@@ -65,7 +69,7 @@ class UserService extends BaseApiService {
         let context = this;
         return http({
             'method': 'POST',
-            'url': context.apiPath + 'api/authenticate',
+            'url': context.apiPath + context.apiEndPoint + '/authenticate',
             'params': data
         }).then((successResponse) => {
             let response = successResponse.data;
@@ -81,12 +85,7 @@ class UserService extends BaseApiService {
                 return false;
             }
         }, (errorResponse) => {
-            if(errorResponse.status === 401) {
-                context.errors.push("Invalid credentials!");
-            }
-            return {
-                errors: context.errors
-            };
+            return errorResponse.data;
         });
     }
 
@@ -101,7 +100,11 @@ class UserService extends BaseApiService {
         }).then((successResponse) => {
             return successResponse.data;
         }, (errorResponse) => {
-            console.log("Error: ", errorResponse);
+            if(errorResponse.status === 422) {
+                return {
+                    errors: errorResponse.data
+                };
+            }
         });
     }
 
@@ -115,11 +118,11 @@ class UserService extends BaseApiService {
                 'params': context.params
             }).then(function(userResponse) {
                 userResponse = userResponse.data;
-                if(userResponse !== null && typeof userResponse !== "undefined") {
+                if(userResponse.user !== null && typeof userResponse.user !== "undefined") {
                     context.authenticated = true;
-                    context.user = userResponse;
+                    context.user = userResponse.user;
                     context.rootScope.authenticated = true;
-                    context.rootScope.user = userResponse;
+                    context.rootScope.user = userResponse.user;
                 } else {
                     context.authenticated = false;
                     context.user = null;
@@ -127,6 +130,12 @@ class UserService extends BaseApiService {
                     context.rootScope.user = null;
                 }
                 return context.user;
+            }, function(errorResponse) {
+                if(errorResponse.data && errorResponse.data.error === 'token_expired') {
+                    context.state.go('login');
+                }
+                return errorResponse;
+
             });
         } else {
             return null;
@@ -161,8 +170,8 @@ class UserService extends BaseApiService {
      *
      * @returns {BaseApiService}
      */
-    static factory ($http, $rootScope, localStorageService, GotLocationEvent) {
-        return new UserService($http, $rootScope, localStorageService, GotLocationEvent);
+    static factory ($http, $state, $rootScope, localStorageService, GotLocationEvent) {
+        return new UserService($http, $state, $rootScope, localStorageService, GotLocationEvent);
     }
 
 }

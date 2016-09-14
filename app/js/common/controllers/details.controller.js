@@ -2,7 +2,6 @@
 
 const Q = new WeakMap();
 
-
 class DetailsController {
 
 
@@ -16,11 +15,16 @@ class DetailsController {
 
 
     init () {
-        this.getQ().when(this.getService().gettingOne(this.params.id)).then((event) => {
-            this.scope.object = event;
+        this.getQ().when(this.getService().gettingOne(this.params.slug)).then((object) => {
+            this.scope.object = object;
             this.initCarousel();
-            this.initMap()
+            this.initMap();
+            this.postInit();
         });
+    }
+
+    postInit() {
+        
     }
 
     initMap () {
@@ -58,9 +62,7 @@ class DetailsController {
 
 
     getMapCenter () {
-        let pos = this.scope.object.getLatLng();
-        console.log("pos: ", pos);
-        return new google.maps.LatLng(pos.latitude, pos.longitude);
+        return new google.maps.LatLng(this.scope.object.location.lat, this.scope.object.location.lng);
     }
 
 

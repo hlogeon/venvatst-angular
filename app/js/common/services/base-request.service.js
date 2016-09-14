@@ -14,9 +14,6 @@ class BaseRequest {
         this.params = params || {};
         this.setIsWeb();
         this.setDefaultTimezone();
-        if(!this.params.organizer) {
-            this.setOrganizer(false);
-        }
         if(!this.params.page) {
             this.setPage(0);
         }

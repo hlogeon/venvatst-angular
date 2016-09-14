@@ -1,0 +1,41 @@
+<div class="event-wrap">
+    <div class="event-img-wrap">
+        <div class="card-image no-margin">
+            <a ui-sref="venvast.events.details({slug: event.slug})" style="background-image: url('{{ event.getImageUrl() }}');">
+                <span><i class="fa fa-search"></i></span>
+            </a>
+            <div class="card-actions">
+                <a ng-click="delete(event)" style="cursor: pointer"><i class="fa fa-trash"></i> <span>Delete</span></a>
+            </div><!-- /.card-actions -->
+        </div>
+    </div><!-- Event Image Wrapper -->
+    <!-- Event Detail Wrapper -->
+    <div class="event-details">
+            <div class="event-category-wrap">
+                <!-- <img width="32" height="32" ng-src="{{ venue.getIcon() }}" class="img-responsive" alt="Course" data-pin-nopin="true"> -->
+            </div>
+            <h5>{{ event.category.name }}</h5>
+            
+            <h4>
+                <a ui-sref="venvast.events.details({slug: event.slug})">{{ event.name }}</a>
+                <br/>
+                <span class="event-starts-in">{{ event.starts_in }}</span>
+            </h4>
+            
+            <div class="row">
+                <div class="card-date">
+                    <strong>{{ event.start_day }}</strong>
+                    <span>{{ event.start_month }}</span>
+                </div>
+                <div class="card-time">
+                    <strong>{{ event.start_time }}</strong>
+                    <span><i class="fa fa-map-marker"></i> <a ui-sref="venvast.venues.details({slug: event.venue.slug})">{{ event.venue.name }}</a></span>
+                </div>
+            </div>
+
+            <p style="    height: 80px;word-wrap: break-word;text-overflow: ellipsis;overflow-x: hidden;overflow-y: hidden;">{{ event.description }}...</p>
+            <h4 style="margin: 0;"><small style="color: rgba(35,35,35,0.4);font-size: 10px; margin-left: 20px;">{{ event.fullAddress }}</small></h4>
+            <a class="btn btn-primary" ui-sref="venvast.events.details({slug: event.slug})">Preview</a>
+            <a ui-sref="venvast.events.edit({slug: event.slug})" class="btn btn-secondary btn-details">Edit</a>
+    </div><!-- Event Meta -->
+</div>

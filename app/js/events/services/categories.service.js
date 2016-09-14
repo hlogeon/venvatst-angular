@@ -19,12 +19,9 @@ class CategoriesService extends BaseApiService {
         let http = this.getHttpObject();
         return http({
             'method': 'GET',
-            'url': context.apiPath + context.apiEndPoint,
-            'params': {
-                type: 'event'
-            }
+            'url': context.apiPath + context.apiEndPoint + '/events',
         }).then(function(categories) {
-            categories = categories.data;
+            categories = categories.data.categories;
             context.getLocalStorage().set('eventCategories', categories);
             return categories;
         });

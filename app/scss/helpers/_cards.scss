@@ -109,7 +109,11 @@
 }
 
 .card-location {
-	margin-top: 20px;
+	margin-top: 10px;
+	span.ng-binding {
+    	font-size: 13px;
+    	color: rgba(35,35,35,.75);
+	}
 }
 
 .card-title {

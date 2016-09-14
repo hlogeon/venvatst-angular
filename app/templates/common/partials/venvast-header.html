@@ -40,17 +40,19 @@
                                 <a ui-sref="venvast.events" class="nav-link " ng-class="{'active': HeaderCtrl.eventsState}">Events</a>
                                 <ul class="sub-menu">
                                     <li><a ui-sref="venvast.events">All</a></li>
-                                    <li ng-if="$root.authenticated"><a ui-sref="venvast.events">Favorites</a></li>
-                                    <li ng-if="$root.authenticated"><a ui-sref="venvast.events">Events I attend</a></li>
-                                    <li ng-if="$root.authenticated"><a ui-sref="venvast.events">Organize</a></li>
+                                    <li ng-if="$root.authenticated"><a ui-sref="venvast.events.favorites">Favorites</a></li>
+                                    <li ng-if="$root.authenticated"><a ui-sref="venvast.events.attend">Events I attend</a></li>
+                                    <li ng-if="$root.authenticated"><a ui-sref="venvast.events.organize">Organize</a></li>
+                                    <li ng-if="$root.authenticated"><a ui-sref="venvast.events.drafts">Drafts</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item has-children">
                                 <a ui-sref="venvast.venues" class="nav-link " ng-class="{'active': HeaderCtrl.venuesState}">Venues</a>
                                 <ul class="sub-menu">
                                     <li><a ui-sref="venvast.venues">All</a></li>
-                                    <li ng-if="$root.authenticated"><a ui-sref="venvast.events">Favorites</a></li>
-                                    <li ng-if="$root.authenticated"><a ui-sref="venvast.events">Organize</a></li>
+                                    <li ng-if="$root.authenticated"><a ui-sref="venvast.venues.favorites">Favorites</a></li>
+                                    <li ng-if="$root.authenticated"><a ui-sref="venvast.venues.organize">Organize</a></li>
+                                    <li ng-if="$root.authenticated"><a ui-sref="venvast.venues.drafts">Drafts</a></li>
                                 </ul>
                             </li>
                         </ul>

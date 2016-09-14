@@ -1,9 +1,10 @@
-<!DOCTYPE html>
+<!DOCTYPE html ng-app="venvast">
 <!--[if lt IE 7]>      <html lang="en" ng-app="venvast" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html lang="en" ng-app="venvast" class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html lang="en" ng-app="venvast" class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html lang="en" ng-app="venvast" class="no-js"> <!--<![endif]-->
 <head>
+	<base href="/">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
@@ -16,12 +17,12 @@
     <title>Venvast - Discover events, venues, deals around you</title>
 </head>
 
-<body>
+<body ng-class="$state.current.data.bodyClass">
 
 <div ui-view></div>
 
 
-<script src="//maps.googleapis.com/maps/api/js?libraries=places,geometry&key=AIzaSyBfnCaACfxQD5YOCC7w1O2ItMIonYxLkXE" type="text/javascript"></script>
+<script src="//maps.googleapis.com/maps/api/js?libraries=places,geometry&key=AIzaSyBfnCaACfxQD5YOCC7w1O2ItMIonYxLkXE&language=en" type="text/javascript"></script>
 
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/build/jquery.datetimepicker.full.js"></script>
@@ -29,6 +30,7 @@
 <script type="text/javascript" src="/assets/js/jquery.gmap3.js"></script>
 <script type="text/javascript" src="/assets/libraries/owl-carousel/owl.carousel.min.js"></script>
 <script type="text/javascript" src="/assets/js/markerclusterer.js"></script>
+<script type="text/javascript" src="/assets/js/jquery.cropit.js"></script>
 <script src="app.js?rev=@@hash"></script>
 </body>
 </html>

@@ -1,0 +1,49 @@
+.business-hours {
+	padding: 0px;
+	margin-top: -15px;
+	position: relative;
+}
+
+.business-hours .title {
+	font-size: 20px;
+	color: $color-primary;
+	text-transform: uppercase;
+	padding-left: 5px;
+	border-left: 4px solid $color-secondary; 
+}
+
+.business-hours li {
+    color: $color-gray;
+    line-height: 30px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.business-hours li:last-child {
+	border-bottom: none; 
+}
+.business-hours .opening-hours li.today {
+	color: $color-secondary; 
+}
+
+.card-actions .venue-open-hours {
+    width: 55px;
+    height: 28px;
+    border-radius: 0;
+    color: #f97e7e;
+    border: 1px solid #f97e7e;
+    background-color: rgba(14,56,65,0.6);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 9px;
+    position: relative;
+    text-decoration: none;
+    margin-left: -10px;
+    display: block;
+    float: left;
+
+    &.open {
+    	border: 1px solid #D4EAD4;
+    	color: #D4EAD4;
+    	padding: 4px 11px;
+    }
+}

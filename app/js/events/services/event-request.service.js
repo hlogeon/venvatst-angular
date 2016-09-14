@@ -42,7 +42,7 @@ class EventRequestService extends BaseRequest {
         if(!category) {
             delete this.params.category;
         } else {
-            this.params.category = category._id;
+            this.params.category = category;
         }
     }
 

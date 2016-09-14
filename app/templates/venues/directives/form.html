@@ -1,0 +1,174 @@
+    <div class="container">
+        <form method="post" ng-submit="submit()">  
+            <fieldset>
+            <div class="alert alert-error" ng-repeat="(field, errors) in errors">
+                <li ng-repeat="error in errors">{{field}}: {{error}}</li>
+            </div>
+                <legend>Basic Information
+                    <div class="form-inline form-group">
+                        <label>Language</label>
+                        <select class="form-control bordered"  disabled="disabled" ng-select="venue.locale">
+                            <option value="en" selected="selected">English</option>
+                            <option value="th">Thai</option>
+                        </select>
+                    </div>
+                </legend>
+                <div class="col-sm-6">
+                    <div class="form-group required" uib-tooltip="Minimum 3, maximum 140 characters" tooltip-placement="top">
+                        <label class="control-label">Title</label>
+                        <input name="name" type="text" class="form-control bordered" ng-model="venue.name" minlength="3" maxlength="65" required="true">
+                    </div><!-- /.form-group -->
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group required" uib-tooltip="Choose category from the list bellow" tooltip-placement="top">
+                        <label class="control-label">Category</label>
+                        <select name="categories[0]" class="form-control bordered" ng-model="venue.categories[0]" required="true">
+                            <option ng-repeat="category in categories" value="{{ category.id }}">{{ category.name }}</option>
+                        </select>
+                    </div><!-- /.form-group -->
+                </div>
+                <div class="col-sm-12">
+                    <div class="form-group required" uib-tooltip="Minimum 300, maximum 1800 characters. Describe your venue as clear as you can" tooltip-placement="top">
+                        <label class="control-label">Description</label>
+                        <textarea name="description" class="form-control bordered" ng-model="venue.description" required="true" rows="6" minlength="300" maxlength="1800">
+                        </textarea>
+                    </div><!-- /.form-group -->
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Contact Information</legend>
+                <div class="col-xs-12 col-lg-4">
+                    <div class="row">
+                        <div class="form-group required" uib-tooltip="format: +(66) 111-111-11" tooltip-placement="top`">
+                            <label class="control-label">Phone</label>
+                            <input type="tel" ng-model="venue.contact.phone" class="form-control bordered" required="true">
+                        </div><!-- /.form-group -->
+                    </div><!-- /.col-* -->
+                    <div class="row">
+                        <div class="form-group required" uib-tooltip="format: info@venvast.com" tooltip-placement="top">
+                            <label class="control-label">E-mail</label>
+                            <input type="email" ng-model="venue.contact.email" class="form-control bordered" required="true">
+                        </div><!-- /.form-group -->
+                    </div><!-- /.col-* -->
+                    <div class="row">
+                        <div class="form-group" uib-tooltip="format: http://venvast.com" tooltip-placement="top">
+                            <label>Website</label>
+                            <input type="url" ng-model="venue.contact.website" class="form-control bordered">
+                        </div><!-- /.form-group -->
+                    </div>
+                    <div class="row">
+                        <div class="form-group" uib-tooltip="You are free to add some useful information for your customers here. For example public transportation instructions" tooltip-placement="top">
+                            <label>Additional information</label>
+                            <textarea ng-model="venue.contact.additional_info" class="form-control bordered" rows="6"></textarea>
+                        </div><!-- /.form-group -->
+                    </div>
+                </div>
+                <div class="form-group col-sm-12 col-lg-8 contact-address-group required" uib-tooltip="Start typing address and choose one of the dropdown options" tooltip-placement="top">
+                    <label class="control-label">Address</label>
+                    <input type="text" id="address_autocomplete" class="form-control bordered" ng-model="venue.full_address" required="true">
+                </div><!-- /.form-group -->
+                <div class="col-sm-12 col-lg-8" uib-tooltip="Marker is draggable" tooltip-placement="top">
+                    <div id="map-google" style="height: 350px; margin-top: 20px"></div>
+                </div>
+                 <div class="form-group col-sm-4 col-md-3 col-lg-2 required">
+                    <label class="control-label">House number</label>
+                    <input type="text" ng-model="venue.contact.address.house" name="house_number" class="form-control bordered" required="true">
+                </div>
+                <div class="form-group col-sm-8 col-md-3 required">
+                    <label class="control-label">Street</label>
+                    <input type="text" name="street" ng-model="venue.contact.address.street" class="form-control bordered" required="true">
+                </div>
+                <div class="form-group col-sm-12 col-md-3 required">
+                    <label class="control-label">District</label>
+                    <input type="text" ng-model="venue.contact.address.district" name="district" class="form-control bordered" required="true">
+                </div>
+            </fieldset>
+
+            <fieldset uib-tooltip="Specify your opening hours. It would be easier to find you" tooltip-placement="top">
+                <legend>Opening hours</legend>
+                    <div class="form-group form-inline col-xs-12" ng-repeat="day in venue.business_hours.days" style="min-height: 85px; margin-bottom: 0px;">
+                        <div class="col-xs-2 col-md-1" style="margin-top: 33px; margin-left: -33px;">
+                        <label ng-click="toggleBusinessDay(day)" style="position: absolute;margin-top: -28px;"> {{ dayAliases[day.day] }}</label>
+                        <input type="checkbox" ng-click="toggleBusinessDay(day)" class="form-control" ng-checked="day.start !== null && day.start !== false">
+                        </div>
+                        <div class="col-xs-5 col-md-3" ng-if="day.start === false">
+                            <p style="margin-top: 29px;">Closed</p>
+                        </div>
+                        <div class="col-xs-5 col-md-3" ng-if="day.start">
+                            <label>Open</label>
+                            <input style="max-width:100%" type="text" class="form-control bordered" ng-model="day.start">
+                        </div>
+                        <div class="col-xs-5 col-md-3" ng-if="day.start">
+                            <label>Close</label>
+                            <input type="text" style="max-width:100%" class="form-control bordered" ng-model="day.end">
+                        </div>
+                    </div>    
+            </fieldset>
+
+
+            <fieldset uib-tooltip="Upload up to 3 images. Preferred resolution ratio is 3:1. Minimal width 900px" tooltip-placement="top">
+                <legend>Images</legend>
+                <div id="images-preview-wrapper" ng-repeat="src in existingImages">
+                    <div class="row">
+                        <div class="col-xs-12 col-xs-offset-1">
+                            <div class="delete-btn" ng-click="deleteExistingImage(image)" style="margin-left: -10px;margin-bottom: 7px;">Delete</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <center>
+                            <div class="image-preview">
+                                <img ng-src="{{ src }}" width="900" height="300">
+                            </div>
+                        </center>
+                    </div>
+                </div>
+                <hr ng-if="existingImages.length > 0" />
+                <div id="image-cropper-container">
+                    <div id="{{ image.id }}" class="col-xs-12" ng-repeat="(num, image) in venue.images">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="select-image-btn" ng-click="selectImage(image)">Select image</div>
+                            <div class="delete-btn" ng-click="deleteImage(image)">Delete</div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <center>
+                            <div class="cropit-preview"></div>
+                        </center>
+                    </div>
+                    <div class="row">
+                        <div class="controls-wrapper">
+                            <div class="slider-wrapper col-xs-12">
+                                <center>
+                                    <span class="fa fa-image small-image"></span>
+                                    <input type="range" class="cropit-image-zoom-input custom" min="0" max="1" step="0.01">
+                                    <span class="fa fa-image large-image"></span>
+                                </center>
+                            </div>
+                        </div>  
+                    </div>
+                    <!-- The actual file input will be hidden -->
+                    <input type="file" class="cropit-image-input" accept="image/*" />
+                </div>
+                </div>
+                <div class="col-xs-12">
+                    <a class="add-more-images" ng-if="venue.images.length < 3" ng-click="addImage()"><i class="fa fa-plus"> Add more images</i></a>
+                </div>
+            </fieldset>
+
+
+
+            <fieldset ng-if="!model">
+                <legend>Conditions</legend>
+                <div class="checkbox">
+                    <label><input type="checkbox" ng-model="acceptTerms"> I agree with terms &amp; conditions</label>
+                </div>
+            </fieldset>
+
+            <div class="center" ng-if="!model">
+                <button class="btn btn-secondary btn-large" ng-disabled="!acceptTerms">Submit Venue</button>
+                <a uib-tooltip="If you cannot provide all the valid information you can save draft and continue editing later" tooltip-placement="top`" class="btn btn-warning btn-large" ng-click="submit(true)">Save draft</a>
+            </div><!-- /.center -->
+        </form>
+    </div><!-- /.container-fluid -->

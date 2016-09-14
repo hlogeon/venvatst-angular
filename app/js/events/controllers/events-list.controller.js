@@ -11,21 +11,25 @@ import EventsService from '../services/events.service.js';
 class EventsListController extends ListController {
 
 
-    constructor ($scope, $q, service, CategoriesService, DateFromChangedEvent, DateToChangedEvent, PlaceFilterChangedEvent, CategoryChangedEvent, MarkersLoadedEvent, UserService, GotLocationEvent) {
+    constructor ($scope, $state, $stateParams, $q, $timeout, service, CategoriesService, DateFromChangedEvent, DateToChangedEvent, PlaceFilterChangedEvent, CategoryChangedEvent, MarkersLoadedEvent, UserService, GotLocationEvent) {
         super($scope, $q, service);
+        this.state = $state;
+        this.timeout = $timeout;
+        this.stateParams = $stateParams;
         UserService.gettingLocation();
         this.categoriesService = CategoriesService;
         this.categoryChanged = CategoryChangedEvent;
         this.markersLoaded = MarkersLoadedEvent;
         this.categories = [];
+        this.init();
         this.loadCategories();
         this.listenDateTo(DateToChangedEvent);
         this.listenDateFrom(DateFromChangedEvent);
         this.listenCity(PlaceFilterChangedEvent);
         this.listenLocation(GotLocationEvent);
         this.listenCategories(CategoryChangedEvent);
-        this.loadMarkers();
         this.mapOptions = this.getMapOptions();
+        this.init();
     }
 
     
@@ -36,10 +40,8 @@ class EventsListController extends ListController {
         this.hasMorePages = true;
         this.pages = 0;
         this.user = {};
-        this.user.lat = 13.7395009;
-        this.user.lng = 100.5755878;
-        this.lat = 13.7395009;
-        this.lng = 100.5755878;
+        this.user.lat = null;
+        this.user.lng = null;
     }
 
     /**
@@ -48,14 +50,46 @@ class EventsListController extends ListController {
     loadObjects (pushNew = true) {
         let context = this;
         this.loading = true;
-        this.getQ().when(this.getService().gettingEvents()).then(function (events) {
+
+        if(this.state.params.slug) {
+            this.getService().getRequestService().setCategory(this.state.params.slug);
+        } else {
+            this.getService().getRequestService().setCategory(null);
+        }
+
+        let mode = null;
+        if(this.state.current.data && this.state.current.data.mode) {
+            mode = this.state.current.data.mode;
+        }
+        this.getQ().when(this.getService().gettingEvents(mode)).then(function (events) {
             context.loading = false;
             context.hasMorePages = context.getService().getRequestService().hasNextPage();
-            if(pushNew || context.events.length === 0) {
+            if(pushNew) {
                 events.forEach((event) => {context.events.push(event)});
             } else {
                 context.events = events;
             }
+        });
+    }
+
+    loadMarkers () {
+        let context = this;
+        let mode = false;
+        if (this.state.current.data && this.state.current.data.mode) {
+            mode = this.state.current.data.mode;
+        }
+        this.getService().gettingMarkers(mode).then(function (markers) {
+            let markerItems = context.makeMarkerContent(markers);
+            let overlay = context.makeMarkerOverlay(markers);
+            if(context.user.lat && context.user.lng) {
+                overlay.push(context.getUserMarker({lat: context.user.lat, lng: context.user.lng}));
+            }
+            context.markers = markerItems;
+            context.markersLoaded.notify({
+                items: markerItems,
+                overlay: overlay,
+                clickHandler: context.markerClickHandler
+            });
         });
     }
     
@@ -90,11 +124,20 @@ class EventsListController extends ListController {
     }
     
     listenCategories (categoriesEvent) {
+        let context = this;
         categoriesEvent.subscribe(this.scope, (evt, params) => {
             this.getService().getRequestService().setPage(0);
-            this.getService().getRequestService().setCategory(params);
-            this.loadObjects(false);
-            this.loadMarkers();
+            if (!params) {
+                this.state.params.slug = null;
+                this.loadObjects(false);
+                this.loadMarkers();
+                context.state.transitionTo('venvast.events');
+            } else {
+                this.state.params.slug = params.slug;
+                this.loadObjects(false);
+                this.loadMarkers();
+                context.state.transitionTo('venvast.events.category', {slug: params.slug});
+            }
         });
     }
 
@@ -105,6 +148,7 @@ class EventsListController extends ListController {
             this.lat = params.lat;
             this.lng = params.lng;
             this.mapOptions = this.getMapOptions();
+            this.loadObjects(false);
             this.loadMarkers();
         });
     }
@@ -117,7 +161,7 @@ class EventsListController extends ListController {
     }
     
     getObjectUrlByMarker (marker) {
-        return '/#/events/'+ marker.id;
+        return '/#/events/view/'+ marker.slug;
     }
     
     getMapOptions () {

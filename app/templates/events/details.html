@@ -1,6 +1,6 @@
 <div class="content">
     <div class="event-gallery owl-carousel">
-        <img ng-src="{{object.picture}}">
+        <img ng-src="{{ object.images }}">
     </div><!-- /.event-gallery -->
 
     <div class="page-header">
@@ -11,10 +11,10 @@
                 </div><!-- /.page-header-category -->
 
                 <div class="page-header-content">
-                    <h1>{{ object.title }}</h1>
-                    <h5><a ui-sref="venvast.venues.details({id: object.venue_relation._id})">{{ object.venue_relation.name }}</a></h5>
-                    <p>{{ object.getStartsForHumans() }}</p>
-                    <address>{{ object.venue_relation.address + ', ' +  object.venue_relation.city + ', ' + object.venue_relation.country}}</address>
+                    <h1>{{ object.name }}</h1>
+                    <h5><a ui-sref="venvast.venues.details({slug: object.venue.slug})">{{ object.venue.name }}</a></h5>
+                    <p>{{ object.starts_in }}</p>
+                    <address>{{ object.fullAddress }}</address>
                 </div><!-- /.page-header-content -->
 
                 <div class="page-header-actions">
@@ -23,6 +23,10 @@
                         <a href="#"><i class="fa fa-google"></i></a>
                     </div>
                 </div><!-- /.page-header-actions -->
+                <div class="page-header-contact-info">
+                    <i class="fa fa-envelope"></i><span class="contact-email">{{ object.email }}</span>
+                    <i class="fa fa-phone"></i><span class="contact-phone">{{ object.phone }}</span>
+                </div>
             </div><!-- /.container-fluid -->
         </div><!-- /.page-header-inner -->
     </div><!-- /.page-header -->
@@ -30,8 +34,8 @@
     <div class="container-fluid">
         <ol class="breadcrumb">
             <li><a ui-sref="venvast.events">VenVast</a></li>
-            <li><a ui-sref="venvast.events">Events</a></li>
-            <li class="active">{{ object.title }}</li>
+            <li><a ui-sref="venvast.venues.details({slug: object.venue.slug})">{{ object.venue.name }}</a></li>
+            <li class="active">{{ object.name }}</li>
         </ol>
     </div><!-- /.container-fluid -->
 
@@ -40,31 +44,25 @@
             <div class="col-sm-9">
                 <div class="information">
                     <p>
-                        {{ object.details }}
+                        {{ object.description }}
                     </p>
                     <!--<div class="information-comments">-->
                         <!--<strong>200</strong> attendees potentially going to this event.-->
                     <!--</div>&lt;!&ndash; /.information-comments &ndash;&gt;-->
 
                     <div class="information-actions">
-                        <a href="#"><i class="entypo-save"></i> <span>Save</span></a>
-                        <a href="#"><i class="entypo-heart"></i> <span>Like</span></a>
+                        <a href="#"><i class="fa fa-users"></i> <span>I'm going</span></a>
+                        <a href="#"><i class="entypo-heart"></i> <span>Add to favorites</span></a>
                     </div><!-- /.information-actions -->
                 </div><!-- /.information -->
-
-                <div class="page-navigation">
-                    <a href="#" class="prev"><i class="fa fa-chevron-left"></i> Carnaval Festival 2016: Sunday </a>
-                    <a href="#" class="next">Lower Polk / TL Art Walk <i class="fa fa-chevron-right"></i></a>
-                </div><!-- /.page-navigation -->
             </div><!-- /.col-* -->
 
             <div class="col-sm-3">
-
                 <div class="widget map" style="margin-top: 0px">
                     <div class="map-inner">
                         <div id="event-map"></div>
                         <div class="map-address">
-                            {{ object.venue_relation.address + ', ' +  object.venue_relation.city + ', ' + object.venue_relation.country}}
+                            {{ object.fullAddress }}
                         </div><!-- /.map-address -->
                     </div><!-- /.map-inner -->
                 </div><!-- /.map -->

@@ -3,6 +3,16 @@
 @import "components/sticky-header";
 @import 'components/header-filters';
 @import 'components/header';
+@import 'components/ui-notification';
+@import 'components/opening-hours';
+
+body.black {
+	background-color: #323232;
+}
+
+.nav-social .nav-link i {
+	margin-top: 8px;
+}
 
 .date_timepicker_start {
 	height: 38px;
@@ -38,13 +48,6 @@
 }
 
 
-@media only screen and (max-width: 991px) and (min-width: 767px) {
-	.event-details h4 {
-		font-size: 28px;
-	}
-}
-
-
 @media (max-width:991px) {
 	/* Event Hero */
 	.hero-scene-event .sub-title{
@@ -64,7 +67,7 @@
 
 	/* Event */
 	.event-sm-col .event-wrap{
-		margin-bottom: 30px;
+		/* margin-bottom: 30px; */
 	}
 	.event-sm-col .event-wrap:hover .event-details{
 		margin: 0;
@@ -80,7 +83,7 @@
 
 	/* Events */
 	.event-wrap {
-		margin: 0 auto 30px;
+		margin: 0 auto 0;
 		width: 70%;
 	}
 	.event-wrap:hover .event-details{
@@ -128,14 +131,15 @@
     position: relative;
     z-index: 1;
 }
-
 .event-wrap {
 	h4 {
-		margin-top: -7px;
-    	font-size: 16px;
-    	width: 95%;
-		height: 25px;
-		cursor: pointer;
+		    margin-top: 0;
+		    font-size: 15px;
+		    width: 100%;
+		    height: 33px;
+		    margin-bottom: 30px;
+
+
 
 	    .event-starts-in{
 	    	font-size: 10px;
@@ -177,7 +181,7 @@
 }
 .event-details p{
 	margin: 15px 0 0;
-	height: 110px;
+	margin-top: -20px;
 }
 .event-details .btn{
 	margin-top: 15px;
@@ -220,7 +224,7 @@
 	height: 32px;
 	left: 0;
 	width: 32px;
-	border-radius: 50%;
+	// border-radius: 50%;
 }
 
 .event-category-wrap h5{
@@ -332,4 +336,27 @@
 		 -o-box-shadow: none !important;
 			box-shadow: none !important;
 
+}
+
+
+.event-details {
+    min-height: 285px;
+
+    h5{
+    	color: rgba(50,50,50,.5);
+	    font-size: 11px;
+	    padding-top: 15px;
+	    margin-bottom: 6px;
+    }
+}
+
+i.fa.fa-map-marker {
+    font-size: 16px;
+    color: rgba(0,0,0,0.5);
+    padding-right: 7px;
+}
+
+.alert-error {
+    border-color: red;
+    background-color: rgba(255,0,0,0.2);
 }

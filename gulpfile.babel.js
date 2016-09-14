@@ -34,6 +34,7 @@ const JS_DEPENDENCIES = [
   'node_modules/angular-aria/angular-aria.js',
   'node_modules/angular-material/angular-material.js',
   'node_modules/angular-local-storage/index.js',
+  'node_modules/ui-select/index.js',
   'node_modules/angular-formly/dist/formly.js',
   'node_modules/angular-formly-templates-bootstrap/dist/angular-formly-templates-bootstrap.js',
   'node_modules/modernizr/lib/build.js',
@@ -46,7 +47,13 @@ const JS_DEPENDENCIES = [
   'node_modules/owlcarousel/owl-carousel/owl.carousel.js',
   'node_modules/jstz/index.js',
   'node_modules/api-check/dist/api-check.js',
-  'node_modules/jquery-datetimepicker/jquery.datetimepicker.js'
+  'node_modules/jquery-datetimepicker/jquery.datetimepicker.js',
+  'node_modules/angular-file-upload/src/index.js',
+  'node_modules/cropit/jquery.cropit.js',
+  'node_modules/meanie-angular-duplicate-requests-filter/index.js',
+  'node_modules/angular-jwt/index.js',
+  'node_modules/angular-ui-notification/index.js'
+
   // 'node_modules/php-date-formatter/js/php-date-formatter.js'
 ];
 

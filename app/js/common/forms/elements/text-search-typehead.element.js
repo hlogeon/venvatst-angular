@@ -46,14 +46,15 @@ class TextSearchTypehead {
             afterSelect: function (element) {
                 if (scope.to.modelService.apiEndPoint === 'venue') {
                     delete(scope.to.service.params.text);
-                    window.location.href = '/#/venues/' + element.id;
+                    window.location.href = '/#/venues/view/' + element.slug;
                 } else if (scope.to.modelService.apiEndPoint === 'event') {
                     delete(scope.to.service.params.text);
                     window.location.href = '/#/events/' + element.id;
                 }
             },
             displayText: function(item) {
-                return '<img src="' + item.image + '"><strong>' + item.name.slice(0, 14) + '...' + '</strong><span>' + item.category.slice(0, 11) + '...' + '</span>';
+                return '<div class="typeahead_wrapper">' +
+                '<div class="typeahead_content">' + item.name + '</div> <div class="typeahead_addon"><span>' + item.category + '</span></div></div>'; //<div class="typeahead_image"><img src="' + item.image + '"></div>
             },
             highlighter: function(item) {
                 return unescape(item);

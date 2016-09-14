@@ -6,6 +6,7 @@
 **/
 
 const Q = new WeakMap();
+
 class ListController {
 	
 
@@ -13,8 +14,6 @@ class ListController {
 		this.setService(service);
         this.setQ($q);
 		this.scope = $scope;
-        this.init();
-        this.loadObjects();
 	}
 
     /**
@@ -78,26 +77,6 @@ class ListController {
     }
 
 
-
-	loadMarkers () {
-		let context = this;
-		this.getService().gettingMarkers().then(function (markers) {
-			let markerItems = context.makeMarkerContent(markers);
-			let overlay = context.makeMarkerOverlay(markers);
-			if(context.user.lat && context.user.lng) {
-				overlay.push(context.getUserMarker({lat: context.user.lat, lng: context.user.lng}));
-			}
-			context.markers = markerItems;
-			context.markersLoaded.notify({
-				items: markerItems,
-				overlay: overlay,
-				clickHandler: context.markerClickHandler
-			});
-		});
-	}
-
-
-
 	getUserMarker (position) {
 		let content = "<img src='//i.stack.imgur.com/orZ4x.png' style='margin-left: -2px; margin-top: -3px;' width='22' height='22'>";
 		return {
@@ -143,7 +122,7 @@ class ListController {
 	makeMarkerContent (markersArray) {
 		let markers = [];
 		$.each(markersArray, function(index, value) {
-			let href =  value.title ? '/#/events/' + value.id : '/#/venus/' + value.id;
+			let href =  value.title ? '/#/events/view/' + value.slug : '/#/venus/view/' + value.slug;
 			let title = value.title ? value.title : value.name;
 			markers.push({
 				latLng: new google.maps.LatLng(value.center[0], value.center[1]),

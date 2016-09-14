@@ -24,12 +24,21 @@
     "angular": "^1.5.8",
     "angular-animate": "^1.5.7",
     "angular-aria": "^1.5.7",
+    "angular-file-upload": "^2.3.4",
     "angular-formly": "^8.3.0",
     "angular-formly-templates-bootstrap": "^6.4.0",
+    "angular-jwt": "^0.1.3",
     "angular-material": "^1.1.0-rc.5",
+    "angular-ui-notification": "^0.2.0",
     "angular-ui-router": "^0.3.1",
     "api-check": "^7.5.5",
-    "jquery": "^3.1.0"
+    "cropit": "^0.5.1",
+    "install": "^0.8.1",
+    "jquery": "^3.1.0",
+    "meanie-angular-duplicate-requests-filter": "^1.2.0",
+    "ng-img-crop-tweaked": "^0.3.4",
+    "npm": "^3.10.6",
+    "ui-select": "^0.19.4"
   },
   "devDependencies": {
     "babel-core": "^6.7.2",
@@ -72,8 +81,6 @@
       "browserify-shim"
     ]
   },
-  "browser": {
-  },
-  "browserify-shim": {
-  }
+  "browser": {},
+  "browserify-shim": {}
 }

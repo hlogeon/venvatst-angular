@@ -3,15 +3,16 @@ const Q = new WeakMap();
 
 class LogoutController {
 
-    constructor ($scope, $q, $window, service) {
+    constructor ($scope, $state, $q, $window, service) {
         this.service = service;
         this.window = $window;
+        this.state = $state;
         this.service.logout();
         this.goBack();
     }
 
     goBack() {
-        this.window.history.back();
+        this.state.go('venvast.venues');
     }
 }
 
