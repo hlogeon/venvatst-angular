@@ -48,6 +48,7 @@ class VenueForm {
         scope.notifySuccessDraft = this.notifySuccessDraft;
         scope.notifySuccessCreate = this.notifySuccessCreate;
         scope.state = this.state;
+        scope.acceptTerms = this.acceptTerms;
         
         let context = this;
         context.scope = scope;
