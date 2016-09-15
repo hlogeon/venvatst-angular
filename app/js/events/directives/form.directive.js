@@ -154,6 +154,7 @@ class EventForm {
 	}
 
 	initEmptyModel () {
+        let context = this;
         this.scope.model = {
             name: null,
             categories: [],
