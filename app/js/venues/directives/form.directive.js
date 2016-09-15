@@ -194,12 +194,12 @@ class VenueForm {
         return {
                 dragend: function(marker) {
                     geocoder.geocode({'location': marker.getPosition()}, function(results, status) {
-                        if (status !== google.maps.GeocoderStatus.OK) {
-                            inputGroup.addClass('has-error');
-                            inputGroup.append(errorELement);
-                            $('.address-error').remove();
-                            return;
-                        }
+                        // if (status !== google.maps.GeocoderStatus.OK) {
+                        //     inputGroup.addClass('has-error');
+                        //     inputGroup.append(errorELement);
+                        //     $('.address-error').remove();
+                        //     return;
+                        // }
                         for(var o = 0; o < results.length; o++) {
                             if(context.validateAddress(results[o])) {
                                 context.placeInfoToModel(results[o]);
