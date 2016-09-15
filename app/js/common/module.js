@@ -16,6 +16,7 @@ import DetailsController from './controllers/details.controller.js';
 import BaseApiService from './services/base-api.service.js';
 
 import VenvastCard from './directives/venvast-card.js';
+import Loader from './directives/ui/loader.directive.js';
 import LoadingButton from './directives/utils/loading-button.js';
 import MarkerMap from './directives/marker-map.directive.js';
 import StickyHeaderController from './controllers/header/sticky-header.controller.js';
@@ -58,6 +59,7 @@ angular
   .directive('venvastCard', VenvastCard.directiveFactory)
   .directive('loadingButton', LoadingButton.directiveFactory)
   .directive('markerMap', MarkerMap.directiveFactory)
+  .directive('loader', Loader.directiveFactory)
   .controller('ListController', ListController)
   // .controller('DetailsController', DetailsController)
   .controller('BaseHeaderController', BaseHeaderController)

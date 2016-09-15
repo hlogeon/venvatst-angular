@@ -47,7 +47,7 @@ class VenueForm {
         scope.notifySuccessDraft = this.notifySuccessDraft;
         scope.notifySuccessCreate = this.notifySuccessCreate;
         scope.state = this.state;
-        
+        scope.getZoom = this.getZoom;
         let context = this;
         context.scope = scope;
         this.UserService.gettingLocation();
@@ -361,10 +361,11 @@ class VenueForm {
         let context = this;
         SERVICE.get(this).gettingEditable(this.params.slug).then(function (resposne) {
             context.scope.venue = resposne;
+            console.log(context.scope.venue.business_hours);
             context.scope.venue.acceptTerms = false;
+            context.addExistingImages(context.scope.venue);
             context.initImageCropper(context.scope.venue);
             context.initMap();
-            context.addExistingImages(context.scope.venue);
         });
     }    
 
@@ -432,10 +433,18 @@ class VenueForm {
     addImage() {
         var finalWidth  = 900;
         var finalHeight = 300;
-        let length = this.scope.venue.images.length;
+        let venue = {};
+        let context = null;
+        if(!this.scope) {
+            venue = this.$parent.venue;
+            context = this.$parent;
+        } else {
+            venue = this.scope.venue;
+            context = this;
+        }
+        let length = venue.images.length;
         let image = {id: 'image-'+ length};
-        let context = this;
-        this.scope.venue.images.push(image);
+        venue.images.push(image);
         setTimeout(function(image) {
             $('#'+image.id).cropit({
                 exportZoom: context.getZoom(finalHeight, finalWidth, '#'+image.id)
@@ -451,10 +460,12 @@ class VenueForm {
 
     addExistingImages (venue) {
         this.scope.existingImages = venue.images.slice();
+        venue.images = [];
     }
 
     deleteExistingImage (index) {
-        this.scope.existingImages.splice(index, 1);
+        this.$parent.existingImages.splice(index, 1);
+        // this.scope.existingImages.splice(index, 1);
     }
 
     getZoom(finalHeight, finalWidth, selectContext) {
@@ -470,11 +481,17 @@ class VenueForm {
     }
 
     deleteImage(image) {
-        if (this.scope.venue.images.length > 1) {
-            for (var i = 0; i < this.scope.venue.images.length; i++) {
-                let img = this.scope.venue.images[i];
+        let venue = null;
+        if(!this.scope) {
+            venue = this.$parent.venue;
+        } else {
+            venue = this.scope.venue;
+        }
+        if (venue.images.length > 1) {
+            for (var i = 0; i < venue.images.length; i++) {
+                let img = venue.images[i];
                 if(img.id === image.id) {
-                    this.scope.venue.images.splice(i, 1);
+                    venue.images.splice(i, 1);
                 }
             }
         }
