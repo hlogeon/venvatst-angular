@@ -149,7 +149,7 @@ class VenueForm {
         let context = this;
         var autocomplete = new google.maps.places.Autocomplete(
             (document.getElementById('address_autocomplete')),
-            {types: ['address']}
+            {types: ['geocode']}
         );
         autocomplete.addListener('place_changed', function() {
             let placeInfo = autocomplete.getPlace();
