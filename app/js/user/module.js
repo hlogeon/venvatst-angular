@@ -19,7 +19,7 @@ LoginEvent.factory.$inject = ['$rootScope'];
 RegisterEvent.factory.$inject = ['$rootScope'];
 
 
-UserService.factory.$inject = ['$http', '$state', '$rootScope', 'localStorageService', 'GotLocationEvent'];
+UserService.factory.$inject = ['$http', '$state', '$rootScope', 'localStorageService', 'GotLocationEvent', 'Notification'];
 LoginController.$inject = ['$rootScope', '$state', '$scope', '$q', '$window', 'UserService', 'Notification', 'LoginEvent'];
 RegisterController.$inject = ['$rootScope', '$state', '$scope', '$q', '$window', 'UserService', 'Notification', 'RegisterEvent'];
 LogoutController.$inject = ['$scope', '$state', '$q', '$window', 'UserService'];

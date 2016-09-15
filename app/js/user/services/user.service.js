@@ -6,7 +6,7 @@ class UserService extends BaseApiService {
      * Set the http service and api end point
      * @param {Object} $http
      **/
-    constructor ($http, $state, $rootScope, localStorageService, GotLocationEvent) {
+    constructor ($http, $state, $rootScope, localStorageService, GotLocationEvent, Notification) {
         super($http, localStorageService);
         this.gotLocationEvent = GotLocationEvent;
         this.state = $state;
@@ -17,6 +17,8 @@ class UserService extends BaseApiService {
         this.authenticated = false;
         this.errors = [];
         this.user = null;
+        this.notification = Notification;
+        this.locationErrorRaised = false;
         this.init();
     }
 
@@ -154,13 +156,17 @@ class UserService extends BaseApiService {
                 context.lat = params.lat;
                 context.lng = params.lng;
                 context.gotLocationEvent.notify(params);
-            }, function() {
-                //error!
-            });
+            }, function(error) {
+                if (!context.locationErrorRaised) {
+                    context.notification.warning({title: "Cant get your location", message: "Your browser doesn't allow us to get your current location. Please, use location filter in the header of website and enter your city there!", delay:10000});
+                    context.locationErrorRaised = true;
+                }
+            }, {timeout:10000});
         } else {
-            // Browser doesn't support Geolocation
+            context.notification.warning({title: "Cant get your location", message: "Your browser doesn't allow us to get your current location. Please, use location filter in the header of website and enter your city there!", delay:10000});
         }
     }
+
 
     /**
      * Create service
@@ -170,8 +176,8 @@ class UserService extends BaseApiService {
      *
      * @returns {BaseApiService}
      */
-    static factory ($http, $state, $rootScope, localStorageService, GotLocationEvent) {
-        return new UserService($http, $state, $rootScope, localStorageService, GotLocationEvent);
+    static factory ($http, $state, $rootScope, localStorageService, GotLocationEvent, Notification) {
+        return new UserService($http, $state, $rootScope, localStorageService, GotLocationEvent, Notification);
     }
 
 }

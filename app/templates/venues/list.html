@@ -4,55 +4,6 @@
     <categories-list categories="ListCtrl.categories" change-event="ListCtrl.categoryChanged"></categories-list>
   </div><!-- /.hero -->
   <div class="container-fluid push-bottom">
-    <div class="mobile-search">
-      <div class="search-location">
-        <form>
-          <div class="input-group">
-            <input type="text" class="form-control"
-                   autocomplete="off"
-                   data-provide="typeahead"
-                   placeholder="Bangkok">
-
-            <div class="input-group-addon">
-              <i class="fa fa-globe"></i>
-            </div><!-- /.input-group-addon -->
-          </div><!-- /.input-group -->
-        </form>
-      </div>
-      <div class="mobile-clearfix"></div>
-      <div class="search-title">
-        <form>
-          <div class="input-group">
-            <input type="text" class="form-control"
-                   autocomplete="off"
-                   data-provide="typeahead"
-                   placeholder="Search for {% events %}">
-
-            <div class="input-group-addon">
-              <i class="fa fa-search"></i>
-            </div><!-- /.input-group-addon -->
-          </div><!-- /.input-group -->
-        </form>
-      </div>
-      <div class="mobile-clearfix"></div>
-      <div class="input-group search-date">
-        <input placeholder="From" class="date_timepicker_start form-control">
-        <div class="input-group-addon">
-          <i class="fa fa-calendar"></i>
-        </div>
-        <!-- <button type="button"  value="open" class="open icon fa fa-calendar"></button> -->
-      </div>
-      <div class="mobile-clearfix"></div>
-      <div class="input-group search-date search-last">
-        <input placeholder="To" class="date_timepicker_end form-control">
-        <div class="input-group-addon">
-          <i class="fa fa-calendar"></i>
-        </div>
-        <!-- <button type="button" value="open" class="end icon fa fa-calendar"></button> -->
-      </div>
-      <div class="mobile-clearfix"></div>
-    </div>
-    <hr/>
       <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 mobile-clearfix" ng-repeat="venue in ListCtrl.venues">
         <div venue-card venue="venue" distance="ListCtrl.showDistance"></div>
       </div><!-- /.col-* -->
