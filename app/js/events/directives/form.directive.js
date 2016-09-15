@@ -149,7 +149,7 @@ class EventForm {
                 context.initDateFrom();
                 context.initDateTo();
                 context.scope.categories = categories;
-                context.initTypeAhed();
+                context.initTypeAhed()
             });
         });
 	}
@@ -296,11 +296,11 @@ class EventForm {
     }
 
     addExistingImages (model) {
-        this.model.existingImages = model.images.slice();
+        this.scope.existingImages = model.images.slice();
     }
 
     deleteExistingImage (index) {
-        this.model.existingImages.splice(index, 1);
+        this.$parent.existingImages.splice(index, 1);
     }
 
     getZoom(finalHeight, finalWidth, selectContext) {
