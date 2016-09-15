@@ -21,7 +21,6 @@ class VenueForm {
         this.UserService = UserService;
         this.rootScope = $rootScope;
         this.userService = UserService;
-        this.acceptTerms = false;
         this.state = $state;
         
 
@@ -48,11 +47,9 @@ class VenueForm {
         scope.notifySuccessDraft = this.notifySuccessDraft;
         scope.notifySuccessCreate = this.notifySuccessCreate;
         scope.state = this.state;
-        scope.acceptTerms = this.acceptTerms;
         
         let context = this;
         context.scope = scope;
-        scope.acceptTerms = false;
         this.UserService.gettingLocation();
         this.initModel(this.GotLocationEvent);
         scope.model = scope.venue;
@@ -364,6 +361,7 @@ class VenueForm {
         let context = this;
         SERVICE.get(this).gettingEditable(this.params.slug).then(function (resposne) {
             context.scope.venue = resposne;
+            context.scope.venue.acceptTerms = false;
             context.initImageCropper(context.scope.venue);
             context.initMap();
             context.addExistingImages(context.scope.venue);
@@ -399,7 +397,7 @@ class VenueForm {
             host_message: null,
             host_categories: null,
             listed: false,
-            agree_conditions: true,
+            acceptTerms: true,
             locale: 'en',
             images: []
         };

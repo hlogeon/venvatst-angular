@@ -162,12 +162,12 @@
             <fieldset ng-if="!model">
                 <legend>Conditions</legend>
                 <div class="checkbox">
-                    <label><input type="checkbox" ng-model="acceptTerms"> I agree with terms &amp; conditions</label>
+                    <label><input type="checkbox" ng-model="venue.acceptTerms"> I agree with terms &amp; conditions</label>
                 </div>
             </fieldset>
 
             <div class="center" ng-if="!model">
-                <button class="btn btn-secondary btn-large" ng-disabled="!acceptTerms">Submit Venue</button>
+                <button class="btn btn-secondary btn-large" ng-disabled="!venue.acceptTerms">Submit Venue</button>
                 <a uib-tooltip="If you cannot provide all the valid information you can save draft and continue editing later" tooltip-placement="top`" class="btn btn-warning btn-large" ng-click="submit(true)">Save draft</a>
             </div><!-- /.center -->
         </form>
