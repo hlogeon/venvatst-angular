@@ -296,11 +296,11 @@ class EventForm {
     }
 
     addExistingImages (model) {
-        this.scope.existingImages = model.images.slice();
+        this.model.existingImages = model.images.slice();
     }
 
     deleteExistingImage (index) {
-        this.scope.existingImages.splice(index, 1);
+        this.model.existingImages.splice(index, 1);
     }
 
     getZoom(finalHeight, finalWidth, selectContext) {
