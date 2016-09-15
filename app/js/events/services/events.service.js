@@ -65,6 +65,9 @@ class EventsService extends BaseApiService {
 			let events = this.unsentEvents();
 			let fails = 0;
 			let context = this;
+			if(!events) {
+				return null;
+			}
 			for (var i = 0; i < events.length; i++) {
 				this.submit(events[i]).then(function (response) {
 					if(response.success === true) {
