@@ -149,6 +149,7 @@ class EventForm {
                 context.initDateFrom();
                 context.initDateTo();
                 context.scope.categories = categories;
+                context.initTypeAhed();
             });
         });
 	}
@@ -177,6 +178,7 @@ class EventForm {
                 context.initDateFrom();
                 context.initDateTo();
                 context.scope.categories = categories;
+                context.initTypeAhed();
         });
     }
 
