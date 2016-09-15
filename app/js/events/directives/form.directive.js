@@ -64,8 +64,7 @@ class EventForm {
                 context.errors = response.errors;
                 window.scrollTo(0, 0);
             } else {
-                console.log(response.event);
-                if(draft) {
+                if(draft === true) {
                     context.notifySuccessDraft(response.event.name);
                     context.state.go('venvast.events.drafts');
                 } else {

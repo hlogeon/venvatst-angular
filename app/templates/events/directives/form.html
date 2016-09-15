@@ -1,5 +1,5 @@
 <div class="container">
-        <form method="post" ng-submit="submit">
+        <form method="post" ng-submit="submit(false)">
             <fieldset>
             <div class="alert alert-error" ng-repeat="(field, errors) in errors">
                 <li ng-repeat="error in errors">{{field}}: {{error}}</li>
@@ -217,7 +217,7 @@
             </fieldset>
 
             <div class="center">
-                <button ng-disabled="!model.agree_conditions" ng-click="submit(model)" class="btn btn-primary btn-large" type="submit">Submit Event</button>
+                <button ng-disabled="!model.agree_conditions" ng-click="submit(model)" class="btn btn-primary btn-large" type="submit(false)">Submit Event</button>
                 <a uib-tooltip="If you cannot provide all the valid information you can save draft and continue editing later" tooltip-placement="top`" class="btn btn-warning btn-large" ng-click="submit(true)">Save draft</a>
             </div><!-- /.center -->
         </form>

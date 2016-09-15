@@ -230,7 +230,7 @@ let configRouter = function ($stateProvider, $locationProvider, $urlRouterProvid
             abstract: false
         })
         .state('venvast.venues.details', {
-            url: '/view/:slug',
+            url: '/view/{slug}',
             parent: 'venvast.venues',
             abstract: false,
             views: {
