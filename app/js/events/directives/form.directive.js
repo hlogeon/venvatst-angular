@@ -48,6 +48,12 @@ class EventForm {
                 event.images[i] = img;
             }
         }
+        if(this.existingImages && this.existingImages.length > 0) {
+            for (var i = 0; i < this.existingImages.length; i++) {
+                event.images.push(this.existingImages[i]);
+            }
+        }
+        
         if(draft === true) {
             event.draft = draft;
         }
@@ -147,8 +153,8 @@ class EventForm {
                 model.venue = model.venue.id;
             }
             context.categoriesService.gettingCategories().then((categories) => {
-                context.initImageCropper(context.scope.model);
                 context.addExistingImages(context.scope.model);
+                context.initImageCropper(context.scope.model);
                 context.initDateFrom();
                 context.initDateTo();
                 context.scope.categories = categories;
@@ -301,6 +307,7 @@ class EventForm {
 
     addExistingImages (model) {
         this.scope.existingImages = model.images.slice();
+        model.images = [];
     }
 
     deleteExistingImage (index) {

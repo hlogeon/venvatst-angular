@@ -104,7 +104,7 @@ class VenueForm {
         this.service.submit(venue).then(function (response) {
             venue.submitting = false;
             if(response.success === false) {
-                context.errors = response.errors;
+                venue.errors = response.errors;
                 window.scrollTo(0, 0);
             } else {
                 if(draft) {

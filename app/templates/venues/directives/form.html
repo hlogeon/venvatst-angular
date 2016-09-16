@@ -2,7 +2,7 @@
     <loader ng-if="venue.submitting"></loader>
         <form method="post" ng-submit="submit()" ng-if="!venue.submitting">  
             <fieldset>
-            <div class="alert alert-error" ng-repeat="(field, errors) in errors">
+            <div class="alert alert-error" ng-repeat="(field, errors) in venue.errors">
                 <li ng-repeat="error in errors">{{field}}: {{error}}</li>
             </div>
                 <legend>Basic Information
@@ -95,11 +95,11 @@
                         <div class="col-xs-5 col-md-3" ng-if="day.start === false">
                             <p style="margin-top: 29px;">Closed</p>
                         </div>
-                        <div class="col-xs-5 col-md-3" ng-if="day.start">
+                        <div class="col-xs-5 col-md-3 col-lg-2" ng-if="day.start" style="margin-top: 5px;">
                             <label>Open</label>
                             <input style="max-width:100%" type="text" class="form-control bordered" ng-model="day.start">
                         </div>
-                        <div class="col-xs-5 col-md-3" ng-if="day.start">
+                        <div class="col-xs-5 col-md-3 col-lg-2" ng-if="day.start" style="margin-top: 5px;">
                             <label>Close</label>
                             <input type="text" style="max-width:100%" class="form-control bordered" ng-model="day.end">
                         </div>
