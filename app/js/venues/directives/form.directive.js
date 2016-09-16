@@ -368,7 +368,6 @@ class VenueForm {
         let context = this;
         SERVICE.get(this).gettingEditable(this.params.slug).then(function (resposne) {
             context.scope.venue = resposne;
-            console.log(context.scope.venue.business_hours);
             context.scope.venue.submitting = false;
             context.scope.venue.acceptTerms = false;
             context.addExistingImages(context.scope.venue);

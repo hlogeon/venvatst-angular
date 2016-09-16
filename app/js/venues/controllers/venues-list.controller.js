@@ -154,7 +154,7 @@ class VenuesListController extends ListController {
     }
 
     getObjectUrlByMarker (marker) {
-        return '/venues/view/'+ marker.slug;
+        return '/#/venues/view/'+ marker.slug;
     }
     
     getMapOptions () {
