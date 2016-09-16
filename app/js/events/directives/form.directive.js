@@ -53,7 +53,7 @@ class EventForm {
                 event.images.push(this.existingImages[i]);
             }
         }
-        
+
         if(draft === true) {
             event.draft = draft;
         }
@@ -183,8 +183,8 @@ class EventForm {
             images: []
         }
         context.categoriesService.gettingCategories().then((categories) => {
-                context.initImageCropper(context.scope.model);
                 context.addExistingImages(context.scope.model);
+                context.initImageCropper(context.scope.model);
                 context.initDateFrom();
                 context.initDateTo();
                 context.scope.categories = categories;
