@@ -83,6 +83,11 @@ class VenueForm {
                 venue.images[i] = img;
             }
         }
+        if(this.existingImages && this.existingImages.length > 0) {
+            for(var i = 0; i < this.existingImages.length; i++) {
+                venue.images.push(this.existingImages[i]);
+            }
+        }
 
         if(draft === true) {
             venue.draft = draft;

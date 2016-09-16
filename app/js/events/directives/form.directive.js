@@ -39,7 +39,8 @@ class EventForm {
             if (typeof event.images[i] === 'string') {
                 continue;
             } else {
-                let img = $('#'+event.images[i].id).cropit('export');
+                let img = $('#'+event.images[i].id).slice();
+                img = img.cropit('export');
                 if(!img) {
                     event.images.splice(i, 1);
                     continue;
