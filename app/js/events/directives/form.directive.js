@@ -30,6 +30,7 @@ class EventForm {
 
 	submit(draft) {
 		let event = this.model;
+        event.submitting = true;
 		let context = this;
 		event.starts_at = moment(event.starts_at, "YYYY.DD.MM H:mm").format("DD.MM.YYYY H:mm");
 		event.ends_at = moment(event.ends_at, "YYYY.DD.MM H:mm").format("DD.MM.YYYY H:mm");
@@ -40,7 +41,7 @@ class EventForm {
             } else {
                 let img = $('#'+event.images[i].id).cropit('export');
                 if(!img) {
-                    context.event.images.splice(i, 1);
+                    event.images.splice(i, 1);
                     continue;
                 }
                 event.images[i] = img;
@@ -60,6 +61,7 @@ class EventForm {
         }
 
         this.service.submit(event).then(function (response) {
+            event.submitting = false;
             if(response.success === false) {
                 context.errors = response.errors;
                 window.scrollTo(0, 0);
@@ -138,6 +140,7 @@ class EventForm {
         SERVICE.get(this).gettingEditable(this.params.slug).then(function (response) {
             context.scope.model = response;
             let model = context.scope.model;
+            model.submitting = false;
             if (response.venue) {
                 $('#venue-search').val(response.venue.name);
                 model.venue = model.venue.id;
@@ -164,6 +167,7 @@ class EventForm {
             venue: true,
             phone: null,
             email: null,
+            submitting: false,
             website: null,
             free_entry: true,
             entry_options: [],

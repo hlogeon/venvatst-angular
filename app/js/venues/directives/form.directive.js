@@ -69,6 +69,7 @@ class VenueForm {
 
     submit (draft = false) {
         let venue = this.venue;
+        venue.submitting = true;
         let context = this;
         for (var i = 0; i < venue.images.length; i++) {
             if (typeof venue.images[i] === 'string') {
@@ -96,6 +97,7 @@ class VenueForm {
 
 
         this.service.submit(venue).then(function (response) {
+            venue.submitting = false;
             if(response.success === false) {
                 context.errors = response.errors;
                 window.scrollTo(0, 0);
@@ -362,6 +364,7 @@ class VenueForm {
         SERVICE.get(this).gettingEditable(this.params.slug).then(function (resposne) {
             context.scope.venue = resposne;
             console.log(context.scope.venue.business_hours);
+            context.scope.venue.submitting = false;
             context.scope.venue.acceptTerms = false;
             context.addExistingImages(context.scope.venue);
             context.initImageCropper(context.scope.venue);
@@ -373,6 +376,7 @@ class VenueForm {
         let context = this;
         this.scope.venue = {
             name: null,
+            submitting: false,
             categories: [],
             description: null,
             contact: {

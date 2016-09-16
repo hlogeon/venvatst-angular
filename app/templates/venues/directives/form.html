@@ -1,5 +1,6 @@
     <div class="container">
-        <form method="post" ng-submit="submit()">  
+    <loader ng-if="venue.submitting"></loader>
+        <form method="post" ng-submit="submit()" ng-if="!venue.submitting">  
             <fieldset>
             <div class="alert alert-error" ng-repeat="(field, errors) in errors">
                 <li ng-repeat="error in errors">{{field}}: {{error}}</li>
