@@ -27,6 +27,7 @@ class BaseApiService {
 		LocalStorage.set(this, localStorageService);
 		REQUEST_SERVICE.set(this, requestService);
 		this.apiPath = 'https://api.venvast.com/';
+		// this.apiPath = 'http://localhost:8000/';
 		this.apiEndPoint = '';
 	}
 

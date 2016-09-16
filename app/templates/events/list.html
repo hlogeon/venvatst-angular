@@ -1,11 +1,7 @@
 <div class="content">
   <div class="hero">
-    <div class="col-md-3" style="margin-left: 45%;">
-         <div class="adjust">
-               <div class="loader4"></div>
-            </div>
-      </div>
-    <marker-map map-options="ListCtrl.mapOptions" loaded="ListCtrl.markersLoaded" ng-if="false"></marker-map>
+    <loader loaded="ListCtrl.markersLoaded"></loader>
+    <marker-map map-options="ListCtrl.mapOptions" loaded="ListCtrl.markersLoaded"></marker-map>
     <categories-list categories="ListCtrl.categories" change-event="ListCtrl.categoryChanged"></categories-list>
   </div><!-- /.hero -->
   <div class="container-fluid push-bottom">

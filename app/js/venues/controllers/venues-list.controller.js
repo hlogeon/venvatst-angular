@@ -77,10 +77,12 @@ class VenuesListController extends ListController {
     loadMarkers () {
         let context = this;
         let mode = false;
+        this.markersLoading = true;
         if (this.state.current.data && this.state.current.data.favorites === true) {
             mode = 'favorites';
         }
         this.getService().gettingMarkers(mode).then(function (markers) {
+            context.markersLoading = false;
             let markerItems = context.makeMarkerContent(markers);
             let overlay = context.makeMarkerOverlay(markers);
             if(context.user.lat && context.user.lng) {

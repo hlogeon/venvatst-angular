@@ -15,6 +15,7 @@ class MarkerMap {
     link (scope, element) {
         if(scope.loaded) {
             scope.loaded.subscribe(scope, function(evt, data) {
+                $('#map-loader').remove();
                 $('#map-google').gmap3('destroy');
                 $('#map-google').gmap3({
                     map: {

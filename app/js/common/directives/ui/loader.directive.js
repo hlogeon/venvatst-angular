@@ -5,9 +5,12 @@ class Loader {
         this.restrict = 'E';
         this.replace = true;
         this.transclude = false;
-        this.template = '<div class="adjust"><div class="loader4"></div></div>';
+        this.template = '<div class="col-md-3" id="map-loader" style="margin-left: 45%; margin-top: 100px"><div class="adjust"><div class="loader4"></div></div></div>';
         this.scope = {
         };
+    }
+
+    link(scope, element) {  
     }
 
     static directiveFactory () {
