@@ -124,6 +124,7 @@ class VenueForm {
     initMap(GotLocationEvent) {
         let context = this;
         let coordinates = this.scope.venue.contact.address.coordinates;
+        console.log("Coordinates: ", coordinates);
         if(coordinates.lat && coordinates.lng) {
             context.map = $('#map-google').gmap3({
                     map: {
@@ -160,6 +161,7 @@ class VenueForm {
         );
         autocomplete.addListener('place_changed', function() {
             let placeInfo = autocomplete.getPlace();
+            context.markerDragged = false;
             if(placeInfo.geometry && placeInfo.geometry.location) {
                 context.updateMap(placeInfo.geometry.location.lat(), placeInfo.geometry.location.lng());
             }
@@ -195,18 +197,16 @@ class VenueForm {
 
     getMapMarkerEvents () {
         let context = this;
+        let address = this.scope.venue.contact.address;
         let geocoder = new google.maps.Geocoder;
         let inputGroup = $('.contact-address-group');
         //TODO: input group
         return {
                 dragend: function(marker) {
+                    context.markerDragged = true;
+                    address.coordinates.lat = marker.getPosition().lat();
+                    address.coordinates.lng = marker.getPosition().lng();
                     geocoder.geocode({'location': marker.getPosition()}, function(results, status) {
-                        // if (status !== google.maps.GeocoderStatus.OK) {
-                        //     inputGroup.addClass('has-error');
-                        //     inputGroup.append(errorELement);
-                        //     $('.address-error').remove();
-                        //     return;
-                        // }
                         for(var o = 0; o < results.length; o++) {
                             if(context.validateAddress(results[o])) {
                                 context.placeInfoToModel(results[o]);
@@ -238,8 +238,10 @@ class VenueForm {
             let components = context.getAddressComponents(placeInfo);
             address.country = components.country;
             address.city = components.city;
-            address.coordinates.lat = placeInfo.geometry.location.lat();
-            address.coordinates.lng = placeInfo.geometry.location.lng();
+            if(!context.markerDragged) {
+                address.coordinates.lat = placeInfo.geometry.location.lat();
+                address.coordinates.lng = placeInfo.geometry.location.lng();
+            }
             context.rootScope.$apply(function() {
                 address.house = components.house;
                 address.street = components.street;
