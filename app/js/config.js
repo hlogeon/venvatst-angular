@@ -271,7 +271,7 @@ let configRouter = function ($stateProvider, $locationProvider, $urlRouterProvid
                 bodyClass: 'black'
             }
         });
-    $urlRouterProvider.otherwise('/events');
+    $urlRouterProvider.otherwise('/venues');
     localStorageServiceProvider.setPrefix('venvast');
 
 };
