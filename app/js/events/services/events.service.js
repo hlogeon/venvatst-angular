@@ -52,10 +52,15 @@ class EventsService extends BaseApiService {
 		return http.post(path, event, options).then(function (response) {
 			return response.data;
 		}, function(errorResponse) {
-			return {
-				success: false,
-				errors: errorResponse.data
-			};
+			let errors = errorResponse.data;
+			if(typeof errors.success === 'undefined') {
+				return {
+					success: false,
+					errors: errors
+				};
+			} else {
+				return errors;
+			}
 		});
 	}
 

@@ -84,7 +84,6 @@ class EventForm {
                 }
             }
         });
-		console.log(event);
 	}
 
 
