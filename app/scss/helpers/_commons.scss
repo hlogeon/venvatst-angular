@@ -271,6 +271,12 @@
 }
 
 .page-header-content {
+	.category-name {
+		text-transform: uppercase;
+	    font-family: Montserrat,Arial,sans-serif;
+	    color: rgba(50,50,50,.5);
+	    font-size: 11px;
+	}
 	display: table-cell;
 }
 
