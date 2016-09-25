@@ -1,6 +1,7 @@
 
 import Event from '../models/event.js';
 import moment from 'moment';
+import angular from 'angular';
 
 const Q = new WeakMap();
 const SERVICE = new WeakMap();
@@ -29,7 +30,8 @@ class EventForm {
 	}
 
 	submit(draft) {
-		let event = this.model;
+        let event = {};
+		angular.copy(this.model, event);
         event.submitting = true;
 		let context = this;
 		event.starts_at = moment(event.starts_at, "YYYY.DD.MM H:mm").format("DD.MM.YYYY H:mm");
