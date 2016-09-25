@@ -243,20 +243,20 @@
 }
 
 .page-header-category {
-	background-color: rgba($color-black, .06);
-	border-radius: 8px;
+	// background-color: rgba($color-black, .06);
+	// border-radius: 8px;
     float: left;
-    height: 88px;
-    line-height: 98px;
+    height: 64px;
+    line-height: 64px;
     margin: 0 30px 0 0;
-    width: 88px;
+    width: 64px;
 
     img {
 	    border-width: 2px;
-	    height: 32px;
+	    height: 64px;
 	    left: 0;
-	    width: 32px;
-	    border-radius: 50%;
+	    width: 64px;
+	    border-radius: 8px;
     }
 
 	i {
