@@ -32,8 +32,9 @@ class VenuesService extends BaseApiService {
 
 
 	subscribeUserEvents (event) {
+		let context = this;
 		event.subscribe(this.rootScope, () => {
-			let venues = this.unsentVenues();
+			let venues = this.unsentVenues().slice();
 			let fails = 0;
 			let context = this;
 			for (var i = 0; i < venues.length; i++) {
@@ -51,10 +52,10 @@ class VenuesService extends BaseApiService {
 						context.failSavingNotification(fails);
 					}
 					venues.splice(i, 1);
-					context.getLocalStorage().set('unsentVenues', venues);
 				});
 			}
 		});
+		context.getLocalStorage().set('unsentEvents', []);
 	}
 
 	failSavingNotification (fails) {

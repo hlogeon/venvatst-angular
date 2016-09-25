@@ -64,7 +64,7 @@ class EventsService extends BaseApiService {
 		let context = this;
 		event.subscribe(this.rootScope, () => {
 			let context = this;
-			let events = this.unsentEvents();
+			let events = this.unsentEvents().slice();
 			let fails = 0;
 			if(!events) {
 				return null;
@@ -84,10 +84,10 @@ class EventsService extends BaseApiService {
 						context.failSavingNotification(fails);
 					}
 					events.splice(i, 1);
-					context.getLocalStorage().set('unsentEvents', events);
 				});
 			}
 		});
+		context.getLocalStorage().set('unsentEvents', []);
 	}
 
 	going(slug) {
