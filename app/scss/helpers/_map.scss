@@ -9,6 +9,24 @@
 .map-address {
 	color: rgba($color-black, .8);
 	margin-top: 20px;
+	line-height: 28px;
+
+	.fa {
+		.fa-map-marker {
+			padding-right: 7px;
+		    padding-left: 2px;
+		    color: rgba(0,0,0,0.5);
+		}
+		.fa-envelope {
+			color: rgba(0,0,0,0.5);
+			padding-right: 7px;
+		}
+		.fa-phone {
+			color: rgba(0,0,0,0.5);
+			padding-right: 7px;
+		}
+	}
+
 }
 
 #contact-map {
