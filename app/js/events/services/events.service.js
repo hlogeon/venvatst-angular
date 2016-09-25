@@ -81,9 +81,13 @@ class EventsService extends BaseApiService {
 					} else {
 						fails++;
 					}
-					if (fails > 0) {
-						context.failSavingNotification(fails);
+
+					if (i === events.length - 1) {
+						if (fails > 0) {
+							context.failSavingNotification(fails);
+						}
 					}
+
 					events.splice(i, 1);
 				});
 			}
