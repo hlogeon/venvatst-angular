@@ -55,7 +55,7 @@ class VenuesService extends BaseApiService {
 				});
 			}
 		});
-		context.getLocalStorage().set('unsentEvents', []);
+		context.getLocalStorage().set('unsentVenues', []);
 	}
 
 	failSavingNotification (fails) {

@@ -154,7 +154,7 @@ class EventsService extends BaseApiService {
 	}
 
 	successEventNotification (event) {
-		this.notification.success({title: "Event saved", message: "Event " + event.name + " saved. You can now check it at <b>organizer panel<b> <br/>Menu -> Venues -> Organize", delay: 10000});
+		this.notification.success({title: "Event saved", message: "Event " + event.name + " saved. You can now check it at <b>organizer panel<b> <br/>Menu -> Events -> Organize", delay: 10000});
 	}
 
 	unauthorizedNotification() {
