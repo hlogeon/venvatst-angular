@@ -21,10 +21,6 @@
                         <a href="#"><i class="fa fa-google"></i></a>
                     </div>
                 </div>
-                <div class="page-header-contact-info">
-                    <i class="fa fa-envelope"></i><span class="contact-email">{{ object.email }}</span>
-                    <i class="fa fa-phone"></i><span class="contact-phone">{{ object.phone }}</span>
-                </div>
             </div>
         </div>
     </div>
@@ -64,7 +60,9 @@
                     <div class="map-inner">
                         <div id="event-map"></div>
                         <div class="map-address">
-                            {{ object.fullAddress }}
+                            {{ object.fullAddress }} <br/>
+                            <i class="fa fa-envelope"></i><span class="contact-email">{{ object.email }}</span><br/>
+                            <i class="fa fa-phone"></i><span class="contact-phone">{{ object.phone }}</span>
                         </div><!-- /.map-address -->
                     </div><!-- /.map-inner -->
                 </div><!-- /.map -->
