@@ -104,3 +104,13 @@
 		}
 	}
 }
+
+
+.map-inner .title {
+	font-size: 20px;
+	color: $color-primary;
+	text-transform: uppercase;
+	padding-left: 5px;
+	border-left: 4px solid $color-secondary; 
+    font-family: Montserrat,Arial,sans-serif;
+}
