@@ -2,7 +2,7 @@
 <loader ng-if="model.submitting"></loader>
         <form method="post" ng-submit="submit(false)" ng-if="!model.submitting">
             <fieldset>
-            <div class="alert alert-error" ng-repeat="(field, errors) in errors">
+            <div class="alert alert-error" ng-repeat="(field, errors) in model.errors">
                 <li ng-repeat="error in errors">{{field}}: {{error}}</li>
             </div>
                 <legend>Basic Information

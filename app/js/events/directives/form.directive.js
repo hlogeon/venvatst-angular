@@ -72,7 +72,7 @@ class EventForm {
         this.service.submit(event).then(function (response) {
             context.model.submitting = false;
             if(response.success === false) {
-                context.errors = response.errors;
+                context.model.errors = response.errors;
                 window.scrollTo(0, 0);
             } else {
                 if(draft === true) {
