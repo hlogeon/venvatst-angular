@@ -63,9 +63,9 @@ class EventsService extends BaseApiService {
 	subscribeUserEvents (event) {
 		let context = this;
 		event.subscribe(this.rootScope, () => {
-			let events = context.getLocalStorage().get('unsentEvents');
-			let fails = 0;
 			let context = this;
+			let events = this.unsentEvents();
+			let fails = 0;
 			if(!events) {
 				return null;
 			}
