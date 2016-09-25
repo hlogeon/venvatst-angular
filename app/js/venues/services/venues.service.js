@@ -50,7 +50,8 @@ class VenuesService extends BaseApiService {
 					if (fails > 0) {
 						context.failSavingNotification(fails);
 					}
-
+					venues.splice(i, 1);
+					context.getLocalStorage().set('unsentVenues', venues);
 				});
 			}
 		});

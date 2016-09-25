@@ -61,8 +61,9 @@ class EventsService extends BaseApiService {
 
 
 	subscribeUserEvents (event) {
+		let context = this;
 		event.subscribe(this.rootScope, () => {
-			let events = this.unsentEvents();
+			let events = context.getLocalStorage().get('unsentEvents');
 			let fails = 0;
 			let context = this;
 			if(!events) {
@@ -82,7 +83,8 @@ class EventsService extends BaseApiService {
 					if (fails > 0) {
 						context.failSavingNotification(fails);
 					}
-
+					events.splice(i, 1);
+					context.getLocalStorage().set('unsentEvents', events);
 				});
 			}
 		});
@@ -140,7 +142,7 @@ class EventsService extends BaseApiService {
 	}
 
 	failDelete (event, error) {
-		this.notification.error({title: 'Delete failure', message: 'Deleting of <b>' + event.name + '</b> events faild.<br/>' + error});
+		this.notification.error({title: 'Delete failure', message: 'Deleting of <b>' + event.name + '</b> event faild.<br/>' + error});
 	}
 
 	successDelete (event) {
@@ -148,11 +150,11 @@ class EventsService extends BaseApiService {
 	}
 
 	successDraftNotification (draft) {
-		this.notification.success({title: 'Draft saved', message: 'Draft of event <b>' + draft.name + '</b> saved. You can now check it at <b>organizer panel<b> <br/>Menu -> Venues -> Organize and select Drafts there', delay: 10000});
+		this.notification.success({title: 'Draft saved', message: 'Draft of event <b>' + draft.name + '</b> saved. You can now check it at <b>organizer panel<b> <br/>Menu -> Events -> Drafts', delay: 10000});
 	}
 
 	successEventNotification (event) {
-		this.notification.success({title: "Venue saved", message: "Venue " + event.name + " saved. You can now check it at <b>organizer panel<b> <br/>Menu -> Venues -> Organize", delay: 10000});
+		this.notification.success({title: "Event saved", message: "Event " + event.name + " saved. You can now check it at <b>organizer panel<b> <br/>Menu -> Venues -> Organize", delay: 10000});
 	}
 
 	unauthorizedNotification() {
