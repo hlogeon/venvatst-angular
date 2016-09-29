@@ -1,12 +1,7 @@
 
-# angular-seed-es6
+# VenVast public web app
 
-[![Build Status](https://travis-ci.org/gusgard/angular-seed-es6.svg)](https://travis-ci.org/gusgard/angular-seed-es6)
-[![devDependency Status](https://david-dm.org/gusgard/angular-seed-es6.svg)](https://david-dm.org/gusgard/angular-seed-es6#info=devDependencies)
-
-This project is an application skeleton for a typical [AngularJS 1.x](http://angularjs.org/) web app using the [best practices](https://github.com/johnpapa/angular-styleguide/blob/master/a1/README.md) and with **ES6**.
-You can use it to quickly bootstrap your angular webapp projects and dev environment for these
-projects.
+This project is a VenVast public web app built on top of [AngularJS 1.x](http://angularjs.org/) using the [best practices](https://github.com/johnpapa/angular-styleguide/blob/master/a1/README.md) and with **ES6**.
 
 The seed contains a sample AngularJS application and is preconfigured to install the Angular
 framework and a bunch of development tools for instant web development gratification.
@@ -29,10 +24,9 @@ Please see the [gulpfile](./gulpfile.babel.js) for up to date information on wha
 ## Getting Started
 
 - Install dependencies: `npm install`
+- Configure your gulpfile to interact with your browser
 - Run `npm start` to preview and watch for changes with hot reload
 - Run `npm run build` to generate a distributable, production-ready, `build` directory
-
-Now browse to the app at `http://localhost:8000`.
 
 ## Directory Layout for development
 
@@ -56,15 +50,14 @@ app/                    --> all compiled files for the application
     modules.js            --> main application module, load all states for the page.
   scss/                   --> sass files
     section/
-      view-one/
-        _index.scss
-      view-two/
-        _index.scss
-        count-store.js
+      components/         -> styles for components
+        _includable_file.scss
+      helpers/              -> style helpers
+        _includable_file.scss
     variables/
       _colors.scss
       _index.scss
-    main.scss           --> main sass
+    eve.scss           --> main sass
   templates/            --> html files
     view-one/
       view-one.html
@@ -95,9 +88,6 @@ build/                  --> all compiled files for the application
       view-two.html     --> minify html
   index.html            --> the main html template file of the app
 ```
-## Testing
-
-* TODO
 
 ## Inspired by
-- [anuglar-seed](https://github.com/angular/angular-seed)
+- [anuglar-seed-es6](https://github.com/gusgard/angular-seed-es6)
