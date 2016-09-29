@@ -34,6 +34,7 @@ const JS_DEPENDENCIES = [
   'node_modules/angular-aria/angular-aria.js',
   'node_modules/angular-material/angular-material.js',
   'node_modules/angular-local-storage/index.js',
+  'node_modules/angular-google-analytics/index.js',
   'node_modules/ui-select/index.js',
   'node_modules/angular-formly/dist/formly.js',
   'node_modules/angular-formly-templates-bootstrap/dist/angular-formly-templates-bootstrap.js',

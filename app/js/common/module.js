@@ -2,6 +2,7 @@ import angular from 'angular';
 import 'angular-ui-router';
 import 'angular-ui-bootstrap';
 import 'angular-material';
+import 'angular-google-analytics';
 import 'angular-local-storage';
 import 'angular-formly';
 import 'angular-formly-templates-bootstrap';
