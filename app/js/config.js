@@ -1,10 +1,4 @@
 let configRouter = function ($stateProvider, $locationProvider, $urlRouterProvider, localStorageServiceProvider, AnalyticsProvider) {
-    // $locationProvider.html5Mode(true).hashPrefix('!');
-
-    AnalyticsProvider.trackPages(true); //track all the routes
-    AnalyticsProvider.trackUrlParams(false); //don't track all url params
-    AnalyticsProvider.ignoreFirstPageLoad(true);
-    AnalyticsProvider.setPageEvent('$stateChangeSuccess'); // UI-Router raises $stateChangeSuccess on page change
 
     $stateProvider
         .state('venvast', {
