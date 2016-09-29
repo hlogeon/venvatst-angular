@@ -280,6 +280,6 @@ let configRouter = function ($stateProvider, $locationProvider, $urlRouterProvid
 
 };
 
-configRouter.$inject = ['$stateProvider', '$locationProvider', '$urlRouterProvider', 'localStorageServiceProvider'];
+configRouter.$inject = ['$stateProvider', '$locationProvider', '$urlRouterProvider', 'localStorageServiceProvider', 'AnalyticsProvider'];
 
 export default configRouter;

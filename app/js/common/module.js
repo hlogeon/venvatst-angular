@@ -41,6 +41,7 @@ let dependencies = [
     'ui.router',
     'ui.bootstrap',
     'ui.select',
+    'angular-google-analytics',
     'ngMaterial',
     'LocalStorageModule',
     'formly',
