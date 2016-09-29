@@ -3,13 +3,12 @@
 let analyticsConfig = function (AnalyticsProvider) {
 	AnalyticsProvider.setAccount('UA-84958569-1');
 	AnalyticsProvider
+	.useAnalytics(false)
     .logAllCalls(true)
-    .startOffline(true);
-
-    AnalyticsProvider.trackPages(true); //track all the routes
-    AnalyticsProvider.trackUrlParams(false); //don't track all url params
-    AnalyticsProvider.ignoreFirstPageLoad(true);
-    AnalyticsProvider.setPageEvent('$stateChangeSuccess'); // UI-Router raises $stateChangeSuccess on page change
+    .trackPages(true)
+    .ignoreFirstPageLoad(true)
+    .setPageEvent('$stateChangeSuccess')
+    .startOffline(false);
 };
 
 
