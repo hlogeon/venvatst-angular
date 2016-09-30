@@ -1,13 +1,5 @@
 $hero-height: 550px;
 
-
-@media (max-width: 640px) {
-	// .hero {
-	// 	display: none;
-	// }
-}	
-
-
 .hero {
 	height: $hero-height;
 	margin-top: -80px;
@@ -24,7 +16,12 @@ $hero-height: 550px;
 	}
 
 	#map-google {
+		min-height: $hero-height;
 		height: $hero-height;
+		z-index: 0;
+		// @include media-breakpoint-down(xs) {
+		// 	display:none;
+		// }
 	}
 }
 
