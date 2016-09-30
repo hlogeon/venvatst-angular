@@ -14,6 +14,12 @@ class ListController {
 		this.setService(service);
         this.setQ($q);
 		this.scope = $scope;
+
+		let w = window,
+		d = document,
+		e = d.documentElement,
+		g = d.getElementsByTagName('body')[0];
+		this.windowWidth = w.innerWidth||e.clientWidth||g.clientWidth;
 	}
 
     /**

@@ -112,6 +112,11 @@ class VenuesListController extends ListController {
     listenCategories (categoriesEvent) {
         let context = this;
         categoriesEvent.subscribe(this.scope, (evt, params) => {
+            if(this.windowWidth < 479) {
+                 $('html, body').animate({
+                    scrollTop: 500
+                }, 2000);
+            }
             this.getService().getRequestService().setPage(0);
             if (!params) {
                 this.state.params.slug = null;
