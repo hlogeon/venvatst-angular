@@ -5,7 +5,7 @@
     <categories-list categories="ListCtrl.categories" change-event="ListCtrl.categoryChanged"></categories-list>
   </div><!-- /.hero -->
   <div class="container-fluid push-bottom">
-      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 mobile-clearfix" ng-repeat="venue in ListCtrl.venues">
+      <div class="col-xs-12 col-lg-6 col-xl-4 mobile-clearfix ng-scope" ng-repeat="venue in ListCtrl.venues">
         <div venue-card venue="venue" distance="ListCtrl.showDistance"></div>
       </div><!-- /.col-* -->
     <div class="clearfix"></div>

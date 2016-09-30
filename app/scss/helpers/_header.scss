@@ -70,7 +70,7 @@
 }
 
 
-@include media-breakpoint-up(lg) {
+@include media-breakpoint-up(xs) {
 	.nav {
 		float: left;
 
@@ -130,70 +130,12 @@
 .nav-primary.collapse {
 	display: block;
 
-	@include media-breakpoint-down(lg) {
+	@include media-breakpoint-down(md) {
 		display: none;
 
 		&.in {
 			display: block;
 			margin-top: 20px;
-		}
-	}
-}
-
-@include media-breakpoint-down(md) {
-	.nav-right {
-		float: right;
-	}
-	
-	.nav-primary {		
-		background-color: $color-black;
-		left: 0;
-		position: absolute;
-		right: 0;		
-		top: 114px;
-		z-index: 9999;
-
-		li, li.nav-item {
-			border-radius: 0;
-			display: block;
-			float: none;
-			margin: 0 !important;
-
-			ul {
-				background-color: rgba(#fff, .04);
-				display: none;
-			}
-
-			&:hover {
-				> ul {
-					display: block;
-				}
-			}
-		}
-
-		ul {
-			margin: 0;
-			padding: 0;
-		}
-
-		a.nav-link, a {
-			border-radius: 0;
-			color: rgba(#fff, .8);
-			display: block;
-			font-family: 'Montserrat', 'Arial', sans-serif;
-			font-size: 12px;
-			padding: 12px 20px;
-
-			&.active {
-				background-color: transparent;
-				border-radius: 0;
-				cursor: pointer;
-			}
-
-			&.active:hover, &:hover {
-				background-color: $color-secondary;
-				text-decoration: none;
-			}
 		}
 	}
 }
@@ -289,7 +231,7 @@
 	width: 20px;
 }
 
-@include media-breakpoint-up(lg) {
+@include media-breakpoint-up(xs) {
 	.has-children {
 		margin: 0 25px 0 0 !important; 
 
