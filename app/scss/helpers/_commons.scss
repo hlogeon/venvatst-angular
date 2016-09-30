@@ -153,6 +153,9 @@
 
 .nav-social {
 	margin: 9px 0 0 20px;
+	@include media-breakpoint-down(xs) {
+			display:none;
+	}
 
 	.nav-item {
 		float: left;
