@@ -61,6 +61,11 @@
                     <div class="map-inner">
                         <h2 class="title">Contact Info</h2>
                         <div id="event-map"></div>
+                        <span>
+                            <a href="http://maps.google.com/maps?q=loc:{{object.location.lat}},{{object.location.lng}}" target="_blank">
+                                Open on google maps
+                            </a>
+                        </span>
                         <div class="map-address">
                             <i class="fa fa-map-marker"></i> {{ object.fullAddress }} <br/>
                             <i class="fa fa-envelope" style="color: rgba(0,0,0,.5);"></i><span class="contact-email"> {{ object.email }}</span><br/>
