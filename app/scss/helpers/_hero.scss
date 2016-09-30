@@ -19,9 +19,9 @@ $hero-height: 550px;
 		min-height: $hero-height;
 		height: $hero-height;
 		z-index: 0;
-		// @include media-breakpoint-down(xs) {
-		// 	display:none;
-		// }
+		@include media-breakpoint-down(xs) {
+			display:none;
+		}
 	}
 }
 
