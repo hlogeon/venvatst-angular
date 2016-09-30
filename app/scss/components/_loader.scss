@@ -6,6 +6,9 @@
   animation-fill-mode: both;
   -webkit-animation: load4 1.8s infinite ease-in-out;
   animation: load4 1.8s infinite ease-in-out;
+    @include media-breakpoint-down(xs) {
+      display:none;
+    }
 }
 
 .loader4 {
